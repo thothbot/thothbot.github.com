@@ -1,0 +1,11 @@
+function lFb(){}
+function sFb(){sFb=eIb;AFb()}
+function mFb(){Dyb.call(this)}
+function AFb(){AFb=eIb;tFb=$moduleBase+S1b}
+function GFb(){GFb=eIb;AFb();zFb=new BF((pG(),new lG(tFb)),0,256,256)}
+function DFb(){DFb=eIb;AFb();wFb=new BF((pG(),new lG(tFb)),768,256,256)}
+function EFb(){EFb=eIb;AFb();xFb=new BF((pG(),new lG(tFb)),512,256,256)}
+function FFb(){FFb=eIb;AFb();yFb=new BF((pG(),new lG(tFb)),256,256,256)}
+function BFb(){BFb=eIb;AFb();uFb=new BF((pG(),new lG(tFb)),1280,256,256)}
+function CFb(){CFb=eIb;AFb();vFb=new BF((pG(),new lG(tFb)),1024,256,256)}
+var S1b='6AFFA92EFD5A43408C6B03E24E783567.cache.png',T1b='MaterialsCubemapBallsReflection$DemoScene';_=gFb.prototype;_.kb=function kFb(){zyb(this.a,(gob(z0b+tA.b),new mFb))};_=mFb.prototype=lFb.prototype=new Cyb;_.gC=function nFb(){return sA};_.bd=function oFb(){o7(this,new Zob(60,w7(this.q.C),1,100000))};_.bb=function pFb(){var a,b,c,d,e,f,g,i,j,k;this.p.F.b=3200;nob(this.s,this.p);this.d=new Hxb;this.a=new Zob(60,w7(this.q.C),1,100000);nob(this.d,this.a);a=new ftb(100,32,16);sFb();k=Nxb(new V2(vp(TA,{80:1,96:1},45,[(EFb(),AFb(),xFb),(BFb(),uFb),(FFb(),yFb),(CFb(),vFb),(GFb(),zFb),(DFb(),wFb)])),null);d=new yvb;d.g=new lpb(16777215);d.i=k;c=new tvb(d);this.e=new t2;for(b=0;b<500;++b){e=new $wb(a,c);krb(e.F,Math.random()*10000-5000);lrb(e.F,Math.random()*10000-5000);xrb(e.F,Math.random()*10000-5000);i=Math.random()*3+1;wrb(e.K,i,i,i);nob(this.s,e);j2(this.e,e)}j=new sjb;Ep(O_(j.c,R1b),125).b=k;g=new qwb;g.b=(j.a==null&&Nib(j,j.b.fd().Nb()),j.a);g.e=(j.d==null&&Oib(j,j.b.gd().Nb()),j.d);g.d=j.c;g.s=false;f=new mwb(g);e=new $wb(new vsb(100,100,100),f);e.b=(uY(),uY(),tY);nob(this.d,e);this.q.H=false};_._c=function qFb(){};_.cb=function rFb(a){var b,c,d;d=1.0E-4*a;for(b=0,c=this.e.b;b<c;++b){krb(Ep(n2(this.e,b),162).F,5000*Math.cos(d+b));lrb(Ep(n2(this.e,b),162).F,5000*Math.sin(d+b*1.1))}hrb(this.p.F,(this.b-this.p.F.c)*0.05);irb(this.p.F,(-this.c-this.p.F.d)*0.05);Dob(this.p,this.s.F);this.a.I.qd(this.p.I);dhb(this.q,this.d,this.a,null);n7(this)};_.cM={171:1};_.a=null;_.b=0;_.c=0;_.d=null;_.e=null;var tFb,uFb=null,vFb=null,wFb=null,xFb=null,yFb=null,zFb=null;var sA=GY(C$b,T1b);gIb(Md)(11);
