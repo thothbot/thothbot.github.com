@@ -1,0 +1,206 @@
+<pre>
+/*
+ * Load texture
+ */
+public interface Resources extends ClientBundle
+{
+   Resources INSTANCE = GWT.create(Resources.class);
+
+   @Source("../../resources/textures/caravaggio.jpg")
+   ImageResource texture();
+}
+
+
+
+/*
+ * Prepare Rendering Scene
+ */
+class DemoScene extends DemoRenderingScene 
+{
+   int mouseX = 0, mouseY = 0;
+   
+   Scene scene2;
+   
+   Plane geometry;
+   
+   Texture texturePainting2;
+   Mesh meshCanvas;
+   Mesh meshCanvas2;
+   
+   MeshBasicMaterial materialPainting;
+   MeshBasicMaterial materialPainting2;
+
+   @Override
+   protected void loadCamera()
+   {
+      setCamera(
+            new PerspectiveCamera(
+                  35, // fov
+                  getRenderer().getCanvas().getAspectRation(), // aspect 
+                  1, // near
+                  5000 // far 
+            )); 
+   }
+
+   @Override
+   protected void onStart()
+   {
+      getCamera().getPosition().setZ(1500);
+      getScene().addChild(getCamera());
+
+      this.scene2 = new Scene();
+
+      getScene().setFog( new FogSimple( 0x000000, 1500, 4000 ));
+      scene2.setFog( getScene().getFog() );
+
+      // GROUND
+
+      CanvasElement canvas = Document.get().createElement("canvas").cast();
+      canvas.setWidth(128);
+      canvas.setHeight(128);
+      Context2d context = canvas.getContext2d();
+
+      context.setFillStyle( "#444" );
+      context.fillRect( 0, 0, 128, 128 );
+
+      context.setFillStyle( "#fff" );
+      context.fillRect( 0, 0, 64, 64);
+      context.fillRect( 64, 64, 64, 64 );
+
+      Texture textureCanvas = new Texture( canvas, Texture.MAPPING_MODE.UV, TextureWrapMode.REPEAT, TextureWrapMode.REPEAT );
+      MeshBasicMaterial materialCanvas = new MeshBasicMaterial();
+      materialCanvas.setMap(textureCanvas);
+
+      textureCanvas.setNeedsUpdate(true);
+      textureCanvas.setRepeat(new Vector2f(1000, 1000));
+
+      Texture textureCanvas2 = new Texture( canvas, Texture.MAPPING_MODE.UV, TextureWrapMode.REPEAT, TextureWrapMode.REPEAT, TextureMagFilter.NEAREST, TextureMinFilter.NEAREST);
+      MeshBasicMaterial materialCanvas2 = new MeshBasicMaterial();
+      materialCanvas2.setColor(new Color3f(0xffccaa));
+      materialCanvas2.setMap(textureCanvas2);
+
+      textureCanvas2.setNeedsUpdate(true);
+      textureCanvas2.setRepeat(new Vector2f(1000, 1000));
+
+      geometry = new Plane( 100, 100 );
+
+      meshCanvas = new Mesh( geometry, materialCanvas );
+      meshCanvas.getScale().set( 1000 );
+
+      meshCanvas2 = new Mesh( geometry, materialCanvas2 );
+      meshCanvas2.getScale().set( 1000 );
+
+      // PAINTING
+      Texture texturePainting = ImageUtils.loadTexture(Resources.INSTANCE.texture(), Texture.MAPPING_MODE.UV, new ImageUtils.Callback() {
+         
+         @Override
+         public void run(Texture texture) {
+            callbackPainting(texture);
+         }
+      } );
+      
+      materialPainting = new MeshBasicMaterial();
+      materialPainting.setColor(new Color3f(0xffffff));
+      materialPainting.setMap(texturePainting);
+      
+      texturePainting2 = new Texture(texturePainting.getImage());
+      materialPainting2 = new MeshBasicMaterial();
+      materialPainting2.setColor(new Color3f(0xffccaa));
+      materialPainting2.setMap(texturePainting2);
+
+      texturePainting2.setMinFilter(TextureMinFilter.NEAREST);
+      texturePainting2.setMagFilter(TextureMagFilter.NEAREST);
+
+      texturePainting.setMinFilter(TextureMinFilter.LINEAR);
+      texturePainting.setMagFilter(TextureMagFilter.LINEAR);
+
+      getRenderer().setClearColor( getScene().getFog().getColor(), 1 );
+      getRenderer().setAutoClear(false);
+   }
+   
+   private void callbackPainting( Texture texture ) 
+   {
+      texturePainting2.setImage(texture.getImage());
+      texturePainting2.setNeedsUpdate(true);
+
+      getScene().addChild( meshCanvas );
+      scene2.addChild( meshCanvas2 );
+
+      Plane geometry = new Plane( 100, 100 );
+      Mesh mesh = new Mesh( geometry, materialPainting );
+      Mesh mesh2 = new Mesh( geometry, materialPainting2 );
+
+      mesh.getRotation().setX( (float) (Math.PI / 2.0) );
+      mesh2.getRotation().setX( (float) (Math.PI / 2.0) );
+
+      addPainting( texture.getImage(), getScene(), mesh );
+      addPainting( texture.getImage(), scene2, mesh2 );
+   }
+   
+   private void addPainting( Element image, Scene zscene, Mesh zmesh ) 
+   {
+      zmesh.getScale().setX( image.getOffsetWidth() / 100.0f ) ;
+      zmesh.getScale().setZ( image.getOffsetHeight() / 100.0f );
+
+      zscene.addChild( zmesh );
+
+      MeshBasicMaterial mb = new MeshBasicMaterial();
+      mb.setColor(new Color3f(0x000000));
+      mb.setPolygonOffset(true);
+      mb.setPolygonOffsetFactor(1);
+      mb.setPolygonOffsetUnits(5);
+      
+      Mesh meshFrame = new Mesh( geometry,  mb);
+      meshFrame.getRotation().setX( (float) (Math.PI / 2.0) );
+      meshFrame.getScale().setX( 1.1f * image.getOffsetWidth() / 100 );
+      meshFrame.getScale().setZ( 1.1f * image.getOffsetHeight() / 100 );
+
+      zscene.addChild( meshFrame );
+
+      MeshBasicMaterial mb2 = new MeshBasicMaterial();
+      mb2.setColor(new Color3f(0x000000));
+      mb2.setOpacity(0.75f);
+      mb2.setTransparent(true);
+      Mesh meshShadow = new Mesh( geometry, mb2 );
+
+      meshShadow.getPosition().setZ( - 1.1f * image.getOffsetHeight()/ 2 );
+      meshShadow.getScale().setX( 1.1f * image.getOffsetWidth() / 100 );
+      meshShadow.getScale().setZ( 1.1f * image.getOffsetHeight() / 100 );
+      zscene.addChild( meshShadow );
+
+      meshShadow.getPosition().setY( - 1.1f * image.getOffsetHeight()/2 );
+
+      float floorHeight = - 1.117f * image.getOffsetHeight()/2;
+      meshCanvas.getPosition().setY( floorHeight ); 
+      meshCanvas2.getPosition().setY( floorHeight );
+   }
+   
+   @Override
+   protected void onStop()
+   {         
+   }
+   
+   @Override
+   protected void onUpdate(double duration)
+   {
+      getCamera().getPosition().addX( ( mouseX - getCamera().getPosition().getX() ) * .05f );
+      getCamera().getPosition().addY( ( - ( mouseY - 200) - getCamera().getPosition().getY() ) * .05f );
+
+      getCamera().lookAt( getScene().getPosition() );
+
+      getRenderer().enableScissorTest( false );
+      getRenderer().clear(false, false, false);
+      getRenderer().enableScissorTest( true );
+
+      Canvas3d canvas = getRenderer().getCanvas();
+      getRenderer().setScissor( canvas.getOffsetWidth()/2, 0, canvas.getOffsetWidth()/2 - 2, canvas.getOffsetHeight()  );
+      getRenderer().render( this.scene2, getCamera() );
+
+      
+      getRenderer().setScissor( 0, 0, canvas.getOffsetWidth()/2 - 2, canvas.getOffsetHeight() );
+      super.onUpdate(duration);
+   }
+}
+
+
+</pre>
