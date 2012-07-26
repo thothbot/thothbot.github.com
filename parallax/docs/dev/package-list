@@ -21,5 +21,5 @@ thothbot.parallax.core.shared.materials
 thothbot.parallax.core.shared.objects
 thothbot.parallax.core.shared.scenes
 thothbot.parallax.core.shared.utils
+thothbot.parallax.loader.shared
 thothbot.parallax.loader.shared.collada
-thothbot.parallax.loader.shared.collada.dae
