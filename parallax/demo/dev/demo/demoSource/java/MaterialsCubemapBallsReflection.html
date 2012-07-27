@@ -1,37 +1,11 @@
 <pre>
 /*
- * Load texture
- */
-public interface Resources extends ClientBundle
-{
-   Resources INSTANCE = GWT.create(Resources.class);
-   
-   @Source("../../resources/textures/cube/pisa/px.png")
-   ImageResource px();
-   
-   @Source("../../resources/textures/cube/pisa/nx.png")
-   ImageResource nx();
-   
-   @Source("../../resources/textures/cube/pisa/py.png")
-   ImageResource py();
-   
-   @Source("../../resources/textures/cube/pisa/ny.png")
-   ImageResource ny();
-   
-   @Source("../../resources/textures/cube/pisa/pz.png")
-   ImageResource pz();
-         
-   @Source("../../resources/textures/cube/pisa/nz.png")
-   ImageResource nz();
-}
-
-
-
-/*
  * Prepare Rendering Scene
  */
-class DemoScene extends DemoRenderingScene 
+class DemoScene extends DemoAnimatedScene 
 {
+   private static final String textures = "./static/textures/cube/pisa/*.png";
+   
    public int mouseX = 0;
    public int mouseY = 0;
    
@@ -49,7 +23,21 @@ class DemoScene extends DemoRenderingScene
                   getRenderer().getCanvas().getAspectRation(), // aspect 
                   1, // near
                   100000 // far 
-            )); 
+            ));
+
+      this.cameraCube = new PerspectiveCamera(
+            60, // fov
+            getRenderer().getCanvas().getAspectRation(), // aspect 
+            1, // near
+            100000 // far 
+      );
+   }
+   
+   @Override
+   protected void onResize()
+   {
+      super.onResize();
+      this.cameraCube.setAspectRatio(getRenderer().getCanvas().getAspectRation());
    }
 
    @Override
@@ -59,15 +47,11 @@ class DemoScene extends DemoRenderingScene
       getScene().addChild(getCamera());
       
       this.sceneCube = new Scene();
-      this.cameraCube = new PerspectiveCamera( 60, getRenderer().getCanvas().getAspectRation(), 1, 100000 );
-
       sceneCube.addChild( cameraCube );
 
       Sphere geometry = new Sphere( 100, 32, 16 );
 
-
-      Resources r = Resources.INSTANCE;
-      CubeTexture textureCube = ImageUtils.loadTextureCube( Arrays.asList(r.px(), r.nx(), r.py(), r.ny(), r.pz(), r.nz()));
+      CubeTexture textureCube = ImageUtils.loadTextureCube( textures );
       
       MeshBasicMaterial material = new MeshBasicMaterial();
       material.setColor( new Color3f(0xffffff) );
@@ -129,11 +113,10 @@ class DemoScene extends DemoRenderingScene
       getCamera().getPosition().addY((float) (( - mouseY - getCamera().getPosition().getY() ) * 0.05) );
 
       getCamera().lookAt( getScene().getPosition() );
-      this.cameraCube.getRotation().copy( getCamera().getRotation() );
 
-      getRenderer().render( sceneCube, cameraCube );
+      this.cameraCube.getRotation().copy( getCamera().getRotation() );
       
-      super.onUpdate(duration);
+      getRenderer().render( this.sceneCube, this.cameraCube );
    }
 }
 

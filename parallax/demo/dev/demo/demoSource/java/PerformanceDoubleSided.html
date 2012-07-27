@@ -1,37 +1,11 @@
 <pre>
 /*
- * Load texture
- */
-public interface Resources extends ClientBundle
-{
-   Resources INSTANCE = GWT.create(Resources.class);
-   
-   @Source("../../resources/textures/cube/swedishRoyalCastle/px.jpg")
-   ImageResource px();
-   
-   @Source("../../resources/textures/cube/swedishRoyalCastle/nx.jpg")
-   ImageResource nx();
-   
-   @Source("../../resources/textures/cube/swedishRoyalCastle/py.jpg")
-   ImageResource py();
-   
-   @Source("../../resources/textures/cube/swedishRoyalCastle/ny.jpg")
-   ImageResource ny();
-   
-   @Source("../../resources/textures/cube/swedishRoyalCastle/pz.jpg")
-   ImageResource pz();
-         
-   @Source("../../resources/textures/cube/swedishRoyalCastle/nz.jpg")
-   ImageResource nz();
-}
-
-
-
-/*
  * Prepare Rendering Scene
  */
-class DemoScene extends DemoRenderingScene 
+class DemoScene extends DemoAnimatedScene 
 {
+   private static final String textures = "./static/textures/cube/swedishRoyalCastle/*.jpg";
+   
    public int mouseX;
    public int mouseY;
    
@@ -65,8 +39,7 @@ class DemoScene extends DemoRenderingScene
       light3.getPosition().set( 0, 0, 0 );
       getScene().addChild( light3 );
 
-      Resources r = Resources.INSTANCE;
-      Texture reflectionCube = ImageUtils.loadTextureCube( Arrays.asList(r.px(), r.nx(), r.py(), r.ny(), r.pz(), r.nz()));
+      Texture reflectionCube = ImageUtils.loadTextureCube( textures );
       reflectionCube.setFormat(PixelFormat.RGB);
 
       MeshPhongMaterial material = new MeshPhongMaterial();
@@ -121,8 +94,6 @@ class DemoScene extends DemoRenderingScene
       getCamera().getPosition().addY( ( - mouseY - getCamera().getPosition().getY() ) * .05f );
 
       getCamera().lookAt( getScene().getPosition() );
-      
-      super.onUpdate(duration);
    }
 }
 

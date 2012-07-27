@@ -2,7 +2,7 @@
 /*
  * Prepare Rendering Scene
  */
-class DemoScene extends DemoRenderingScene 
+class DemoScene extends DemoAnimatedScene 
 {
    Object3D group;
 
@@ -51,6 +51,7 @@ class DemoScene extends DemoRenderingScene
       getScene().addChild( group );
 
       getRenderer().setSortObjects(false);
+      getRenderer().setClearColorHex(0xeeeeee);
    }
    
    @Override
@@ -75,8 +76,6 @@ class DemoScene extends DemoRenderingScene
       this.group.getRotation().setX( rx );
       this.group.getRotation().setY( ry );
       this.group.getRotation().setZ( rz );
-
-      super.onUpdate(duration);
    }
 }
 

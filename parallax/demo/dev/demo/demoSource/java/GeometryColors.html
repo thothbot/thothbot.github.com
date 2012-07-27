@@ -1,22 +1,11 @@
 <pre>
 /*
- * Load texture
- */
-public interface Resources extends ClientBundle
-{
-   Resources INSTANCE = GWT.create(Resources.class);
-
-   @Source("../../resources/textures/shadow.png")
-   ImageResource texture();
-}
-
-
-
-/*
  * Prepare Rendering Scene
  */
-class DemoScene extends DemoRenderingScene 
+class DemoScene extends DemoAnimatedScene 
 {   
+   private static final String texture = "./static/textures/shadow.png";
+   
    public int mouseX;
    public int mouseY;
 
@@ -42,7 +31,7 @@ class DemoScene extends DemoRenderingScene
       getScene().addChild( light );
       
       MeshBasicMaterial shadowMaterial = new MeshBasicMaterial();
-      shadowMaterial.setMap( ImageUtils.loadTexture(Resources.INSTANCE.texture()) );
+      shadowMaterial.setMap( ImageUtils.loadTexture(texture) );
       Geometry shadowGeo = new Plane( 300, 300, 1, 1 );
       
       Mesh mesh1 = new Mesh( shadowGeo, shadowMaterial );
@@ -144,7 +133,6 @@ class DemoScene extends DemoRenderingScene
       getCamera().getPosition().addY(( mouseY - getRenderer().getCanvas().getHeight()/2.5f- getCamera().getPosition().getY()) );
 
       getCamera().lookAt( getScene().getPosition());
-      super.onUpdate(duration);
    }
 }
 

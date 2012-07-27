@@ -1,22 +1,10 @@
 <pre>
 /*
- * Load texture
- */
-public interface Resources extends ClientBundle
-{
-   Resources INSTANCE = GWT.create(Resources.class);
-
-   @Source("../../resources/textures/crate.gif")
-   ImageResource texture();
-}
-
-
-
-/*
  * Prepare Rendering Scene
  */
-class DemoScene extends DemoRenderingScene 
+class DemoScene extends DemoAnimatedScene 
 {
+   private static final String texture = "./static/textures/crate.gif";
    private Mesh mesh;
 
    @Override
@@ -40,7 +28,7 @@ class DemoScene extends DemoRenderingScene
       Cube geometry = new Cube( 200, 200, 200 );
 
       MeshBasicMaterial material = new MeshBasicMaterial();
-      material.setMap( ImageUtils.loadTexture(Resources.INSTANCE.texture()) );
+      material.setMap( ImageUtils.loadTexture(texture) );
 
       this.mesh = new Mesh(geometry, material);
       getScene().addChild(mesh);
@@ -56,8 +44,6 @@ class DemoScene extends DemoRenderingScene
    {
       this.mesh.getRotation().setX(this.mesh.getRotation().getX() + 0.005f);
       this.mesh.getRotation().setY(this.mesh.getRotation().getY() + 0.01f);
-
-      super.onUpdate(duration);
    }
 }
 

@@ -1,22 +1,11 @@
 <pre>
 /*
- * Load texture
- */
-public interface Resources extends ClientBundle
-{
-   Resources INSTANCE = GWT.create(Resources.class);
-
-   @Source("../../resources/textures/water.jpg")
-   ImageResource texture();
-}
-
-
-
-/*
  * Prepare Rendering Scene
  */
-class DemoScene extends DemoRenderingScene 
+class DemoScene extends DemoAnimatedScene 
 {
+   private static final String texture = "./static/textures/water.jpg";
+   
    FirstPersonControl controls;
    Plane geometry;
    Mesh mesh;
@@ -53,7 +42,7 @@ class DemoScene extends DemoRenderingScene
       controls.setLookSpeed(0.1f);
 
       this.geometry = new Plane( 20000, 20000, worldWidth - 1, worldDepth - 1 );
-      this.geometry.dynamic = true;
+      this.geometry.setDynamic( true );
 
       for ( int i = 0, il = this.geometry.getVertices().size(); i &lt; il; i ++ )
          this.geometry.getVertices().get( i ).setY((float) (35.0 * Math.sin( i/2.0 )));
@@ -61,7 +50,7 @@ class DemoScene extends DemoRenderingScene
       this.geometry.computeFaceNormals(false);
       this.geometry.computeVertexNormals();
 
-      Texture texture = ImageUtils.loadTexture(Resources.INSTANCE.texture());
+      Texture texture = ImageUtils.loadTexture(this.texture);
       texture.setWrapS(TextureWrapMode.REPEAT); 
       texture.setWrapT(TextureWrapMode.REPEAT);
       texture.getRepeat().set( 5.0f, 5.0f );
@@ -92,7 +81,6 @@ class DemoScene extends DemoRenderingScene
       this.controls.update( (float) ((Duration.currentTimeMillis() - this.oldTime) * 0.001) );
 
       this.oldTime = Duration.currentTimeMillis();
-      super.onUpdate(duration);
    }
 }
 

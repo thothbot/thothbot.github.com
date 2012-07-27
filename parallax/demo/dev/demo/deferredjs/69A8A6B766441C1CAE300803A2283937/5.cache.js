@@ -1,0 +1,14 @@
+function syb(){}
+function Vyb(){}
+function Zyb(){}
+function Yyb(){}
+function azb(){}
+function ezb(){}
+function dzb(){}
+function jJb(){}
+function kJb(){EFb.call(this)}
+function tyb(a){uyb.call(this,a)}
+function Wyb(){tyb.call(this,new Zyb)}
+function bzb(){tyb.call(this,new ezb)}
+function uyb(a){var b,c,d,e,f,g,i,j,k,n,o,p,q;Nub.call(this);for(f=0;f<=20;++f){q=f/20;for(g=0;g<=20;++g){j=g/20;i=a.Od(j,q);w5(this.E,i)}}for(f=0;f<20;++f){for(g=0;g<20;++g){b=f*21+g;c=f*21+g+1;d=(f+1)*21+g;e=(f+1)*21+g+1;k=new fwb(f/20,g/20);n=new fwb(f/20,(g+1)/20);o=new fwb((f+1)/20,g/20);p=new fwb((f+1)/20,(g+1)/20);this.n.wc(new iub(b,c,e,d));Oq(A5(this.k,0),111).wc(new g6(Fq(cE,{88:1,104:1,152:1},151,[k,n,o,p])))}}Bub(this);Cub(this,(C_(),C_(),A_));Fub(this)}
+var WXb='thothbot.parallax.core.shared.geometries.parametric.';_=syb.prototype=new sub;_.gC=function vyb(){return Qz};_=Wyb.prototype=Vyb.prototype=new syb;_.gC=function Xyb(){return Zz};_=Zyb.prototype=Yyb.prototype=new Tb;_.gC=function $yb(){return Yz};_.Od=function _yb(a,b){var c,d,e;a*=3.141592653589793;b*=6.283185307179586;a=a*2;if(a<3.141592653589793){c=3*Math.cos(a)*(1+Math.sin(a))+2*(1-Math.cos(a)/2)*Math.cos(a)*Math.cos(b);e=-8*Math.sin(a)-2*(1-Math.cos(a)/2)*Math.sin(a)*Math.cos(b)}else{c=3*Math.cos(a)*(1+Math.sin(a))+2*(1-Math.cos(a)/2)*Math.cos(b+3.141592653589793);e=-8*Math.sin(a)}d=-2*(1-Math.cos(a)/2)*Math.sin(b);return new Lwb(c,d,e)};_=bzb.prototype=azb.prototype=new syb;_.gC=function czb(){return _z};_=ezb.prototype=dzb.prototype=new Tb;_.gC=function fzb(){return $z};_.Od=function gzb(a,b){var c,d,e,f;a=a-0.5;c=6.283185307179586*b;d=Math.cos(c)*(2+a*Math.cos(c/2));e=Math.sin(c)*(2+a*Math.cos(c/2));f=a*Math.sin(c/2);return new Lwb(d,e,f)};_=eJb.prototype;_.nb=function iJb(){AFb(this.b,new kJb(this.a))};_=kJb.prototype=jJb.prototype=new DFb;_.gC=function lJb(){return xB};_.id=function mJb(){Q9(this,new ytb(45,Iab(this.r.C),1,2000))};_.eb=function nJb(){var a,b,c,d,e,f,g;this.q.D.d=400;Osb(this.s,this.q);Osb(this.s,new Czb(4210752));c=new Fzb(16777215);Gwb(c.D,0,0,1);Osb(this.s,c);e=new G5;d=new MBb;JBb(d,(LEb(),NEb(UXb,(Yrb(),Xrb),null)));FBb(d,new Ptb(12303291));Gq(e.a,e.b++,d);b=new $Ab;VAb(b,new Ptb(16777215));b.g=true;b.M=true;b.N=0.10000000149011612;Gq(e.a,e.b++,b);f=cFb(new Wyb,e);a=Oq(A5(f.u,0),187);a.b=(C_(),C_(),B_);Gwb(f.D,0,0,0);f.I.Kd(20);Osb(this.s,f);g=cFb(new bzb,e);Gwb(g.D,10,0,0);g.I.Kd(100);Osb(this.s,g)};_.hd=function oJb(){};_.fb=function pJb(a){var b,c,d;mwb(this.q.D,Math.cos(a*1.0E-4)*800);Iwb(this.q.D,Math.sin(a*1.0E-4)*800);ctb(this.q,this.s.D);for(b=0,c=this.s.u.b;b<c;++b){d=Oq(A5(this.s.u,b),183);d.sd().c+=0.009999999776482582;d.sd().d+=0.004999999888241291}};var Qz=O_(VXb,'Parametric'),Zz=O_(WXb,'Klein'),Yz=O_(WXb,'Klein$1'),_z=O_(WXb,'Mobius'),$z=O_(WXb,'Mobius$1'),xB=O_(oXb,'GeometriesParametric$DemoScene');WTb(be)(5);

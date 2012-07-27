@@ -2,7 +2,7 @@
 /*
  * Prepare Rendering Scene
  */
-class DemoScene extends DemoRenderingScene 
+class DemoScene extends DemoAnimatedScene 
 {
    
    private List&lt;Material&gt; materials;
@@ -114,7 +114,7 @@ class DemoScene extends DemoRenderingScene
       
       MeshPhongMaterial mpOpt1 = new MeshPhongMaterial();
       mpOpt1.setAmbient( new Color3f(0x000000) );
-      mpOpt1.setEmissive( new Color3f(0xff0000) );
+      mpOpt1.setEmissive( new Color3f(0xffff00) );
       mpOpt1.setColor( new Color3f(0x000000) );
       mpOpt1.setSpecular( new Color3f(0x666666) );
       mpOpt1.setShininess( 10f );
@@ -139,8 +139,8 @@ class DemoScene extends DemoRenderingScene
          Face3 face = geometry_pieces.getFaces().get( i );
 
 //            if ( Math.random() &gt; 0.7 )
-//               face.setMaterialIndex( (int)Math.floor( Math.random() * materials.size() ) );
-//
+//               face.setMaterialIndex( (int)( Math.random() * materials.size()) );
+
 //            else
             face.setMaterialIndex( 0 );
 
@@ -268,8 +268,6 @@ class DemoScene extends DemoRenderingScene
       this.pointLight.getPosition().setX( particleLight.getPosition().getX() );
       this.pointLight.getPosition().setY( particleLight.getPosition().getY() );
       this.pointLight.getPosition().setZ( particleLight.getPosition().getZ() );
-      
-      super.onUpdate(duration);
    }
 }
 

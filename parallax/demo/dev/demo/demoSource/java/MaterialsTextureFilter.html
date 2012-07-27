@@ -1,22 +1,11 @@
 <pre>
 /*
- * Load texture
- */
-public interface Resources extends ClientBundle
-{
-   Resources INSTANCE = GWT.create(Resources.class);
-
-   @Source("../../resources/textures/caravaggio.jpg")
-   ImageResource texture();
-}
-
-
-
-/*
  * Prepare Rendering Scene
  */
-class DemoScene extends DemoRenderingScene 
+class DemoScene extends DemoAnimatedScene 
 {
+   private static final String texture = "./static/textures/caravaggio.jpg";
+   
    int mouseX = 0, mouseY = 0;
    
    Scene scene2;
@@ -91,7 +80,7 @@ class DemoScene extends DemoRenderingScene
       meshCanvas2.getScale().set( 1000 );
 
       // PAINTING
-      Texture texturePainting = ImageUtils.loadTexture(Resources.INSTANCE.texture(), Texture.MAPPING_MODE.UV, new ImageUtils.Callback() {
+      Texture texturePainting = ImageUtils.loadTexture(texture, Texture.MAPPING_MODE.UV, new ImageUtils.Callback() {
          
          @Override
          public void run(Texture texture) {
@@ -103,7 +92,7 @@ class DemoScene extends DemoRenderingScene
       materialPainting.setColor(new Color3f(0xffffff));
       materialPainting.setMap(texturePainting);
       
-      texturePainting2 = new Texture(texturePainting.getImage());
+      texturePainting2 = new Texture();
       materialPainting2 = new MeshBasicMaterial();
       materialPainting2.setColor(new Color3f(0xffccaa));
       materialPainting2.setMap(texturePainting2);
@@ -196,9 +185,7 @@ class DemoScene extends DemoRenderingScene
       getRenderer().setScissor( canvas.getOffsetWidth()/2, 0, canvas.getOffsetWidth()/2 - 2, canvas.getOffsetHeight()  );
       getRenderer().render( this.scene2, getCamera() );
 
-      
       getRenderer().setScissor( 0, 0, canvas.getOffsetWidth()/2 - 2, canvas.getOffsetHeight() );
-      super.onUpdate(duration);
    }
 }
 

@@ -2,7 +2,7 @@
 /*
  * Prepare Rendering Scene
  */
-class DemoScene extends DemoRenderingScene 
+class DemoScene extends DemoAnimatedScene 
 {
    public int mouseX;
    public int mouseY;
@@ -66,7 +66,6 @@ class DemoScene extends DemoRenderingScene
       getCamera().getPosition().addY( ( - mouseY - getCamera().getPosition().getY() ) * .05f );
 
       getCamera().lookAt( getScene().getPosition() );
-      super.onUpdate(duration);
    }
 }
 
