@@ -1,0 +1,10 @@
+function ENb(){}
+function NNb(){}
+function Krb(a,b){a.r=b}
+function PNb(a){this.a=a}
+function HNb(){VFb.call(this)}
+function zlb(a,b,c,d){Fcb(a.C.b,b,0,c,d)}
+function Fcb(e,a,b,c,d){e.scissor(a,b,c,d)}
+function olb(a,b){Wtb(a.E,b);a.D=1;ecb(a.C.b,a.E.d,a.E.b,a.E.a,a.D)}
+function $kb(a,b){b?ocb(a.C.b,(Djb(),Ghb).a):kcb(a.C.b,(Djb(),Ghb).a)}
+_=zNb.prototype;_.nb=function DNb(){RFb(this.b,new HNb(this.a))};_=HNb.prototype=ENb.prototype=new UFb;_.gC=function INb(){return uC};_.id=function JNb(){fab(this,new Ptb(35,Zab(this.r.C),1,5000))};_.eb=function KNb(){var a,b,c,d,e,f,g;this.q.D.b=1500;dtb(this.s,this.q);this.i=new SEb;REb(this.s,new MEb(0,1500,4000));REb(this.i,this.s.c);a=sg($doc,lZb);a.width=128;a.height=128;b=a.getContext(mZb);b.fillStyle='#444';b.fillRect(0,0,128,128);b.fillStyle='#fff';b.fillRect(0,0,64,64);b.fillRect(64,64,64,64);e=new Srb(a,(nsb(),msb),(qkb(),pkb),pkb);c=new pBb;c.j=e;Jrb(e,(T_(),T_(),S_));Krb(e,new Gwb(1000,1000));f=new Trb(a,msb,pkb,pkb,(Xjb(),Wjb),(hkb(),ekb));d=new pBb;kBb(d,new eub(16764074));d.j=f;Jrb(f,S_);Krb(f,new Gwb(1000,1000));this.a=new Oyb;this.d=new jEb(this.a,c);Ywb(this.d.I,1000);this.e=new jEb(this.a,d);Ywb(this.e.I,1000);g=cFb('./static/textures/caravaggio.jpg',msb,new PNb(this));this.b=new pBb;kBb(this.b,new eub(16777215));nBb(this.b,g);this.j=new Prb;this.c=new pBb;kBb(this.c,new eub(16764074));nBb(this.c,this.j);Irb(this.j,ekb);Hrb(this.j,Wjb);Irb(g,bkb);Hrb(g,Vjb);olb(this.r,this.s.c.c);this.r.H=false};_.hd=function LNb(){};_.fb=function MNb(a){var b;Awb(this.q.D,(this.f-this.q.D.c)*0.05000000074505806);Bwb(this.q.D,(-(this.g-200)-this.q.D.d)*0.05000000074505806);ttb(this.q,this.s.D);$kb(this.r,false);Zkb(this.r,false,false,false);$kb(this.r,true);b=this.r.C;zlb(this.r,~~(bg(b.A,oYb)/2),~~(bg(b.A,oYb)/2)-2,bg(b.A,pYb));ilb(this.r,this.i,this.q,null);zlb(this.r,0,~~(bg(b.A,oYb)/2)-2,bg(b.A,pYb))};_.cM={200:1};_.a=null;_.b=null;_.c=null;_.d=null;_.e=null;_.f=0;_.g=0;_.i=null;_.j=null;_=PNb.prototype=NNb.prototype=new Tb;_.gC=function QNb(){return tC};_.a=null;var uC=d0(HXb,'MaterialsTextureFilter$DemoScene'),tC=d0(HXb,'MaterialsTextureFilter$DemoScene$1');lUb(be)(15);

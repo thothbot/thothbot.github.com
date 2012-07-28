@@ -1,0 +1,10 @@
+function SMb(){}
+function _Mb(){}
+function Yqb(a,b){a.s=b}
+function bNb(a){this.b=a}
+function VMb(){hFb.call(this)}
+function Nkb(a,b,c,d){Tbb(a.D.c,b,0,c,d)}
+function Tbb(e,a,b,c,d){e.scissor(a,b,c,d)}
+function Ckb(a,b){itb(a.F,b);a.E=1;sbb(a.D.c,a.F.e,a.F.c,a.F.b,a.E)}
+function mkb(a,b){b?Cbb(a.D.c,(Rib(),Ugb).b):ybb(a.D.c,(Rib(),Ugb).b)}
+_=NMb.prototype;_.ob=function RMb(){dFb(this.c,new VMb(this.b))};_=VMb.prototype=SMb.prototype=new gFb;_.gC=function WMb(){return gC};_.hd=function XMb(){t9(this,new btb(35,lab(this.s.D),1,5000))};_.fb=function YMb(){var a,b,c,d,e,f,g;this.r.E.c=1500;rsb(this.t,this.r);this.j=new eEb;dEb(this.t,new $Db(0,1500,4000));dEb(this.j,this.t.d);a=$doc.createElement(tYb);a.width=128;a.height=128;b=a.getContext(uYb);b.fillStyle='#444';b.fillRect(0,0,128,128);b.fillStyle='#fff';b.fillRect(0,0,64,64);b.fillRect(64,64,64,64);e=new erb(a,(Brb(),Arb),(Ejb(),Djb),Djb);c=new DAb;c.k=e;Xqb(e,(f_(),f_(),e_));Yqb(e,new Uvb(1000,1000));f=new frb(a,Arb,Djb,Djb,(jjb(),ijb),(vjb(),sjb));d=new DAb;yAb(d,new stb(16764074));d.k=f;Xqb(f,e_);Yqb(f,new Uvb(1000,1000));this.b=new ayb;this.e=new xDb(this.b,c);kwb(this.e.J,1000);this.f=new xDb(this.b,d);kwb(this.f.J,1000);g=qEb('./static/textures/caravaggio.jpg',Arb,new bNb(this));this.c=new DAb;yAb(this.c,new stb(16777215));BAb(this.c,g);this.k=new brb;this.d=new DAb;yAb(this.d,new stb(16764074));BAb(this.d,this.k);Wqb(this.k,sjb);Vqb(this.k,ijb);Wqb(g,pjb);Vqb(g,hjb);Ckb(this.s,this.t.d.d);this.s.I=false};_.gd=function ZMb(){};_.gb=function $Mb(a){var b;Ovb(this.r.E,(this.g-this.r.E.d)*0.05000000074505806);Pvb(this.r.E,(-(this.i-200)-this.r.E.e)*0.05000000074505806);Hsb(this.r,this.t.E);mkb(this.s,false);lkb(this.s,false,false,false);mkb(this.s,true);b=this.s.D;Nkb(this.s,~~(cg(b.B,vXb)/2),~~(cg(b.B,vXb)/2)-2,cg(b.B,wXb));wkb(this.s,this.j,this.r,null);Nkb(this.s,0,~~(cg(b.B,vXb)/2)-2,cg(b.B,wXb))};_.cM={200:1};_.b=null;_.c=null;_.d=null;_.e=null;_.f=null;_.g=0;_.i=0;_.j=null;_.k=null;_=bNb.prototype=_Mb.prototype=new Tb;_.gC=function cNb(){return fC};_.b=null;var gC=r_(OWb,'MaterialsTextureFilter$DemoScene'),fC=r_(OWb,'MaterialsTextureFilter$DemoScene$1');zTb(be)(15);
