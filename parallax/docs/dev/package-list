@@ -5,6 +5,7 @@ thothbot.parallax.core.client.gl2
 thothbot.parallax.core.client.gl2.arrays
 thothbot.parallax.core.client.gl2.enums
 thothbot.parallax.core.client.renderers
+thothbot.parallax.core.client.renderers.plugins
 thothbot.parallax.core.client.shader
 thothbot.parallax.core.client.textures
 thothbot.parallax.core.client.widget
@@ -13,6 +14,7 @@ thothbot.parallax.core.shared
 thothbot.parallax.core.shared.cameras
 thothbot.parallax.core.shared.core
 thothbot.parallax.core.shared.curves
+thothbot.parallax.core.shared.curves.parametric
 thothbot.parallax.core.shared.geometries
 thothbot.parallax.core.shared.geometries.parametric
 thothbot.parallax.core.shared.helpers
@@ -23,3 +25,5 @@ thothbot.parallax.core.shared.scenes
 thothbot.parallax.core.shared.utils
 thothbot.parallax.loader.shared
 thothbot.parallax.loader.shared.collada
+thothbot.parallax.postprocessing.client
+thothbot.parallax.postprocessing.client.shader
