@@ -45,11 +45,11 @@ class DemoScene extends DemoAnimatedScene
 
       this.attributes = new HashMap&lt;String, WebGLCustomAttribute&gt;();
       this.attributes.put("size", new WebGLCustomAttribute(WebGLCustomAttribute.TYPE.F, new ArrayList&lt;Integer&gt;()));
-      this.attributes.put("customColor", new WebGLCustomAttribute(WebGLCustomAttribute.TYPE.C, new ArrayList&lt;Color3f&gt;()));
+      this.attributes.put("customColor", new WebGLCustomAttribute(WebGLCustomAttribute.TYPE.C, new ArrayList&lt;Color&gt;()));
 
       Map &lt;String, Uniform&gt; uniforms = new HashMap&lt;String, Uniform&gt;();
-      uniforms.put("amplitude", new Uniform(Uniform.TYPE.F, 1.0f));
-      uniforms.put("color", new Uniform(Uniform.TYPE.C, new Color3f( 0xffffff )));
+      uniforms.put("amplitude", new Uniform(Uniform.TYPE.F, 1.0));
+      uniforms.put("color", new Uniform(Uniform.TYPE.C, new Color( 0xffffff )));
       uniforms.put("texture", new Uniform(Uniform.TYPE.T, 0, ImageUtils.loadTexture( texture )));
       
       ShaderMaterial shaderMaterial = new ShaderMaterial();
@@ -61,15 +61,15 @@ class DemoScene extends DemoAnimatedScene
       shaderMaterial.setDepthTest(false);
       shaderMaterial.setTransparent( true );
             
-      float radius = 200f;
+      double radius = 200;
       Geometry geometry = new Geometry();
 
       for ( int i = 0; i &lt; 10000; i++ ) 
       {
-         Vector3f vertex = new Vector3f();
-         vertex.setX((float) (Math.random() * 2.0 - 1.0));
-         vertex.setY((float) (Math.random() * 2.0 - 1.0));
-         vertex.setZ((float) (Math.random() * 2.0 - 1.0));
+         Vector3 vertex = new Vector3();
+         vertex.setX(Math.random() * 2.0 - 1.0);
+         vertex.setY(Math.random() * 2.0 - 1.0);
+         vertex.setZ(Math.random() * 2.0 - 1.0);
          vertex.multiply( radius );
 
          geometry.getVertices().add( vertex );
@@ -78,19 +78,19 @@ class DemoScene extends DemoAnimatedScene
       this.sphere = new ParticleSystem( geometry, shaderMaterial );
       this.sphere.setDynamic(true);
       
-      List&lt;Vector3f&gt; vertices = sphere.getGeometry().getVertices();
-      List&lt;Float&gt; values_size = (List&lt;Float&gt;) attributes.get("size").getValue();
-      List&lt;Color3f&gt; values_color = (List&lt;Color3f&gt;) attributes.get("customColor").getValue();
+      List&lt;Vector3&gt; vertices = sphere.getGeometry().getVertices();
+      List&lt;Double&gt; values_size = (List&lt;Double&gt;) attributes.get("size").getValue();
+      List&lt;Color&gt; values_color = (List&lt;Color&gt;) attributes.get("customColor").getValue();
 
       for( int v = 0; v &lt; vertices.size(); v++ ) 
       {
-         values_size.add( v, 10f);
-         values_color.add( v, new Color3f( 0xffaa00 ));
+         values_size.add( v, 10.0);
+         values_color.add( v, new Color( 0xffaa00 ));
 
          if ( vertices.get( v ).getX() &lt; 0 )
-            values_color.get( v ).setHSV( 0.5f + 0.1f * ( v / (float)vertices.size() ), 0.7f, 0.9f );
+            values_color.get( v ).setHSV( 0.5 + 0.1 * ( v / (double)vertices.size() ), 0.7, 0.9 );
          else
-            values_color.get( v ).setHSV( 0.0f + 0.1f * ( v / (float)vertices.size() ), 0.9f, 0.9f );
+            values_color.get( v ).setHSV( 0.0 + 0.1 * ( v / (double)vertices.size() ), 0.9, 0.9 );
       }
 
       getScene().addChild( sphere );
@@ -107,12 +107,12 @@ class DemoScene extends DemoAnimatedScene
    {
       double time = duration * 0.005;
 
-      this.sphere.getRotation().setZ((float) (0.01 * time));
+      this.sphere.getRotation().setZ(0.01 * time);
 
       for( int i = 0; i &lt; this.attributes.get("size").getValue().size(); i++ ) 
       {
-         List&lt;Float&gt; value = (List&lt;Float&gt;) this.attributes.get("size").getValue(); 
-         value.set( i, (float)(14f + 13f * Math.sin( 0.1f * i + time )));
+         List&lt;Double&gt; value = (List&lt;Double&gt;) this.attributes.get("size").getValue(); 
+         value.set( i, 14.0 + 13.0 * Math.sin( 0.1 * i + time ));
       }
 
       this.attributes.get("size").needsUpdate = true;

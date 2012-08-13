@@ -16,7 +16,7 @@ class DemoScene extends DemoAnimatedScene
    
    private Mesh mesh;
    
-   private float r = 0.0f;
+   private double r = 0.0;
 
    @Override
    protected void loadCamera()
@@ -24,23 +24,23 @@ class DemoScene extends DemoAnimatedScene
       Canvas3d canvas = getRenderer().getCanvas();
       
       setCamera(new PerspectiveCamera( 
-            50f, 
-            0.5f * canvas.getAspectRation(), 
-            1f, 
-            10000f ));
+            50, 
+            0.5 * canvas.getAspectRation(), 
+            1, 
+            10000 ));
       
       this.cameraPerspective = new PerspectiveCamera( 
-            50f, 
-            canvas.getAspectRation() * 0.5f, 
-            150f, 
-            1000f );
+            50, 
+            canvas.getAspectRation() * 0.5, 
+            150, 
+            1000 );
       
-      this.cameraOrtho = new OrthographicCamera( 0.5f * canvas.getWidth() / - 2f, 
-            0.5f * canvas.getWidth() / 2f, 
-            canvas.getHeight() / 2f, 
-            canvas.getHeight() / - 2f, 
-            150f, 
-            1000f );
+      this.cameraOrtho = new OrthographicCamera( 0.5 * canvas.getWidth() / - 2.0, 
+            0.5 * canvas.getWidth() / 2.0, 
+            canvas.getHeight() / 2.0, 
+            canvas.getHeight() / - 2.0, 
+            150, 
+            1000 );
    }
    
    
@@ -50,12 +50,12 @@ class DemoScene extends DemoAnimatedScene
       super.onResize();
       Canvas3d canvas = getRenderer().getCanvas();
 
-      cameraPerspective.setAspectRatio(0.5f * canvas.getAspectRation());
+      cameraPerspective.setAspectRatio(0.5 * canvas.getAspectRation());
 
-      cameraOrtho.setLeft(- 0.5f * canvas.getWidth() / 2.0f );
-      cameraOrtho.setRight( 0.5f * canvas.getWidth() / 2.0f );
-      cameraOrtho.setTop( canvas.getHeight() / 2.0f );
-      cameraOrtho.setBottom(- canvas.getHeight() / 2.0f );
+      cameraOrtho.setLeft(- 0.5 * canvas.getWidth() / 2.0 );
+      cameraOrtho.setRight( 0.5 * canvas.getWidth() / 2.0 );
+      cameraOrtho.setTop( canvas.getHeight() / 2.0 );
+      cameraOrtho.setBottom(- canvas.getHeight() / 2.0 );
       cameraOrtho.updateProjectionMatrix();
    }
 
@@ -77,8 +77,8 @@ class DemoScene extends DemoAnimatedScene
       
       // counteract different front orientation of cameras vs rig
 
-      cameraOrtho.getRotation().setY((float) Math.PI);
-      cameraPerspective.getRotation().setY((float) Math.PI);
+      cameraOrtho.getRotation().setY(Math.PI);
+      cameraPerspective.getRotation().setY(Math.PI);
 
       this.cameraRig = new Object3D();
 
@@ -90,21 +90,21 @@ class DemoScene extends DemoAnimatedScene
       //
 
       MeshBasicMaterial  bopt0 = new MeshBasicMaterial();
-      bopt0.setColor( new Color3f(0xffffff) );
+      bopt0.setColor( new Color(0xffffff) );
       bopt0.setWireframe(true);
       
       this.mesh = new Mesh( new Sphere( 100, 16, 8 ), bopt0);
       getScene().addChild( mesh );
 
       MeshBasicMaterial  bopt1 = new MeshBasicMaterial();
-      bopt1.setColor( new Color3f(0x00ff00) );
+      bopt1.setColor( new Color(0x00ff00) );
       bopt1.setWireframe(true);
       Mesh mesh2 = new Mesh( new Sphere( 50, 16, 8 ), bopt1);
       mesh2.getPosition().setY(150);
       mesh.addChild( mesh2 );
 
       MeshBasicMaterial  bopt2 = new MeshBasicMaterial();
-      bopt2.setColor( new Color3f(0x0000ff) );
+      bopt2.setColor( new Color(0x0000ff) );
       Mesh mesh3 = new Mesh( new Sphere( 5, 16, 8 ), bopt2);
       mesh3.getPosition().setZ(150);
       cameraRig.addChild( mesh3 );
@@ -115,16 +115,16 @@ class DemoScene extends DemoAnimatedScene
 
       for ( int i = 0; i &lt; 10000; i ++ ) 
       {
-         Vector3f vertex = new Vector3f();
-         vertex.setX(Mathematics.randFloatSpread( 3000f ));
-         vertex.setY(Mathematics.randFloatSpread( 3000f ));
-         vertex.setZ(Mathematics.randFloatSpread( 3000f ));
+         Vector3 vertex = new Vector3();
+         vertex.setX(Mathematics.randFloatSpread( 3000.0 ));
+         vertex.setY(Mathematics.randFloatSpread( 3000.0 ));
+         vertex.setZ(Mathematics.randFloatSpread( 3000.0 ));
 
          geometry.getVertices().add( vertex );
       }
       
       ParticleBasicMaterial popt = new ParticleBasicMaterial();
-      popt.setColor( new Color3f(0xDDDDDD) );
+      popt.setColor( new Color(0xDDDDDD) );
 
       ParticleSystem particles = new ParticleSystem( geometry, popt );
       getScene().addChild( particles );
@@ -142,17 +142,16 @@ class DemoScene extends DemoAnimatedScene
    @Override
    protected void onUpdate(double duration)
    {
-      mesh.getPosition().setX((float) (700f * Math.cos( r )));
-      mesh.getPosition().setZ((float) (700f * Math.sin( r )));
-      mesh.getPosition().setY((float) (700f * Math.sin( r )));
+      mesh.getPosition().setX(700.0 * Math.cos( r ));
+      mesh.getPosition().setZ(700.0 * Math.sin( r ));
+      mesh.getPosition().setY(700.0 * Math.sin( r ));
 
-      mesh.getChildren().get( 0 ).getPosition().setX((float) (70f * Math.cos( 2.0 * r )));
-      mesh.getChildren().get( 0 ).getPosition().setZ((float) (70f * Math.sin( r )));
+      mesh.getChildren().get( 0 ).getPosition().setX(70.0 * Math.cos( 2.0 * r ));
+      mesh.getChildren().get( 0 ).getPosition().setZ(70.0 * Math.sin( r ));
 
       if ( activeCamera.equals(cameraPerspective) ) 
       {
-         
-         cameraPerspective.setFieldOfView((float) (35.0 + 30.0 * Math.sin( 0.5 * r )));
+         cameraPerspective.setFieldOfView(35.0 + 30.0 * Math.sin( 0.5 * r ));
          cameraPerspective.setFar(mesh.getPosition().length());
          cameraPerspective.updateProjectionMatrix();
 
@@ -160,11 +159,9 @@ class DemoScene extends DemoAnimatedScene
          cameraPerspectiveHelper.getLine().setVisible(true);
 
          cameraOrthoHelper.getLine().setVisible(false);
-
       } 
       else 
       {
-
          cameraOrtho.setFar(mesh.getPosition().length());
          cameraOrtho.updateProjectionMatrix();
 
@@ -172,7 +169,6 @@ class DemoScene extends DemoAnimatedScene
          cameraOrthoHelper.getLine().setVisible(true);
 
          cameraPerspectiveHelper.getLine().setVisible(false);
-
       }
 
       cameraRig.lookAt( mesh.getPosition() );
@@ -185,7 +181,7 @@ class DemoScene extends DemoAnimatedScene
       getRenderer().setViewport( getRenderer().getCanvas().getWidth()/2, 0, 
             getRenderer().getCanvas().getWidth()/2, getRenderer().getCanvas().getWidth() );
 
-      r += 0.01f;
+      r += 0.01;
    }
 }
 

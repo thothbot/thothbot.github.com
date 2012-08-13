@@ -1,0 +1,14 @@
+function mIb(){}
+function UIb(){}
+function YIb(){}
+function XIb(){}
+function _Ib(){}
+function dJb(){}
+function cJb(){}
+function fVb(){}
+function gVb(){PQb.call(this)}
+function nIb(a){oIb.call(this,a)}
+function VIb(){nIb.call(this,new YIb)}
+function aJb(){nIb.call(this,new dJb)}
+function oIb(a){var b,c,d,e,f,g,i,j,k,n,o,p,q;aAb.call(this);for(f=0;f<=20;++f){q=f/20;for(g=0;g<=20;++g){j=g/20;i=a.se(j,q);this.I.Jc(i)}}for(f=0;f<20;++f){for(g=0;g<20;++g){b=f*21+g;c=f*21+g+1;d=(f+1)*21+g;e=(f+1)*21+g+1;k=new BCb(f/20,g/20);n=new BCb(f/20,(g+1)/20);o=new BCb((f+1)/20,g/20);p=new BCb((f+1)/20,(g+1)/20);this.r.Jc(new WAb(b,c,e,d));Fr(g9(this.q,0),114).Jc(new P9(wr(PG,{89:1,107:1,156:1},155,[k,n,o,p])))}}Qzb(this);Rzb(this,(c3(),c3(),a3));Uzb(this)}
+var Kac='thothbot.parallax.core.shared.geometries.parametric.';_=mIb.prototype=new Gzb;_.gC=function pIb(){return PB};_=VIb.prototype=UIb.prototype=new mIb;_.gC=function WIb(){return ZB};_=YIb.prototype=XIb.prototype=new Tb;_.gC=function ZIb(){return YB};_.se=function $Ib(a,b){var c,d,e;a*=3.141592653589793;b*=6.283185307179586;a=a*2;if(a<3.141592653589793){c=3*Math.cos(a)*(1+Math.sin(a))+2*(1-Math.cos(a)/2)*Math.cos(a)*Math.cos(b);e=-8*Math.sin(a)-2*(1-Math.cos(a)/2)*Math.sin(a)*Math.cos(b)}else{c=3*Math.cos(a)*(1+Math.sin(a))+2*(1-Math.cos(a)/2)*Math.cos(b+3.141592653589793);e=-8*Math.sin(a)}d=-2*(1-Math.cos(a)/2)*Math.sin(b);return new rDb(c,d,e)};_=aJb.prototype=_Ib.prototype=new mIb;_.gC=function bJb(){return _B};_=dJb.prototype=cJb.prototype=new Tb;_.gC=function eJb(){return $B};_.se=function fJb(a,b){var c,d,e,f;a=a-0.5;c=6.283185307179586*b;d=Math.cos(c)*(2+a*Math.cos(c/2));e=Math.sin(c)*(2+a*Math.cos(c/2));f=a*Math.sin(c/2);return new rDb(d,e,f)};_=aVb.prototype;_.ub=function eVb(){LQb(this.c,new gVb(this.b))};_=gVb.prototype=fVb.prototype=new OQb;_.gC=function hVb(){return JD};_.wd=function iVb(){zdb(this,new izb(45,reb(this.B.D),1,2000))};_.ib=function jVb(){var a,b,c,d,e,f,g;this.A.E.e=400;uyb(this.C,this.A);uyb(this.C,new CJb(4210752));c=new FJb(16777215);mDb(c.E,0,0,1);uyb(this.C,c);e=new m9;d=new TLb;QLb(d,(OPb(),QPb(Hac,(Dxb(),Cxb),null)));MLb(d,new Czb(12303291));xr(e.b,e.c++,d);b=new eLb;_Kb(b,new Czb(16777215));b.i=true;b.N=true;b.O=0.1;xr(e.b,e.c++,b);f=fQb(new VIb,e);a=Fr(g9(f.v,0),201);a.c=(c3(),c3(),b3);mDb(f.Hd(),0,0,0);f.J.je(20);uyb(this.C,f);g=fQb(new aJb,e);mDb(g.Hd(),10,0,0);g.J.je(100);uyb(this.C,g)};_.vd=function kVb(){};_.jb=function lVb(a){var b,c,d;KCb(this.A.E,Math.cos(a*1.0E-4)*800);oDb(this.A.E,Math.sin(a*1.0E-4)*800);Oyb(this.A,this.C.E);for(b=0,c=this.C.v.c;b<c;++b){d=Fr(g9(this.C.v,b),194);d.Id().d+=0.01;d.Id().e+=0.005}};var PB=o3(Iac,'Parametric'),ZB=o3(Kac,'Klein'),YB=o3(Kac,'Klein$1'),_B=o3(Kac,'Mobius'),$B=o3(Kac,'Mobius$1'),JD=o3(tac,'GeometriesParametric$DemoScene');T6b(oe)(7);

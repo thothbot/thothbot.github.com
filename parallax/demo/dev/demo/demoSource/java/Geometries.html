@@ -26,20 +26,20 @@ class DemoScene extends DemoAnimatedScene
       getScene().addChild( new AmbientLight( 0x404040 ) );
 
       DirectionalLight light = new DirectionalLight( 0xffffff );
-      light.getPosition().set( 0, 1f, 0 );
+      light.getPosition().set( 0, 1, 0 );
       getScene().addChild( light );
       
       List&lt;Material&gt; materials = new ArrayList&lt;Material&gt;();
       MeshLambertMaterial lmaterial = new MeshLambertMaterial();
       lmaterial.setMap( ImageUtils.loadTexture(texture) );
-      lmaterial.setAmbient( new Color3f(0xbbbbbb) );
+      lmaterial.setAmbient( new Color(0xbbbbbb) );
       materials.add(lmaterial);   
       
       MeshBasicMaterial bmaterial = new MeshBasicMaterial();
-      bmaterial.setColor( new Color3f(0xffffff) );
+      bmaterial.setColor( new Color(0xffffff) );
       bmaterial.setWireframe(true);
       bmaterial.setTransparent(true);
-      bmaterial.setOpacity( 0.1f );
+      bmaterial.setOpacity( 0.1 );
       materials.add(bmaterial);
 
       DimensionalObject object1 = SceneUtils.createMultiMaterialObject( new Cube( 100, 100, 100, 4, 4, 4 ), materials );
@@ -72,10 +72,10 @@ class DemoScene extends DemoAnimatedScene
       object7.getPosition().set( 0, 0, 0 );
       getScene().addChild( object7 );
    
-      List&lt;Vector3f&gt; points = new ArrayList&lt;Vector3f&gt;();
+      List&lt;Vector3&gt; points = new ArrayList&lt;Vector3&gt;();
 
       for ( int i = 0; i &lt; 50; i ++ )
-         points.add( new Vector3f( (float) (Math.sin( i * 0.2 ) * 15f + 50f), 0f, (float)(( i - 5f ) * 2f )) );
+         points.add( new Vector3( Math.sin( i * 0.2 ) * 15.0 + 50.0, 0.0, ( i - 5.0 ) * 2.0 ) );
 
       DimensionalObject object8 = SceneUtils.createMultiMaterialObject( new Lathe( points, 20 ), materials );
       Mesh Meshobject8 = (Mesh) object8.getChildren().get(0);
@@ -93,10 +93,10 @@ class DemoScene extends DemoAnimatedScene
 
       AxisHelper object11 = new AxisHelper();
       object11.getPosition().set( 200, 0, -200 );
-      object11.getScale().set(0.5f);
+      object11.getScale().set(0.5);
       getScene().addChild( object11 );
       
-      ArrowHelper object12 = new ArrowHelper( new Vector3f( 0f, 1f, 0f ), new Vector3f( 0f, 0f, 0f ), 50 );
+      ArrowHelper object12 = new ArrowHelper( new Vector3( 0, 1, 0 ), new Vector3( 0, 0, 0 ), 50 );
       object12.getPosition().set( 300, 0, 300 );
       getScene().addChild( object12 );
    }
@@ -109,8 +109,8 @@ class DemoScene extends DemoAnimatedScene
    @Override
    protected void onUpdate(double duration)
    {
-      getCamera().getPosition().setX((float) (Math.cos( duration * 0.0001 ) * 800.0f));
-      getCamera().getPosition().setZ((float) (Math.sin( duration * 0.0001 ) * 800.0f));
+      getCamera().getPosition().setX(Math.cos( duration * 0.0001 ) * 800.0);
+      getCamera().getPosition().setZ(Math.sin( duration * 0.0001 ) * 800.0);
 
       getCamera().lookAt( getScene().getPosition() );
 
@@ -118,8 +118,8 @@ class DemoScene extends DemoAnimatedScene
       {
          DimensionalObject object = getScene().getChildren().get( i );
 
-         object.getRotation().addX(0.01f);
-         object.getRotation().addY(0.005f);
+         object.getRotation().addX(0.01);
+         object.getRotation().addY(0.005);
       }
    }
 }
