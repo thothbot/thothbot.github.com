@@ -1,3 +1,0 @@
-function TVb(){}
-function UVb(){PQb.call(this)}
-_=OVb.prototype;_.ub=function SVb(){LQb(this.c,new UVb(this.b))};_=UVb.prototype=TVb.prototype=new OQb;_.gC=function VVb(){return RD};_.wd=function WVb(){zdb(this,new izb(70,reb(this.B.D),1,1000))};_.ib=function XVb(){var a,b;this.A.E.c=400;uyb(this.C,this.A);a=new NHb(200,200,200);b=new eLb;cLb(b,(OPb(),QPb('./static/textures/crate.gif',(Dxb(),Cxb),null)));this.b=new pOb(a,b);uyb(this.C,this.b)};_.vd=function YVb(){};_.jb=function ZVb(a){KCb(this.b.H,this.b.H.d+0.005);LCb(this.b.H,this.b.H.e+0.01)};_.b=null;var RD=o3(tac,'GeometryCube$DemoScene');T6b(oe)(9);

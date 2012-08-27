@@ -31,6 +31,7 @@ class DemoScene extends DemoAnimatedScene
       int amount = 200;
       int radius = 500;
       
+      new SpritePlugin(getRenderer(), getScene());
       group = new Object3D();
 
       for( int a = 0; a &lt; amount; a ++ ) 
@@ -59,7 +60,6 @@ class DemoScene extends DemoAnimatedScene
          sprite.getPosition().multiply( radius );
 
          group.addChild( sprite );
-
       }
 
       getScene().addChild( group );

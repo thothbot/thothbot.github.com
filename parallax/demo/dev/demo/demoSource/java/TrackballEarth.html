@@ -58,8 +58,10 @@ class DemoScene extends DemoAnimatedScene
       Texture specularTexture = ImageUtils.loadTexture( earthSpecular );
       Texture moonTexture     = ImageUtils.loadTexture( moon );
 
-      ShaderNormalMap shader = new ShaderNormalMap();
-      Map&lt;String, Uniform&gt; uniforms = UniformsUtils.clone( shader.getUniforms() );
+      ShaderMaterial materialNormalMap = new ShaderMaterial(new ShaderNormalMap()); 
+      materialNormalMap.setLights(true);
+      
+      Map&lt;String, Uniform&gt; uniforms = materialNormalMap.getShader().getUniforms();
 
       uniforms.get("tNormal").setTexture( normalTexture );
       uniforms.get("uNormalScale").setValue( 0.85 );
@@ -80,13 +82,6 @@ class DemoScene extends DemoAnimatedScene
       ((Color)uniforms.get("uDiffuseColor").getValue()).convertGammaToLinear();
       ((Color)uniforms.get("uSpecularColor").getValue()).convertGammaToLinear();
       ((Color)uniforms.get("uAmbientColor").getValue()).convertGammaToLinear();
-
-      ShaderMaterial materialNormalMap = new ShaderMaterial(); 
-      materialNormalMap.setFragmentShaderSource( shader.getFragmentSource() );
-      materialNormalMap.setVertexShaderSource( shader.getVertexSource() );
-      materialNormalMap.setUniforms( uniforms );
-      materialNormalMap.setLights(true);
-      
 
       // planet
 

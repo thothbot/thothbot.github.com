@@ -31,6 +31,7 @@ class DemoScene extends DemoAnimatedScene
       getCamera().getPosition().setZ(250);
       getScene().addChild(getCamera());
       
+      new LensFlarePlugin(getRenderer(), getScene());
       controls = new FlyControls( getCamera(), getRenderer().getCanvas() );
 
       controls.setMovementSpeed( 2500 );
