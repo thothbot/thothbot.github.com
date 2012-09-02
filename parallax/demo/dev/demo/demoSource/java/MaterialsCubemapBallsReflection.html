@@ -80,9 +80,9 @@ class DemoScene extends DemoAnimatedScene
       ShaderMaterial sMaterial = new ShaderMaterial(new ShaderCubeMap());
       sMaterial.getShader().getUniforms().get("tCube").setTexture( textureCube ); 
       sMaterial.setDepthWrite( false );
+      sMaterial.setSide(Material.SIDE.BACK);
       
       Mesh mesh = new Mesh( new Cube( 100, 100, 100 ), sMaterial );
-      mesh.setFlipSided(true);
       sceneCube.addChild( mesh );
       
       getRenderer().setAutoClear(false);

@@ -51,6 +51,7 @@ class DemoScene extends DemoAnimatedScene
       material.setPerPixel(true);
       material.setWrapAround(true); 
       material.getWrapRGB().set( 0.5, 0.5, 0.5 );
+      material.setSide(Material.SIDE.DOUBLE);
 
       Sphere geometry = new Sphere( 1, 32, 16, 0, (double)Math.PI );
 
@@ -70,8 +71,6 @@ class DemoScene extends DemoAnimatedScene
 
          mesh.setMatrixAutoUpdate(false);
          mesh.updateMatrix();
-
-         mesh.setDoubleSided(true);
 
          getScene().addChild( mesh );
       }
