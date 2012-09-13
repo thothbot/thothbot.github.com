@@ -5,7 +5,7 @@ thothbot.parallax.core.client.gl2
 thothbot.parallax.core.client.gl2.arrays
 thothbot.parallax.core.client.gl2.enums
 thothbot.parallax.core.client.renderers
-thothbot.parallax.core.client.shader
+thothbot.parallax.core.client.shaders
 thothbot.parallax.core.client.textures
 thothbot.parallax.core.client.widget
 thothbot.parallax.core.resources
@@ -25,9 +25,9 @@ thothbot.parallax.core.shared.utils
 thothbot.parallax.loader.shared
 thothbot.parallax.loader.shared.collada
 thothbot.parallax.plugin.lensflare
-thothbot.parallax.plugin.lensflare.shader
+thothbot.parallax.plugin.lensflare.shaders
 thothbot.parallax.plugin.postprocessing
 thothbot.parallax.plugin.postprocessing.client
-thothbot.parallax.plugin.postprocessing.client.shader
+thothbot.parallax.plugin.postprocessing.client.shaders
 thothbot.parallax.plugin.sprite
-thothbot.parallax.plugin.sprite.shader
+thothbot.parallax.plugin.sprite.shaders
