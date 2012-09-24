@@ -1,0 +1,12 @@
+function qWb(){}
+function CWb(){}
+function zWb(){}
+function HWb(){}
+function GWb(){}
+function LWb(){}
+function KWb(){}
+function rWb(){LTb.call(this)}
+function yWb(){yWb=qic;xWb=new CWb}
+function OWb(){OWb=qic;AWb=new HWb}
+function PWb(){PWb=qic;BWb=new LWb}
+_=lWb.prototype;_.tb=function pWb(){HTb(this.c,new rWb(this.b))};_=rWb.prototype=qWb.prototype=new KTb;_.gC=function sWb(){return GE};_.td=function tWb(){neb(this,new Ezb(45,ffb(this.B.E),1,10000))};_.hb=function uWb(){var a,b,c,d,e,f,g,i,j;this.A.X.c=300;Kyb(this.C,this.A);this.b=new Mbb;z7(this.b,$lc,new Mqb((drb(),_qb),new bab));z7(this.b,_lc,new Mqb($qb,new bab));e=new Mbb;z7(e,amc,new uwb((Owb(),Awb),new B4(1)));z7(e,clc,new uwb(zwb,new Yzb(16777215)));d=(KSb(),MSb('./static/textures/sprites/disc.png',(Rxb(),Qxb),null));hxb(d,(Rob(),Qob));ixb(d,Qob);z7(e,bmc,new uwb(Gwb,d));c=new ZQb((yWb(),xWb));qrb(GMb(c),this.b);srb(GMb(c),e);a=new lKb(100,68,38);this.d=a.H.Tc();b=new wJb(80,80,80,10,10,10);GSb(a,b,null,null);this.c=new URb(a,c);j=this.c.j.H;i=Us(u7(this.b,$lc),128).o;g=Us(u7(this.b,_lc),128).o;for(f=0;f<j.Tc();++f){g.Hc(f,new Yzb(16777215));if(f<this.d){i.Hc(f,new B4(10));Szb(Us(g.Lc(f),142),0.01+0.1*(f/this.d),0.99,(Us(j.Lc(f),156).e+100)/200)}else{i.Hc(f,new B4(40));Szb(Us(g.Lc(f),142),0.6,0.75,0.5+Us(j.Lc(f),156).e/80)}}Kyb(this.C,this.c)};_.sd=function vWb(){};_.ib=function wWb(a){var b,c,d;c=a*0.005;GEb(this.c.$,0.02*c);jFb(this.c.$,0.02*c);for(b=0;b<Us(u7(this.b,$lc),128).o.Tc();++b){d=Us(u7(this.b,$lc),128).o;b<this.d&&d.Sc(b,new B4(16+12*Math.sin(0.1*b+c)))}Us(u7(this.b,$lc),128).j=true};_.b=null;_.c=null;_.d=0;var xWb;_=CWb.prototype=zWb.prototype=new Kb;_.gC=function DWb(){return JE};_.Ad=function EWb(){return OWb(),AWb};_.Bd=function FWb(){return PWb(),BWb};var AWb=null,BWb=null;_=HWb.prototype=GWb.prototype=new Kb;_.gC=function IWb(){return HE};_.ac=function JWb(){return cmc};_=LWb.prototype=KWb.prototype=new Kb;_.gC=function MWb(){return IE};_.ac=function NWb(){return dmc};var GE=p4(Slc,'CustomAttributesParticles2$DemoScene'),JE=p4(Slc,'CustomAttributesParticles2_Resources_default_InlineClientBundleGenerator'),HE=p4(Slc,'CustomAttributesParticles2_Resources_default_InlineClientBundleGenerator$1'),IE=p4(Slc,'CustomAttributesParticles2_Resources_default_InlineClientBundleGenerator$2');sic(ge)(2);

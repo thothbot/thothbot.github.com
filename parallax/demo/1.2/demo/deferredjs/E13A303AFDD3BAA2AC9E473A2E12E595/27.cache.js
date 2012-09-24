@@ -1,0 +1,2 @@
+function T5b(){}
+_=T5b.prototype=new Kb;_.gC=function U5b(){return MG};_.sb=function V5b(a){GTb(this.b,a)};_.tb=function W5b(){HTb(this.b,null.ff())};_.cM={6:1};_.b=null;var MG=p4(Wlc,'MaterialsLightmap$1');sic(ge)(27);

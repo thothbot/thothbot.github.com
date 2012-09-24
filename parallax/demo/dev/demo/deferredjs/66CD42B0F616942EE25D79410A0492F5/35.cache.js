@@ -1,0 +1,8 @@
+function uac(){}
+function Qhb(b,a){b.deleteBuffer(a)}
+function Rhb(b,a){b.deleteTexture(a)}
+function vac(a){this.a=a;VUb.call(this)}
+function frb(a,b){if(!b.z)return;Rhb(a.D.b,b.z);--a.H.a.c}
+function erb(a,b){var c,d;if(!b.P)return;b.P=false;b.I=null;b.J=null;if(b)for(d=Oab(k8(b.i.o));d.a.Ec();){c=Is(Vab(d),150);grb(a,c)}}
+function grb(a,b){var c,d,e;Qhb(a.D.b,b.W);Qhb(a.D.b,b.P);Qhb(a.D.b,b.T);Qhb(a.D.b,b.H);Qhb(a.D.b,b.V);Qhb(a.D.b,b.U);Qhb(a.D.b,b.R);Qhb(a.D.b,b.S);Qhb(a.D.b,b.J);Qhb(a.D.b,b.L);if(b.$!=0){for(e=0;e<b.$;++e){Qhb(a.D.b,Js(fbb(b.O,e)))}}if(b.Z!=0){for(e=0;e<b.Z;++e){Qhb(a.D.b,Js(fbb(b.N,e)))}}if(b.I){for(d=new eab(b.I);d.b<d.d.Tc();){c=Is(cab(d),129);Qhb(a.D.b,c.f)}}--a.H.a.a}
+var WJc='MiscMemoryTestGeometries$DemoScene';_=pac.prototype;_.pb=function tac(){RUb(this.b,new vac(this.a))};_=vac.prototype=uac.prototype=new UUb;_.gC=function wac(){return eH};_.td=function xac(){xfb(this,new OAb(60,pgb(this.A.D),1,10000))};_.gb=function yac(){this.z.W.b=200;Uzb(this.B,this.z)};_.sd=function zac(){};_.hb=function Aac(a){var b,c,d,e;if(this.a.a){Xzb(this.B,this.a.a);erb(this.A,this.a.a)}!!this.a.b&&frb(this.A,this.a.b);b=new vLb(50,Os(Math.random()*64),Os(Math.random()*32));this.a.b=new uyb((d=jg($doc,rIc),d.width=256,d.height=256,e=d.getContext(sIc),Jc(e,VJc+w6(Math.random()*256)+Nnc+w6(Math.random()*256)+Nnc+w6(Math.random()*256)+Kkc),e.fillRect(0,0,256,256),d));myb(this.a.b,(n5(),n5(),m5));c=new ZPb;XPb(c,this.a.b);c.g=true;this.a.a=new USb(b,c);Uzb(this.B,this.a.a)};_.a=null;var eH=z5(eFc,WJc);rkc(Vd)(35);

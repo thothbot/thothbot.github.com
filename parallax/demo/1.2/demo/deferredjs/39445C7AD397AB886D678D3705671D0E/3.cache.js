@@ -1,0 +1,2 @@
+function VWb(){}
+_=VWb.prototype=new Kb;_.gC=function WWb(){return mE};_.ob=function XWb(a){uTb(this.a,a)};_.pb=function YWb(){vTb(this.a,null.$e())};_.cM={6:1};_.a=null;var mE=d4(Hlc,'ClothSimulation$1');gic(Vd)(3);

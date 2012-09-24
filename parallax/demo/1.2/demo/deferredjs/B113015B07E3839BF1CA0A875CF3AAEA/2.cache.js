@@ -1,0 +1,12 @@
+function $Vb(){}
+function kWb(){}
+function hWb(){}
+function pWb(){}
+function oWb(){}
+function tWb(){}
+function sWb(){}
+function _Vb(){tTb.call(this)}
+function gWb(){gWb=$hc;fWb=new kWb}
+function wWb(){wWb=$hc;iWb=new pWb}
+function xWb(){xWb=$hc;jWb=new tWb}
+_=VVb.prototype;_.tb=function ZVb(){pTb(this.c,new _Vb(this.b))};_=_Vb.prototype=$Vb.prototype=new sTb;_.gC=function aWb(){return oE};_.pd=function bWb(){Xdb(this,new mzb(45,Peb(this.B.E),1,10000))};_.hb=function cWb(){var a,b,c,d,e,f,g,i,j;this.A.X.c=300;syb(this.C,this.A);this.b=new ubb;h7(this.b,Hlc,new uqb((Nqb(),Jqb),new L9));h7(this.b,Ilc,new uqb(Iqb,new L9));e=new ubb;h7(e,Jlc,new cwb((wwb(),iwb),new j4(1)));h7(e,Lkc,new cwb(hwb,new Gzb(16777215)));d=(sSb(),uSb('./static/textures/sprites/disc.png',(zxb(),yxb),null));Rwb(d,(zob(),yob));Swb(d,yob);h7(e,Klc,new cwb(owb,d));c=new HQb((gWb(),fWb));$qb(oMb(c),this.b);arb(oMb(c),e);a=new VJb(100,68,38);this.d=a.H.Pc();b=new eJb(80,80,80,10,10,10);oSb(a,b,null,null);this.c=new CRb(a,c);j=this.c.j.H;i=Gs(c7(this.b,Hlc),128).o;g=Gs(c7(this.b,Ilc),128).o;for(f=0;f<j.Pc();++f){g.Dc(f,new Gzb(16777215));if(f<this.d){i.Dc(f,new j4(10));Azb(Gs(g.Hc(f),142),0.01+0.1*(f/this.d),0.99,(Gs(j.Hc(f),156).e+100)/200)}else{i.Dc(f,new j4(40));Azb(Gs(g.Hc(f),142),0.6,0.75,0.5+Gs(j.Hc(f),156).e/80)}}syb(this.C,this.c)};_.od=function dWb(){};_.ib=function eWb(a){var b,c,d;c=a*0.005;oEb(this.c.$,0.02*c);TEb(this.c.$,0.02*c);for(b=0;b<Gs(c7(this.b,Hlc),128).o.Pc();++b){d=Gs(c7(this.b,Hlc),128).o;b<this.d&&d.Oc(b,new j4(16+12*Math.sin(0.1*b+c)))}Gs(c7(this.b,Hlc),128).j=true};_.b=null;_.c=null;_.d=0;var fWb;_=kWb.prototype=hWb.prototype=new Kb;_.gC=function lWb(){return rE};_.wd=function mWb(){return wWb(),iWb};_.xd=function nWb(){return xWb(),jWb};var iWb=null,jWb=null;_=pWb.prototype=oWb.prototype=new Kb;_.gC=function qWb(){return pE};_.Yb=function rWb(){return Llc};_=tWb.prototype=sWb.prototype=new Kb;_.gC=function uWb(){return qE};_.Yb=function vWb(){return Mlc};var oE=Z3(zlc,'CustomAttributesParticles2$DemoScene'),rE=Z3(zlc,'CustomAttributesParticles2_Resources_default_InlineClientBundleGenerator'),pE=Z3(zlc,'CustomAttributesParticles2_Resources_default_InlineClientBundleGenerator$1'),qE=Z3(zlc,'CustomAttributesParticles2_Resources_default_InlineClientBundleGenerator$2');aic(fe)(2);

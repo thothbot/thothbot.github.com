@@ -1,0 +1,73 @@
+<pre>
+/*
+ * Prepare Rendering Scene
+ */
+class DemoScene extends DemoAnimatedScene 
+{
+   public int mouseX;
+   public int mouseY;
+
+   @Override
+   protected void loadCamera()
+   {
+      setCamera(
+            new PerspectiveCamera(
+                  60, // fov
+                  getRenderer().getCanvas().getAspectRation(), // aspect 
+                  1, // near
+                  10000 // far 
+            )); 
+   }
+
+   @Override
+   protected void onStart()
+   {
+      getCamera().getPosition().set(100000, 0, 3200 );
+      getScene().add(getCamera());
+
+      int[] colors = {0x000000, 0xff0080, 0x8000ff, 0xffffff};
+      Geometry geometry = new Geometry();
+
+      for ( int i = 0; i &lt; 2000; i ++ ) 
+      {
+         Vector3 vertex = new Vector3();
+         vertex.setX(Math.random() * 4000.0 - 2000.0);
+         vertex.setY(Math.random() * 4000.0 - 2000.0);
+         vertex.setZ(Math.random() * 4000.0 - 2000.0);
+         geometry.getVertices().add( vertex );
+
+         geometry.getColors().add( new Color( colors[ (int) Math.floor( Math.random() * colors.length ) ] ) );
+
+      }
+
+      ParticleBasicMaterial material = new ParticleBasicMaterial();
+      material.setSize( 1.0 );
+      material.setVertexColors(  Material.COLORS.VERTEX );
+      material.setDepthTest( false );
+      material.setOpacity( 0.5 );
+      material.setSizeAttenuation(false);
+
+      ParticleSystem mesh = new ParticleSystem( geometry, material );
+      getScene().add( mesh );
+
+      getRenderer().setSortObjects(false);
+      getRenderer().setAutoClear(false);
+   }
+   
+   @Override
+   protected void onStop()
+   {         
+   }
+   
+   @Override
+   protected void onUpdate(double duration)
+   {
+      getCamera().getPosition().addX( ( mouseX - getCamera().getPosition().getX() ) * .05 );
+      getCamera().getPosition().addY( ( - mouseY - getCamera().getPosition().getY() ) * .05 );
+
+      getCamera().lookAt( getScene().getPosition() );
+   }
+}
+
+
+</pre>

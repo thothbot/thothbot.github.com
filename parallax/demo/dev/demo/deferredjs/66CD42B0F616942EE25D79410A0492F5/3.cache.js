@@ -1,0 +1,2 @@
+var MFc='ClothSimulation$1';function qYb(){}
+_=qYb.prototype=new Kb;_.gC=function rYb(){return EE};_.ob=function sYb(a){QUb(this.a,a)};_.pb=function tYb(){RUb(this.a,null.ff())};_.cM={6:1};_.a=null;var EE=z5($Dc,MFc);rkc(Vd)(3);

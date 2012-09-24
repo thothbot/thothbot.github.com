@@ -1,0 +1,12 @@
+function ZVb(){}
+function TWb(){}
+function QWb(){}
+function YWb(){}
+function XWb(){}
+function _Wb(){}
+function aXb(){}
+function $Vb(){LTb.call(this)}
+function fWb(){fWb=qic;eWb=new TWb}
+function dXb(){dXb=qic;RWb=new YWb}
+function eXb(){eXb=qic;SWb=new aXb}
+_=UVb.prototype;_.tb=function YVb(){HTb(this.c,new $Vb(this.b))};_=$Vb.prototype=ZVb.prototype=new KTb;_.gC=function _Vb(){return EE};_.td=function aWb(){neb(this,new Ezb(40,ffb(this.B.E),1,10000))};_.hb=function bWb(){var a,b,c,d,e,f,g,i,j;this.A.X.c=300;Kyb(this.C,this.A);this.b=new Mbb;z7(this.b,$lc,new Mqb((drb(),_qb),new bab));z7(this.b,_lc,new Mqb($qb,new bab));d=new Mbb;z7(d,amc,new uwb((Owb(),Awb),new B4(1)));z7(d,clc,new uwb(zwb,new Yzb(16777215)));z7(d,bmc,new uwb(Gwb,(KSb(),MSb('./static/textures/sprites/spark1.png',(Rxb(),Qxb),null))));c=new ZQb((fWb(),eWb));qrb(GMb(c),this.b);srb(GMb(c),d);LMb(c,(oNb(),hNb));c.M=false;c.R=true;a=new xAb;for(b=0;b<10000;++b){i=new lFb;FEb(i,Math.random()*2-1);GEb(i,Math.random()*2-1);jFb(i,Math.random()*2-1);i.me(200);a.H.Ic(i)}this.c=new URb(a,c);j=this.c.j.H;g=Us(u7(this.b,$lc),128).o;f=Us(u7(this.b,_lc),128).o;for(e=0;e<j.Tc();++e){g.Hc(e,new B4(10));f.Hc(e,new Yzb(16755200));Us(j.Lc(e),156).d<0?Szb(Us(f.Lc(e),142),0.5+0.1*(e/j.Tc()),0.7,0.9):Szb(Us(f.Lc(e),142),0.1*(e/j.Tc()),0.9,0.9)}Kyb(this.C,this.c)};_.sd=function cWb(){};_.ib=function dWb(a){var b,c,d;c=a*0.005;jFb(this.c.$,0.01*c);for(b=0;b<Us(u7(this.b,$lc),128).o.Tc();++b){d=Us(u7(this.b,$lc),128).o;d.Sc(b,new B4(14+13*Math.sin(0.1*b+c)))}Us(u7(this.b,$lc),128).j=true};_.b=null;_.c=null;var eWb;_=TWb.prototype=QWb.prototype=new Kb;_.gC=function UWb(){return NE};_.Ad=function VWb(){return dXb(),RWb};_.Bd=function WWb(){return eXb(),SWb};var RWb=null,SWb=null;_=YWb.prototype=XWb.prototype=new Kb;_.gC=function ZWb(){return LE};_.ac=function $Wb(){return cmc};_=aXb.prototype=_Wb.prototype=new Kb;_.gC=function bXb(){return ME};_.ac=function cXb(){return dmc};var EE=p4(Slc,'CustomAttributesParticles$DemoScene'),NE=p4(Slc,'CustomAttributesParticles_Resources_default_InlineClientBundleGenerator'),LE=p4(Slc,'CustomAttributesParticles_Resources_default_InlineClientBundleGenerator$1'),ME=p4(Slc,'CustomAttributesParticles_Resources_default_InlineClientBundleGenerator$2');sic(ge)(1);
