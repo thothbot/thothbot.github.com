@@ -4,6 +4,7 @@ thothbot.parallax.core.client.controls
 thothbot.parallax.core.client.gl2
 thothbot.parallax.core.client.gl2.arrays
 thothbot.parallax.core.client.gl2.enums
+thothbot.parallax.core.client.gl2.extension
 thothbot.parallax.core.client.renderers
 thothbot.parallax.core.client.shaders
 thothbot.parallax.core.client.textures
