@@ -1,4 +1,4 @@
-html,body {
+html, body {
 	width: 100%;
 	background: url("../images/light-pattern.png");
 	font-size: 12px;
@@ -79,7 +79,6 @@ header ul>li:last-child {
 
 header ul>li:last-child a{
 	background: none;
-/* 	color: #FFF;	 */
 	font-weight: bold;
 }
 
@@ -91,7 +90,7 @@ header ul>li a {
 }
 
 header ul>li a:hover {
-	color: #EE0000;
+	color: #AAAA00;
 }
 
 section#introduction {
@@ -117,12 +116,6 @@ section#introduction #quicklinks {
 	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 
-section#introduction hr {
-	height: 2px;
-	border: 0;
-	background: url("../images/divider_300.png") top center no-repeat;
-}
-
 section#introduction h2 {
 	color: #333;
 	padding: 0px;
@@ -135,12 +128,112 @@ section#introduction p {
 	padding: 5px 0px;
 }
 
-section#introduction a {
+section#features {
+	top: 110px;
+	position:relative;
+	height: 520px;
+}
+
+section#features div#info {
+	display: block;
+	float: left;
+	width: 250px;
+	padding: 10px;
+}
+
+section#features h3 {
+	font-size:0.9em;
+	padding: 0px;
+	margin: 8px 0px;
+}
+
+section#features p {
+	padding: 5px 0;
+	margin: 0;
+}
+
+footer {
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	padding: 15px 0;
+	background: url("../images/dark-pattern.png") bottom center;
+	box-shadow: 0 1px 15px rgba(0, 0, 0, 0.3);
+	color: #888888;
+	font-size: 0.8em;
+}
+
+footer h2 {
+	display: block;
+	float: left;
+	margin-top: 25px;
+	padding: 0;
+	width: 140px;
+	height: 40px;
+	margin-bottom: 10px;
+	background: url("../images/logo_transparent.png") no-repeat;
+	background-size: 100%;
+}
+
+footer h2 a {
+	display: block;
+	text-indent: -999em;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: transparent;
+	background-repeat: no-repeat;
+}
+
+footer a {
+	text-decoration: none;
+	color: #AAAAAA;
+}
+
+footer a:hover {
+	color: #AAAA00;
+}
+
+footer .links {
+	margin: 0 auto;
+	padding-left: 200px;
+}
+
+footer .links dl {
+	width: 30%;
+	float: left;
+	padding: 0 10px;
+}
+
+footer .links dt {
+	color: #9DD745;
+	text-transform: uppercase;
+	text-decoration: none;
+	text-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
+}
+
+footer .links dd {
+	-webkit-margin-start: 0px;
+}
+
+footer div.copy {
+	clear: both;
+	padding-top: 15px;
+	border-top: 2px solid #333;
+}
+
+a {
 	color: #222;
 }
 
-section#introduction a:HOVER {
+a:HOVER {
 	color: #AA0000;
+}
+
+hr {
+	height: 2px;
+	border: 0;
+	background: url("../images/divider_300.png") top center no-repeat;
 }
 
 .inner {
