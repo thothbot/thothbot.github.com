@@ -214,6 +214,7 @@ footer .links dt {
 
 footer .links dd {
 	-webkit-margin-start: 0px;
+	margin: 0;
 }
 
 footer div.copy {
