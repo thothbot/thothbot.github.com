@@ -1,0 +1,2 @@
+var j8c='ClothSimulation$1';function Pcc(){}
+_=Pcc.prototype=new Jb;_.gC=function Qcc(){return gF};_.ub=function Rcc(a){n9b(this.a,a)};_.vb=function Scc(){o9b(this.a,null.Pg())};_.cM={6:1};_.a=null;var gF=Zgb(h6c,j8c,ny);fOc(Wd)(3);

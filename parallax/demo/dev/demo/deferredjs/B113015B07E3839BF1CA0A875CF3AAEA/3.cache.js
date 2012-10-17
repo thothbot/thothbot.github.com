@@ -1,2 +1,0 @@
-function PWb(){}
-_=PWb.prototype=new Kb;_.gC=function QWb(){return xE};_.sb=function RWb(a){oTb(this.b,a)};_.tb=function SWb(){pTb(this.b,null.bf())};_.cM={6:1};_.b=null;var xE=Z3(Alc,'ClothSimulation$1');aic(fe)(3);

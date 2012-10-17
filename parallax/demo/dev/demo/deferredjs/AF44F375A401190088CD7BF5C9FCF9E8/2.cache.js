@@ -1,0 +1,12 @@
+function Rac(){}
+function _ac(){}
+function Yac(){}
+function ebc(){}
+function dbc(){}
+function ibc(){}
+function hbc(){}
+function Sac(){i8b.call(this)}
+function Xac(){Xac=JLc;Wac=new _ac}
+function lbc(){lbc=JLc;Zac=new ebc}
+function mbc(){mbc=JLc;$ac=new ibc}
+_=Mac.prototype;_.zb=function Qac(){e8b(this.c,new Sac(this.b))};_=Sac.prototype=Rac.prototype=new h8b;_.gC=function Tac(){return iF};_.nb=function Uac(){var a,b,c,d,e,f,g,i,j;this.c=new iOb(45,dEb(this.D.o),1,10000);this.c.X.c=300;this.b=new rqb;jlb(this.b,FPc,new VEb((mFb(),iFb),new rnb));jlb(this.b,GPc,new VEb(hFb,new rnb));e=new rqb;jlb(e,HPc,new DKb((XKb(),JKb),new $fb(1)));jlb(e,IOc,new DKb(IKb,new EOb(16777215)));d=new zLb('./static/textures/sprites/disc.png');wLb(d,(ADb(),zDb));xLb(d,zDb);jlb(e,IPc,new DKb(PKb,d));c=new m5b((Xac(),Wac));zFb(p0b(c),this.b);BFb(p0b(c),e);a=new eZb(100,68,38);this.e=a.y.Wc();b=new pYb(80,80,80,10,10,10);n7b(a,b,null,null);this.d=new t6b(a,c);j=this.d.s.y;i=wr(elb(this.b,FPc),161).o;g=wr(elb(this.b,GPc),161).o;for(f=0;f<j.Wc();++f){g.Kc(f,new EOb(16777215));if(f<this.e){i.Kc(f,new $fb(10));yOb(wr(g.Oc(f),178),0.01+0.1*(f/this.e),0.99,(wr(j.Oc(f),193).e+100)/200)}else{i.Kc(f,new $fb(40));yOb(wr(g.Oc(f),178),0.6,0.75,0.5+wr(j.Oc(f),193).e/80)}}jNb(this.E,this.d)};_.ob=function Vac(a){var b,c,d;c=a*0.005;yTb(this.d.$,0.02*c);bUb(this.d.$,0.02*c);for(b=0;b<wr(elb(this.b,FPc),161).o.Wc();++b){d=wr(elb(this.b,FPc),161).o;b<this.e&&d.Vc(b,new $fb(16+12*Math.sin(0.1*b+c)))}wr(elb(this.b,FPc),161).j=true;iEb(this.D.o,this.E,this.c,null,false)};_.b=null;_.c=null;_.d=null;_.e=0;var Wac;_=_ac.prototype=Yac.prototype=new Jb;_.gC=function abc(){return lF};_.Td=function bbc(){return lbc(),Zac};_.Ud=function cbc(){return mbc(),$ac};var Zac=null,$ac=null;_=ebc.prototype=dbc.prototype=new Jb;_.gC=function fbc(){return jF};_.dc=function gbc(){return JPc};_=ibc.prototype=hbc.prototype=new Jb;_.gC=function jbc(){return kF};_.dc=function kbc(){return KPc};var iF=Pfb(xPc,'CustomAttributesParticles2$DemoScene',IE),lF=Pfb(xPc,'CustomAttributesParticles2_Resources_default_InlineClientBundleGenerator',yy),jF=Pfb(xPc,'CustomAttributesParticles2_Resources_default_InlineClientBundleGenerator$1',yy),kF=Pfb(xPc,'CustomAttributesParticles2_Resources_default_InlineClientBundleGenerator$2',yy);$Lc(he)(2);

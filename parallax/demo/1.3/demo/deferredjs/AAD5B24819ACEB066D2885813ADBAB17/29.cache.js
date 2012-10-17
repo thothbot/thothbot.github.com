@@ -1,0 +1,17 @@
+function z$b(){}
+function vlc(){}
+function Alc(){}
+function Jlc(){}
+function Glc(){}
+function Olc(){}
+function Nlc(){}
+function Slc(){}
+function Rlc(){}
+function H5b(a,b){a.d=b}
+function Blc(a,b){this.b=a;this.c=b}
+function wlc(){j7b.call(this)}
+function Flc(){Flc=KKc;Elc=new Jlc}
+function Vlc(){Vlc=KKc;Hlc=new Olc}
+function Wlc(){Wlc=KKc;Ilc=new Slc}
+function A$b(){jMb();KZb.call(this,16777215);this.b=new FNb(16777215);this.X=new fTb(0,100,0);this.c=1.25}
+var EPc='bottomColor',DPc='topColor';_=A$b.prototype=z$b.prototype=new HZb;_.gC=function B$b(){return aD};_.Re=function C$b(a,b){var c,d,e,f,g,i,j,k;g=a.d.d;d=a.d.b;f=a.d.c;k=this.I;c=this.b;i=this.c;e=g.length*3;if(b){IZb(g,e,k,i);IZb(d,e,c,i)}else{JZb(g,e,k,i);JZb(d,e,c,i)}j=rRb(this.U);f[e]=j.d;f[e+1]=j.e;f[e+2]=j.c};_.cM={203:1,204:1,236:1,242:1};_.b=null;_.c=0;_=qlc.prototype;_.wb=function ulc(){f7b(this.c,new wlc(this.b))};_=wlc.prototype=vlc.prototype=new i7b;_.gC=function xlc(){return JG};_.nb=function ylc(){var a,b,c,d,e,f,g;this.b=new jNb(40,eDb(this.D.o),1,10000);_Sb(this.b.X,700,180,-500);$5b(this.E,new L5b(16448250,1000,10000));zNb(this.E.c.d,0.6,0.125,1);this.c=new Xtb(this.b,this.D.c);this.c.w.c=150;b=new r$b(16777215,1.475);_Sb(b.X,100,100,-100);kMb(this.E,b);c=new A$b;zNb(c.I,0.6,0.45,1);zNb(c.b,0.1,0.45,0.95);c.X.e=500;kMb(this.E,c);g=new n4b((Flc(),Elc));B_b(g,(u1b(),r1b));vEb(q_b(g),DPc,new EJb((YJb(),JJb),new FNb(30719)));vEb(q_b(g),EPc,new EJb(JJb,new FNb(16777215)));vEb(q_b(g),DPc,new EJb(JJb,new FNb(c.I.d)));vEb(q_b(g),FPc,new EJb(KJb,new _eb(400)));vEb(q_b(g),'exponent',new EJb(KJb,new _eb(0.6)));H5b(this.E.c,new FNb(Mq(Mq(q_b(g).j.b[EPc],166).e,178).d));f=new fYb(4000,32,15);e=new b5b(f,g);kMb(this.E,e);qDb(this.D.o,this.E.c.d);this.D.o.Q=true;this.D.o.R=true;this.D.o.T=true;d=new $xc;try{Nxc(d,'./static/models/obj/lightmap/lightmap.js',new Blc(this,d))}catch(a){a=eM(a);if(Pq(a,41)){_Lb();JP($Lb,(pP(),nP),FOc)}else throw a}};_.ob=function zlc(a){Vtb(this.c);jDb(this.D.o,this.E,this.b,null,false)};_.b=null;_.c=null;_=Blc.prototype=Alc.prototype=new Jb;_.gC=function Clc(){return IG};_.zf=function Dlc(){var a;a=new b5b(this.c.b,new m2b);aTb(a.X,0);aTb(a.ab,100);kMb(this.b.E,a)};_.b=null;_.c=null;var Elc;_=Jlc.prototype=Glc.prototype=new Jb;_.gC=function Klc(){return MG};_.Md=function Llc(){return Vlc(),Hlc};_.Nd=function Mlc(){return Wlc(),Ilc};var Hlc=null,Ilc=null;_=Olc.prototype=Nlc.prototype=new Jb;_.gC=function Plc(){return KG};_.Yb=function Qlc(){return 'uniform vec3 topColor;\r\nuniform vec3 bottomColor;\r\nuniform float offset;\r\nuniform float exponent;\r\n\r\nvarying vec3 worldPosition;\r\n\r\nvoid main() {\r\n\r\n\tfloat h = normalize( worldPosition + offset ).y;\r\n\tgl_FragColor = vec4( mix( bottomColor, topColor, max( pow( h, exponent ), 0.0 ) ), 1.0 );\r\n\r\n}'};_=Slc.prototype=Rlc.prototype=new Jb;_.gC=function Tlc(){return LG};_.Yb=function Ulc(){return 'varying vec3 worldPosition;\r\n\r\nvoid main() {\r\n\r\n\tvec4 mPosition = modelMatrix * vec4( position, 1.0 );\r\n\r\n\tgl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\r\n\tworldPosition = mPosition.xyz;\r\n\r\n}'};var aD=Qeb(GPc,'HemisphereLight',bD),JG=Qeb(uOc,'MaterialsLightmap$DemoScene',RD),IG=Qeb(uOc,'MaterialsLightmap$DemoScene$1',Hx),MG=Qeb(uOc,'MaterialsLightmap_Resources_default_InlineClientBundleGenerator',Hx),KG=Qeb(uOc,'MaterialsLightmap_Resources_default_InlineClientBundleGenerator$1',Hx),LG=Qeb(uOc,'MaterialsLightmap_Resources_default_InlineClientBundleGenerator$2',Hx);_Kc(Wd)(29);

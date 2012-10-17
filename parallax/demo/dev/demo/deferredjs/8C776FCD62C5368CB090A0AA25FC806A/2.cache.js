@@ -1,0 +1,12 @@
+function oac(){}
+function yac(){}
+function vac(){}
+function Dac(){}
+function Cac(){}
+function Hac(){}
+function Gac(){}
+function pac(){H7b.call(this)}
+function uac(){uac=gLc;tac=new yac}
+function Kac(){Kac=gLc;wac=new Dac}
+function Lac(){Lac=gLc;xac=new Hac}
+_=jac.prototype;_.vb=function nac(){D7b(this.b,new pac(this.a))};_=pac.prototype=oac.prototype=new G7b;_.gC=function qac(){return xE};_.mb=function rac(){var a,b,c,d,e,f,g,i,j;this.b=new HNb(45,CDb(this.C.n),1,10000);this.b.W.b=300;this.a=new Qpb;Ikb(this.a,_Oc,new sEb((LEb(),HEb),new Qmb));Ikb(this.a,aPc,new sEb(GEb,new Qmb));e=new Qpb;Ikb(e,bPc,new aKb((uKb(),gKb),new xfb(1)));Ikb(e,cOc,new aKb(fKb,new bOb(16777215)));d=new YKb('./static/textures/sprites/disc.png');VKb(d,(ZCb(),YCb));WKb(d,YCb);Ikb(e,cPc,new aKb(mKb,d));c=new L4b((uac(),tac));YEb(O_b(c),this.a);$Eb(O_b(c),e);a=new DYb(100,68,38);this.d=a.x.Pc();b=new OXb(80,80,80,10,10,10);M6b(a,b,null,null);this.c=new S5b(a,c);j=this.c.r.x;i=Qq(Dkb(this.a,_Oc),161).n;g=Qq(Dkb(this.a,aPc),161).n;for(f=0;f<j.Pc();++f){g.Dc(f,new bOb(16777215));if(f<this.d){i.Dc(f,new xfb(10));XNb(Qq(g.Hc(f),178),0.01+0.1*(f/this.d),0.99,(Qq(j.Hc(f),193).d+100)/200)}else{i.Dc(f,new xfb(40));XNb(Qq(g.Hc(f),178),0.6,0.75,0.5+Qq(j.Hc(f),193).d/80)}}IMb(this.D,this.c)};_.nb=function sac(a){var b,c,d;c=a*0.005;XSb(this.c.Z,0.02*c);ATb(this.c.Z,0.02*c);for(b=0;b<Qq(Dkb(this.a,_Oc),161).n.Pc();++b){d=Qq(Dkb(this.a,_Oc),161).n;b<this.d&&d.Oc(b,new xfb(16+12*Math.sin(0.1*b+c)))}Qq(Dkb(this.a,_Oc),161).i=true;HDb(this.C.n,this.D,this.b,null,false)};_.a=null;_.b=null;_.c=null;_.d=0;var tac;_=yac.prototype=vac.prototype=new Jb;_.gC=function zac(){return AE};_.Md=function Aac(){return Kac(),wac};_.Nd=function Bac(){return Lac(),xac};var wac=null,xac=null;_=Dac.prototype=Cac.prototype=new Jb;_.gC=function Eac(){return yE};_.Yb=function Fac(){return dPc};_=Hac.prototype=Gac.prototype=new Jb;_.gC=function Iac(){return zE};_.Yb=function Jac(){return ePc};var xE=mfb(TOc,'CustomAttributesParticles2$DemoScene',XD),AE=mfb(TOc,'CustomAttributesParticles2_Resources_default_InlineClientBundleGenerator',Nx),yE=mfb(TOc,'CustomAttributesParticles2_Resources_default_InlineClientBundleGenerator$1',Nx),zE=mfb(TOc,'CustomAttributesParticles2_Resources_default_InlineClientBundleGenerator$2',Nx);xLc(Wd)(2);

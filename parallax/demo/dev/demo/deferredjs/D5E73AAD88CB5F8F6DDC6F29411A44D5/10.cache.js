@@ -1,0 +1,18 @@
+function b$b(){}
+function L$b(){}
+function P$b(){}
+function O$b(){}
+function S$b(){}
+function W$b(){}
+function V$b(){}
+function Z$b(){}
+function a_b(){}
+function ofc(){}
+function pfc(){s9b.call(this)}
+function c$b(a,b){d$b.call(this,a,b)}
+function M$b(){c$b.call(this,new P$b,20)}
+function T$b(){c$b.call(this,new W$b,20)}
+function $$b(){c$b.call(this,new b_b,10)}
+function b_b(){this.b=200;this.a=200}
+function d$b(a,b){var c,d,e,f,g,i,j,k,n,o,p,q,r,s;yQb.call(this);k=b+1;for(g=0;g<=20;++g){s=g/20;for(i=0;i<=b;++i){n=i/b;j=a.Se(n,s);this.x.Lc(j)}}for(g=0;g<20;++g){for(i=0;i<b;++i){c=g*k+i;d=g*k+i+1;e=(g+1)*k+i;f=(g+1)*k+i+1;o=new xUb(g/b,i/20);p=new xUb(g/b,(i+1)/20);q=new xUb((g+1)/b,i/20);r=new xUb((g+1)/b,(i+1)/20);this.k.Lc(new uRb(c,d,f,e));kr(tob(this.j,0),118).Lc(new cpb(br(rM,{89:1,107:1,191:1},190,[o,p,q,r])))}}nQb(this);oQb(this,(kgb(),kgb(),igb));rQb(this)}
+var R8c='GeometriesParametric$DemoScene',L8c='KleinParametricGeometry',M8c='KleinParametricGeometry$1',N8c='MobiusParametricGeometry',O8c='MobiusParametricGeometry$1',J8c='ParametricGeometry',P8c='PlaneParametricGeometry',Q8c='PlaneParametricGeometry$1',K8c='thothbot.parallax.core.shared.geometries.parametric.';_=b$b.prototype=new SPb;_.gC=function e$b(){return lD};_=M$b.prototype=L$b.prototype=new b$b;_.gC=function N$b(){return vD};_=P$b.prototype=O$b.prototype=new Jb;_.gC=function Q$b(){return uD};_.Se=function R$b(a,b){var c,d,e;a*=3.141592653589793;b*=6.283185307179586;a=a*2;if(a<3.141592653589793){c=3*Math.cos(a)*(1+Math.sin(a))+2*(1-Math.cos(a)/2)*Math.cos(a)*Math.cos(b);e=-8*Math.sin(a)-2*(1-Math.cos(a)/2)*Math.sin(a)*Math.cos(b)}else{c=3*Math.cos(a)*(1+Math.sin(a))+2*(1-Math.cos(a)/2)*Math.cos(b+3.141592653589793);e=-8*Math.sin(a)}d=-2*(1-Math.cos(a)/2)*Math.sin(b);return new oVb(c,d,e)};_=T$b.prototype=S$b.prototype=new b$b;_.gC=function U$b(){return xD};_=W$b.prototype=V$b.prototype=new Jb;_.gC=function X$b(){return wD};_.Se=function Y$b(a,b){var c,d,e,f;a=a-0.5;c=6.283185307179586*b;d=Math.cos(c)*(2+a*Math.cos(c/2));e=Math.sin(c)*(2+a*Math.cos(c/2));f=a*Math.sin(c/2);return new oVb(d,e,f)};_=$$b.prototype=Z$b.prototype=new b$b;_.gC=function _$b(){return zD};_=b_b.prototype=a_b.prototype=new Jb;_.gC=function c_b(){return yD};_.Se=function d_b(a,b){var c,d;c=a*this.b;d=b*this.a;return new oVb(c,0,d)};_.a=0;_.b=0;_=jfc.prototype;_.vb=function nfc(){o9b(this.b,new pfc(this.a))};_=pfc.prototype=ofc.prototype=new r9b;_.gC=function qfc(){return GF};_.mb=function rfc(){var a,b,c,d,e,f,g,i;this.a=new sPb(45,nFb(this.C.n),1,2000);this.a.W.d=400;tOb(this.D,new X_b(4210752));b=new z0b(16777215);iVb(b.W,0,0,1);tOb(this.D,b);i=new JMb(A8c);GMb(i,(KEb(),JEb));HMb(i,JEb);i.k=16;d=new Bob;c=new G4b;c.p=i;z4b(c,new OPb(12303291));K1b(c,(D3b(),B3b));cr(d.a,d.b++,c);a=new N3b;I3b(a,new OPb(16777215));a.g=true;a.Q=true;a.R=0.1;cr(d.a,d.b++,a);e=z8b(new M$b,d);iVb(e.W,0,0,0);e._.He(20);tOb(this.D,e);f=z8b(new T$b,d);iVb(f.W,10,0,0);f._.He(100);tOb(this.D,f);g=z8b(new $$b,d);iVb(g.W,20,0,0);tOb(this.D,g)};_.nb=function sfc(a){var b,c,d;HUb(this.a.W,Math.cos(a*1.0E-4)*800);lVb(this.a.W,Math.sin(a*1.0E-4)*800);UOb(this.a,this.D.W);for(b=0,c=this.D.K.b;b<c;++b){d=kr(tob(this.D.K,b),237);d.ce().c+=0.01;d.ce().d+=0.005}sFb(this.C.n,this.D,this.a,null,false)};_.a=null;var lD=Zgb(B8c,J8c,tC),vD=Zgb(K8c,L8c,lD),uD=Zgb(K8c,M8c,ny),xD=Zgb(K8c,N8c,lD),wD=Zgb(K8c,O8c,ny),zD=Zgb(K8c,P8c,lD),yD=Zgb(K8c,Q8c,ny),GF=Zgb(m6c,R8c,xE);fOc(Wd)(10);

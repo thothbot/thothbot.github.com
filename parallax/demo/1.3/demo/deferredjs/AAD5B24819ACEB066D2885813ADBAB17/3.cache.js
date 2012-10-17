@@ -1,0 +1,2 @@
+function Fac(){}
+_=Fac.prototype=new Jb;_.gC=function Gac(){return AE};_.vb=function Hac(a){e7b(this.b,a)};_.wb=function Iac(){f7b(this.b,null.Ig())};_.cM={6:1};_.b=null;var AE=Qeb(rOc,'ClothSimulation$1',Hx);_Kc(Wd)(3);

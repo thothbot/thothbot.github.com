@@ -1,0 +1,3 @@
+function Yfc(){}
+function Zfc(){s9b.call(this)}
+var V8c='GeometryCube$DemoScene';_=Tfc.prototype;_.vb=function Xfc(){o9b(this.b,new Zfc(this.a))};_=Zfc.prototype=Yfc.prototype=new r9b;_.gC=function $fc(){return OF};_.mb=function _fc(){var a,b;this.a=new sPb(70,nFb(this.C.n),1,1000);this.a.W.b=400;a=new yZb(200,200,200);b=new N3b;L3b(b,new JMb(U8c));this.b=new k7b(a,b);tOb(this.D,this.b)};_.nb=function agc(a){HUb(this.b.Z,this.b.Z.c+0.005);IUb(this.b.Z,this.b.Z.d+0.01);sFb(this.C.n,this.D,this.a,null,false)};_.a=null;_.b=null;var OF=Zgb(m6c,V8c,xE);fOc(Wd)(12);

@@ -1,0 +1,2 @@
+function bbc(){}
+_=bbc.prototype=new Jb;_.gC=function cbc(){return GE};_.ub=function dbc(a){C7b(this.a,a)};_.vb=function ebc(){D7b(this.a,null.Ig())};_.cM={6:1};_.a=null;var GE=mfb(UOc,'ClothSimulation$1',Nx);xLc(Wd)(3);

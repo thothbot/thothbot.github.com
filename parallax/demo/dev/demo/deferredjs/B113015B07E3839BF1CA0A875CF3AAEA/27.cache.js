@@ -1,2 +1,0 @@
-function B5b(){}
-_=B5b.prototype=new Kb;_.gC=function C5b(){return uG};_.sb=function D5b(a){oTb(this.b,a)};_.tb=function E5b(){pTb(this.b,null.bf())};_.cM={6:1};_.b=null;var uG=Z3(Dlc,'MaterialsLightmap$1');aic(fe)(27);

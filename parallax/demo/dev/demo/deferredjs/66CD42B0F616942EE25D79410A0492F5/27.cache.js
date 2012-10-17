@@ -1,2 +1,0 @@
-var YIc='MaterialsLightmap$1';function c7b(){}
-_=c7b.prototype=new Kb;_.gC=function d7b(){return BG};_.ob=function e7b(a){QUb(this.a,a)};_.pb=function f7b(){RUb(this.a,null.ff())};_.cM={6:1};_.a=null;var BG=z5(FEc,YIc);rkc(Vd)(27);

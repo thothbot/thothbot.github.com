@@ -1,0 +1,3 @@
+function Nec(){}
+function Oec(){i8b.call(this)}
+_=Iec.prototype;_.zb=function Mec(){e8b(this.c,new Oec(this.b))};_=Oec.prototype=Nec.prototype=new h8b;_.gC=function Pec(){return ZF};_.nb=function Qec(){var a,b;this.b=new iOb(70,dEb(this.D.o),1,1000);this.b.X.c=400;a=new oYb(200,200,200);b=new D2b;B2b(b,new zLb(SPc));this.c=new a6b(a,b);jNb(this.E,this.c)};_.ob=function Rec(a){xTb(this.c.$,this.c.$.d+0.005);yTb(this.c.$,this.c.$.e+0.01);iEb(this.D.o,this.E,this.b,null,false)};_.b=null;_.c=null;var ZF=Pfb(zPc,'GeometryCube$DemoScene',IE);$Lc(he)(12);

@@ -1,2 +1,0 @@
-function tbc(){}
-_=tbc.prototype=new Kb;_.gC=function ubc(){return jH};_.ob=function vbc(a){uTb(this.a,a)};_.pb=function wbc(){vTb(this.a,null.$e())};_.cM={6:1};_.a=null;var jH=d4(Mlc,'TerrainDynamic$1');gic(Vd)(41);

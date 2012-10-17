@@ -1,0 +1,12 @@
+function acc(){}
+function kcc(){}
+function hcc(){}
+function pcc(){}
+function occ(){}
+function tcc(){}
+function scc(){}
+function bcc(){s9b.call(this)}
+function gcc(){gcc=QNc;fcc=new kcc}
+function wcc(){wcc=QNc;icc=new pcc}
+function xcc(){xcc=QNc;jcc=new tcc}
+var e8c='./static/textures/sprites/disc.png',f8c='CustomAttributesParticles2$DemoScene',g8c='CustomAttributesParticles2_Resources_default_StaticClientBundleGenerator',h8c='CustomAttributesParticles2_Resources_default_StaticClientBundleGenerator$1',i8c='CustomAttributesParticles2_Resources_default_StaticClientBundleGenerator$2';_=Xbc.prototype;_.vb=function _bc(){o9b(this.b,new bcc(this.a))};_=bcc.prototype=acc.prototype=new r9b;_.gC=function ccc(){return ZE};_.mb=function dcc(){var a,b,c,d,e,f,g,i,j;this.b=new sPb(45,nFb(this.C.n),1,10000);this.b.W.b=300;this.a=new Brb;tmb(this.a,V7c,new dGb((wGb(),sGb),new Bob));tmb(this.a,W7c,new dGb(rGb,new Bob));e=new Brb;tmb(e,X7c,new NLb((fMb(),TLb),new ihb(1)));tmb(e,JXc,new NLb(SLb,new OPb(16777215)));d=new JMb(e8c);GMb(d,(KEb(),JEb));HMb(d,JEb);tmb(e,Y7c,new NLb(ZLb,d));c=new w6b((gcc(),fcc));JGb(z1b(c),this.a);LGb(z1b(c),e);a=new o$b(100,68,38);this.d=a.x.Wc();b=new zZb(80,80,80,10,10,10);x8b(a,b,null,null);this.c=new D7b(a,c);j=this.c.r.x;i=kr(omb(this.a,V7c),162).n;g=kr(omb(this.a,W7c),162).n;for(f=0;f<j.Wc();++f){g.Kc(f,new OPb(16777215));if(f<this.d){i.Kc(f,new ihb(10));IPb(kr(g.Oc(f),179),0.01+0.1*(f/this.d),0.99,(kr(j.Oc(f),194).d+100)/200)}else{i.Kc(f,new ihb(40));IPb(kr(g.Oc(f),179),0.6,0.75,0.5+kr(j.Oc(f),194).d/80)}}tOb(this.D,this.c)};_.nb=function ecc(a){var b,c,d;c=a*0.005;IUb(this.c.Z,0.02*c);lVb(this.c.Z,0.02*c);for(b=0;b<kr(omb(this.a,V7c),162).n.Wc();++b){d=kr(omb(this.a,V7c),162).n;b<this.d&&d.Vc(b,new ihb(16+12*Math.sin(0.1*b+c)))}kr(omb(this.a,V7c),162).i=true;sFb(this.C.n,this.D,this.b,null,false)};_.a=null;_.b=null;_.c=null;_.d=0;var fcc;_=kcc.prototype=hcc.prototype=new Jb;_.gC=function lcc(){return aF};_.Td=function mcc(){return wcc(),icc};_.Ud=function ncc(){return xcc(),jcc};var icc=null,jcc=null;_=pcc.prototype=occ.prototype=new Jb;_.gC=function qcc(){return $E};_.ac=function rcc(){return $7c};_=tcc.prototype=scc.prototype=new Jb;_.gC=function ucc(){return _E};_.ac=function vcc(){return _7c};var ZE=Zgb(c6c,f8c,xE),aF=Zgb(c6c,g8c,ny),$E=Zgb(c6c,h8c,ny),_E=Zgb(c6c,i8c,ny);fOc(Wd)(2);

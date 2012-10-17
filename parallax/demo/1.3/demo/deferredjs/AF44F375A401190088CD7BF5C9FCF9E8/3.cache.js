@@ -1,0 +1,2 @@
+function Ebc(){}
+_=Ebc.prototype=new Jb;_.gC=function Fbc(){return rF};_.yb=function Gbc(a){d8b(this.b,a)};_.zb=function Hbc(){e8b(this.b,null.Pg())};_.cM={6:1};_.b=null;var rF=Pfb(yPc,'ClothSimulation$1',yy);$Lc(he)(3);

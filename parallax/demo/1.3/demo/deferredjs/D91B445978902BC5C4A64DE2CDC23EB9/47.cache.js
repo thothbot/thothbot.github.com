@@ -1,0 +1,2 @@
+function ftc(){}
+_=ftc.prototype=new Jb;_.gC=function gtc(){return oI};_.ub=function htc(a){T7b(this.a,a)};_.vb=function itc(){U7b(this.a,null.Ig())};_.cM={6:1};_.a=null;var oI=Dfb(rPc,'PostprocessingGodrays$2',Xx);OLc(Wd)(47);
