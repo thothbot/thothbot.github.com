@@ -81,8 +81,8 @@ class DemoScene extends DemoAnimatedScene
       for ( int i = 0; i &lt; materials.size(); i ++ ) 
       {
          ParticleBasicMaterial material = materials.get(i);
-         ColorUtils.HSV hsv = ColorUtils.rgbToHsv( material.getColor() );
-         material.getColor().setHSV( Math.abs(Math.sin( hsv.hue + time )), hsv.saturation, hsv.value );
+         Color.HSL hsv = material.getColor().getHSL();
+         material.getColor().setHSL( Math.abs(Math.sin( hsv.hue + time )), hsv.saturation, hsv.lightness );
       }
       
       getRenderer().render(getScene(), camera);

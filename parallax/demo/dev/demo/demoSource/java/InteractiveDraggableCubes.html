@@ -71,9 +71,9 @@ class DemoScene extends DemoAnimatedScene
          object.getPosition().setY( Math.random() * 600 - 300 );
          object.getPosition().setZ( Math.random() * 800 - 400 );
 
-         object.getRotation().setX( ( Math.random() * 360 ) * Math.PI / 180 );
-         object.getRotation().setY( ( Math.random() * 360 ) * Math.PI / 180 ); 
-         object.getRotation().setZ( ( Math.random() * 360 ) * Math.PI / 180 );
+         object.getRotation().setX( Math.random() * 2 * Math.PI );
+         object.getRotation().setY( Math.random() * 2 * Math.PI ); 
+         object.getRotation().setZ( Math.random() * 2 * Math.PI );
 
          object.getScale().setX( Math.random() * 2 + 1 );
          object.getScale().setY( Math.random() * 2 + 1 );

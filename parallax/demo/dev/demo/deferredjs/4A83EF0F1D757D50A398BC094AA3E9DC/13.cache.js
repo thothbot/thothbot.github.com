@@ -1,0 +1,2 @@
+zS(1045,1,hEc);_.Cb=function Bbc(){l4b(this.b,new Dbc(this.a))};function Dbc(){o4b.call(this)}
+zS(1046,938,{},Dbc);_.qb=function Ebc(){this.a=new RLb(70,RCb(this.G.n),1,1000);_0b(this.a.ab,400)};_.rb=function Fbc(a){WCb(this.G.n,this.H,this.a,null,false)};var OK=lhb(QIc,'GeometryNormals$DemoScene',1046);uEc(ti)(13);

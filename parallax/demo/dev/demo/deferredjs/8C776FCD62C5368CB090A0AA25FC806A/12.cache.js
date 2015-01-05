@@ -1,3 +1,0 @@
-function kec(){}
-function lec(){H7b.call(this)}
-_=fec.prototype;_.vb=function jec(){D7b(this.b,new lec(this.a))};_=lec.prototype=kec.prototype=new G7b;_.gC=function mec(){return mF};_.mb=function nec(){var a,b;this.a=new HNb(70,CDb(this.C.n),1,1000);this.a.W.b=400;a=new NXb(200,200,200);b=new a2b;$1b(b,new YKb(mPc));this.b=new z5b(a,b);IMb(this.D,this.b)};_.nb=function oec(a){WSb(this.b.Z,this.b.Z.c+0.005);XSb(this.b.Z,this.b.Z.d+0.01);HDb(this.C.n,this.D,this.a,null,false)};_.a=null;_.b=null;var mF=mfb(VOc,'GeometryCube$DemoScene',XD);xLc(Wd)(12);

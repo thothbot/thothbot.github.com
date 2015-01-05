@@ -45,9 +45,9 @@ class DemoScene extends DemoAnimatedScene
          object.getPosition().setY( Math.random() * 800 - 400 );
          object.getPosition().setZ( Math.random() * 800 - 400 );
 
-         object.getRotation().setX( ( Math.random() * 360 ) * Math.PI / 180 );
-         object.getRotation().setY( ( Math.random() * 360 ) * Math.PI / 180 );
-         object.getRotation().setZ( ( Math.random() * 360 ) * Math.PI / 180 );
+         object.getRotation().setX( Math.random() * 2 * Math.PI );
+         object.getRotation().setY( Math.random() * 2 * Math.PI );
+         object.getRotation().setZ( Math.random() * 2 * Math.PI );
 
          object.getScale().setX( Math.random() + 0.5 );
          object.getScale().setY( Math.random() + 0.5 );
@@ -66,9 +66,9 @@ class DemoScene extends DemoAnimatedScene
    protected void onUpdate(double duration)
    {
       Log.error(mouseDeltaX, mouseDeltaY);
-      camera.getPosition().setX( radius * Math.sin( duration / 100 * Math.PI / 360 ) );
-      camera.getPosition().setY( radius * Math.sin( duration / 100 * Math.PI / 360 ) );
-      camera.getPosition().setZ( radius * Math.cos( duration / 100 * Math.PI / 360 ) );
+      camera.getPosition().setX( radius * Math.sin( Mathematics.degToRad(duration / 100)) );
+      camera.getPosition().setY( radius * Math.sin( Mathematics.degToRad(duration / 100)) );
+      camera.getPosition().setZ( radius * Math.cos( Mathematics.degToRad(duration / 100)) );
 
       camera.lookAt( getScene().getPosition() );
 
@@ -77,9 +77,11 @@ class DemoScene extends DemoAnimatedScene
       Vector3 vector = new Vector3( mouseDeltaX, mouseDeltaY, 1 );
       projector.unprojectVector( vector, camera );
 
+      Raycaster raycaster = new Raycaster( camera.getPosition(), vector.sub( camera.getPosition() ).normalize() );
+      
       Ray ray = new Ray( camera.getPosition(), vector.sub( camera.getPosition() ).normalize() );
 
-      List&lt;Ray.Intersect&gt; intersects = ray.intersectObjects( getScene().getChildren() );
+      List&lt;Raycaster.Intersect&gt; intersects = raycaster.intersectObjects( getScene().getChildren() );
 
       if ( intersects.size() &gt; 0 ) 
       {

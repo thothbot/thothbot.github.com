@@ -10,7 +10,7 @@ class DemoScene extends DemoAnimatedScene
    PerspectiveCamera camera;
    
    Projector projector;
-   Ray ray;
+   Raycaster raycaster;
    
    Mesh rollOverMesh;
    Mesh plane;
@@ -90,14 +90,14 @@ class DemoScene extends DemoAnimatedScene
          theta += mouse2D.getX() * 3;
       }
 
-      ray = projector.pickingRay( mouse2D.clone(), camera );
+      raycaster = projector.pickingRay( mouse2D.clone(), camera );
 
-      List&lt;Ray.Intersect&gt; intersects = ray.intersectObjects( getScene().getChildren() );
+      List&lt;Raycaster.Intersect&gt; intersects = raycaster.intersectObjects( getScene().getChildren() );
 
       if ( intersects.size() &gt; 0 ) 
       {
 
-         Ray.Intersect intersector = getRealIntersector( intersects );
+         Raycaster.Intersect intersector = getRealIntersector( intersects );
          if ( intersector != null ) 
          {
             setVoxelPosition( intersector );
@@ -105,19 +105,19 @@ class DemoScene extends DemoAnimatedScene
          }
       }
 
-      camera.getPosition().setX( 1400 * Math.sin( theta * Math.PI / 360 ) );
-      camera.getPosition().setZ( 1400 * Math.cos( theta * Math.PI / 360 ) );
+      camera.getPosition().setX( 1400 * Math.sin( Mathematics.degToRad( theta ) ) );
+      camera.getPosition().setZ( 1400 * Math.cos( Mathematics.degToRad( theta ) ) );
 
       camera.lookAt( getScene().getPosition() );
       
       getRenderer().render(getScene(), camera);
    }
    
-   public Ray.Intersect getRealIntersector( List&lt;Ray.Intersect&gt; intersects ) 
+   public Raycaster.Intersect getRealIntersector( List&lt;Raycaster.Intersect&gt; intersects ) 
    {
       for( int i = 0; i &lt; intersects.size(); i++ ) 
       {
-         Ray.Intersect intersector = intersects.get( i );
+         Raycaster.Intersect intersector = intersects.get( i );
 
          if ( intersector.object != rollOverMesh ) 
          {
@@ -128,9 +128,10 @@ class DemoScene extends DemoAnimatedScene
       return null;
    }
 
-   public void  setVoxelPosition( Ray.Intersect intersector ) 
+   public void  setVoxelPosition( Raycaster.Intersect intersector ) 
    {
       tmpVec.copy( intersector.face.getNormal() );
+      tmpVec.apply( intersector.object.getMatrixRotationWorld() );
 
       voxelPosition.add( intersector.point, intersector.object.getMatrixRotationWorld().multiplyVector3( tmpVec ) );
 

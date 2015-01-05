@@ -1,0 +1,30 @@
+<pre>
+/*
+ * Prepare Rendering Scene
+ */
+class DemoScene extends DemoAnimatedScene 
+{
+   PerspectiveCamera camera;
+
+   @Override
+   protected void onStart()
+   {
+      camera = new PerspectiveCamera(
+            70, // fov
+            getRenderer().getAbsoluteAspectRation(), // aspect 
+            1, // near
+            1000 // far 
+      );
+      camera.getPosition().setZ(400);
+   }
+   
+   @Override
+   protected void onUpdate(double duration)
+   {
+      
+      getRenderer().render(getScene(), camera);
+   }
+}
+
+
+</pre>

@@ -1,3 +1,0 @@
-function Bec(){}
-function Cec(){Y7b.call(this)}
-_=wec.prototype;_.vb=function Aec(){U7b(this.b,new Cec(this.a))};_=Cec.prototype=Bec.prototype=new X7b;_.gC=function Dec(){return wF};_.mb=function Eec(){var a,b;this.a=new YNb(70,TDb(this.C.n),1,1000);this.a.W.b=400;a=new cYb(200,200,200);b=new r2b;p2b(b,new nLb(GPc));this.b=new Q5b(a,b);ZMb(this.D,this.b)};_.nb=function Fec(a){lTb(this.b.Z,this.b.Z.c+0.005);mTb(this.b.Z,this.b.Z.d+0.01);YDb(this.C.n,this.D,this.a,null,false)};_.a=null;_.b=null;var wF=Dfb(nPc,'GeometryCube$DemoScene',fE);OLc(Wd)(12);
