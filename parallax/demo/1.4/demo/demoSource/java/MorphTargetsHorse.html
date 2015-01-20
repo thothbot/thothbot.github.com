@@ -1,0 +1,107 @@
+<pre>
+/*
+ * Prepare Rendering Scene
+ */
+class DemoScene extends DemoAnimatedScene 
+{
+   private static final String model = "./static/models/animated/horse.js";
+   
+   static final int radius = 600;
+   
+   double theta = 0;
+   
+   PerspectiveCamera camera;
+   Mesh mesh;
+   Vector3 target = new Vector3(0, 150, 0);
+   
+   static final int aminationDuration = 1000;
+   static final int keyframes = 15;
+   static final double interpolation = (double)aminationDuration / keyframes;
+   
+   int lastKeyframe = 0;
+   int currentKeyframe = 0;
+
+   @Override
+   protected void onStart()
+   {
+      camera = new PerspectiveCamera(
+            50, // fov
+            getRenderer().getAbsoluteAspectRation(), // aspect 
+            1, // near
+            10000 // far 
+      );
+      
+      camera.getPosition().setY(300);
+      
+      DirectionalLight light = new DirectionalLight( 0xefefff, 2 );
+      light.getPosition().set( 1, 1, 1 ).normalize();
+      getScene().add( light );
+
+      DirectionalLight light1 = new DirectionalLight( 0xffefef, 2 );
+      light1.getPosition().set( -1, -1, -1 ).normalize();
+      getScene().add( light1 );
+
+      final JsonLoader jsonLoader = new JsonLoader();
+      try
+      {
+         jsonLoader.load(model, new JsonLoader.ModelLoadHandler() {
+
+            @Override
+            public void onModelLoaded() {                                                               
+
+               MeshLambertMaterial material = new MeshLambertMaterial();
+               material.setColor(new Color(0x606060));
+               material.setMorphTargets(true);
+               mesh = new Mesh(jsonLoader.getGeometry(), material);
+               mesh.getScale().set(1.5);
+
+               getScene().add(mesh);
+
+            }
+         });
+      }
+      catch (RequestException exception) 
+      {
+         Log.error("Error while loading JSON file.");
+      }
+   }
+      
+   @Override
+   protected void onUpdate(double duration)
+   {
+      theta += 0.1;
+
+      camera.getPosition().setX( radius * Math.sin( Mathematics.degToRad( theta ) ) );
+      camera.getPosition().setZ( radius * Math.cos( Mathematics.degToRad( theta ) ) );
+
+      camera.lookAt( target );
+
+      if ( mesh != null ) 
+      {
+         // Alternate morph targets
+         double time = Duration.currentTimeMillis() % aminationDuration;
+
+         int keyframe = (int)Math.floor( time / interpolation );
+
+         if ( keyframe != currentKeyframe ) 
+         {
+            mesh.morphTargetInfluences.set( lastKeyframe, 0.0 );
+            mesh.morphTargetInfluences.set( currentKeyframe, 1.0 );
+            mesh.morphTargetInfluences.set( keyframe, 0.0 );
+
+            lastKeyframe = currentKeyframe;
+            currentKeyframe = keyframe;
+         }
+
+         mesh.morphTargetInfluences.set( keyframe, 
+               (double)( time % interpolation ) / interpolation);
+         mesh.morphTargetInfluences.set( lastKeyframe,
+               1.0 - mesh.morphTargetInfluences.get( keyframe ));
+      }
+      
+      getRenderer().render(getScene(), camera);
+   }
+}
+
+
+</pre>

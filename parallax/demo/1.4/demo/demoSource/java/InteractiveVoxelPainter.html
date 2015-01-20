@@ -1,0 +1,122 @@
+<pre>
+/*
+ * Prepare Rendering Scene
+ */
+class DemoScene extends DemoAnimatedScene 
+{
+
+   private static final String texture = "./static/textures/square-outline-textured.png";
+   
+   List&lt;GeometryObject&gt; objects = new ArrayList&lt;GeometryObject&gt;();
+   
+   PerspectiveCamera camera;
+   
+   Raycaster raycaster;
+   
+   Mesh rollOverMesh;
+   Mesh plane;
+   
+   BoxGeometry cubeGeo;
+   MeshLambertMaterial cubeMaterial;
+   
+   Vector3 mouse2D;
+   Vector3 voxelPosition;
+   Vector3 vector;
+   
+   boolean isShiftDown, isCtrlDown;
+   
+   double theta = 45;
+
+   @Override
+   protected void onStart()
+   {
+      camera = new PerspectiveCamera(
+            45, // fov
+            getRenderer().getAbsoluteAspectRation(), // aspect 
+            1, // near
+            10000 // far 
+      );
+      
+      camera.getPosition().set(500, 800, 1300);
+      camera.lookAt(new Vector3());
+   
+      // roll-over helpers
+
+      BoxGeometry rollOverGeo = new BoxGeometry( 50, 50, 50 );
+      MeshBasicMaterial rollOverMaterial = new MeshBasicMaterial();
+      rollOverMaterial.setColor(new Color(0xff0000));
+      rollOverMaterial.setOpacity(0.5);
+      rollOverMaterial.setTransparent(true);
+      rollOverMesh = new Mesh( rollOverGeo, rollOverMaterial );
+      getScene().add( rollOverMesh );
+
+      // cubes
+
+      cubeGeo = new BoxGeometry( 50, 50, 50 );
+      cubeMaterial = new MeshLambertMaterial();
+      cubeMaterial.setColor(new Color(0xfeb74c));
+      cubeMaterial.setAmbient(new Color(0x00ff80));
+      cubeMaterial.setShading(Material.SHADING.FLAT);
+      cubeMaterial.setMap(new Texture( texture ));
+      cubeMaterial.setAmbient(cubeMaterial.getColor());
+
+      // grid
+
+      int size = 500, step = 50;
+
+      Geometry geometry = new Geometry();
+
+      for ( int i = - size; i &lt;= size; i += step ) {
+
+         geometry.getVertices().add( new Vector3( - size, 0, i ) );
+         geometry.getVertices().add( new Vector3(   size, 0, i ) );
+
+         geometry.getVertices().add( new Vector3( i, 0, - size ) );
+         geometry.getVertices().add( new Vector3( i, 0,   size ) );
+
+      }
+
+      LineBasicMaterial material = new LineBasicMaterial();
+      material.setColor(new Color(0x000000));
+      material.setOpacity(0.2);
+      material.setTransparent(true);
+      
+      Line line = new Line( geometry, material, Line.MODE.PIECES );
+      getScene().add( line );
+      
+      //
+
+      vector = new Vector3();
+      raycaster = new Raycaster();
+
+      PlaneBufferGeometry geometry2 = new PlaneBufferGeometry( 1000, 1000 );
+      geometry2.applyMatrix( new Matrix4().makeRotationX( - Math.PI / 2 ) );
+
+      plane = new Mesh( geometry2 );
+      plane.setVisible( false );
+      getScene().add( plane );
+
+      objects.add( plane );
+
+
+      // Lights
+
+      getScene().add( new AmbientLight( 0x606060 ) );
+
+      DirectionalLight directionalLight = new DirectionalLight( 0xffffff );
+      directionalLight.getPosition().set( 1, 0.75, 0.5 ).normalize();
+      getScene().add( directionalLight );
+
+      getRenderer().setClearColor(0xf0f0f0);
+      
+      getRenderer().render(getScene(), camera);
+   }
+   
+   @Override
+   protected void onUpdate(double duration)
+   {
+   }
+}
+
+
+</pre>

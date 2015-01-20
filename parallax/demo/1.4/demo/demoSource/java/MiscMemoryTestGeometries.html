@@ -1,0 +1,69 @@
+<pre>
+/*
+ * Prepare Rendering Scene
+ */
+class DemoScene extends DemoAnimatedScene 
+{
+
+   PerspectiveCamera camera;
+   Mesh mesh;
+   Texture texture;
+   
+   @Override
+   protected void onStart()
+   {
+      camera = new PerspectiveCamera(
+            60, // fov
+            getRenderer().getAbsoluteAspectRation(), // aspect 
+            1, // near
+            10000 // far 
+      ); 
+      
+      camera.getPosition().setZ(200);
+   }
+   
+   @Override
+   protected void onUpdate(double duration)
+   {         
+      SphereGeometry geometry = new SphereGeometry( 50, (int)(Math.random() * 64), (int)(Math.random() * 32) );
+
+      texture = new Texture( generateTexture() );
+      texture.setNeedsUpdate(true);
+
+      MeshBasicMaterial material = new MeshBasicMaterial();
+      material.setMap(texture);
+      material.setWireframe(true);
+
+      mesh = new Mesh( geometry, material );
+
+      getScene().add( mesh );
+      
+      getRenderer().render(getScene(), camera);
+      
+      getScene().remove( mesh );
+      
+      // clean up
+
+      geometry.dispose();
+//         material.dispose();
+//         texture.dispose();
+   }
+   
+   private CanvasElement generateTexture() 
+   {
+      CanvasElement canvas = Document.get().createElement("canvas").cast();
+      canvas.setWidth(256);
+      canvas.setHeight(256);
+
+      Context2d context = canvas.getContext2d();
+      context.setFillStyle("rgb(" + Math.floor( Math.random() * 256 ) 
+            + "," + Math.floor( Math.random() * 256 ) 
+            + "," + Math.floor( Math.random() * 256 ) + ")");
+      context.fillRect( 0, 0, 256, 256 );
+
+      return canvas;
+   }
+}
+
+
+</pre>

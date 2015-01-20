@@ -1,0 +1,77 @@
+<pre>
+/*
+ * Prepare Rendering Scene
+ */
+class DemoScene extends DemoAnimatedScene 
+{
+   PerspectiveCamera camera;
+   
+   Object3D group;
+
+   int mouseX = 0, mouseY = 0;
+
+   @Override
+   protected void onStart()
+   {
+      camera = new PerspectiveCamera(
+            60, // fov
+            getRenderer().getAbsoluteAspectRation(), // aspect 
+            1, // near
+            10000 // far 
+      );
+      
+      camera.getPosition().setZ(500);
+
+      getScene().setFog(new Fog( 0xffffff, 1, 10000));
+
+      BoxGeometry geometry = new BoxGeometry( 100, 100, 100 );
+      MeshNormalMaterial material = new MeshNormalMaterial();
+
+      this.group = new Object3D();
+
+      for ( int i = 0; i &lt; 1000; i ++ ) 
+      {
+         Mesh mesh = new Mesh( geometry, material );
+         mesh.getPosition().setX( Math.random() * 2000.0 - 1000.0 );
+         mesh.getPosition().setY( Math.random() * 2000.0 - 1000.0 );
+         mesh.getPosition().setZ( Math.random() * 2000.0 - 1000.0 );
+
+         mesh.getRotation().setX( Math.random() * 360.0 * ( Math.PI / 180.0 ) );
+         mesh.getRotation().setY( Math.random() * 360.0 * ( Math.PI / 180.0 ) );
+
+         mesh.setMatrixAutoUpdate(false);
+         mesh.updateMatrix();
+
+         group.add( mesh );
+      }
+
+      getScene().add( group );
+
+      getRenderer().setSortObjects(false);
+      getRenderer().setClearColor(0xeeeeee);
+   }
+   
+   @Override
+   protected void onUpdate(double duration)
+   {
+      double time = duration * 0.001;
+
+      double rx = Math.sin( time * 0.7 ) * 0.5;
+      double ry = Math.sin( time * 0.3 ) * 0.5;
+      double rz = Math.sin( time * 0.2 ) * 0.5;
+
+      camera.getPosition().addX(( mouseX - camera.getPosition().getX() ) * .05);
+      camera.getPosition().addY(( - mouseY - camera.getPosition().getY() ) * .05);
+
+      camera.lookAt( getScene().getPosition() );
+
+      this.group.getRotation().setX( rx );
+      this.group.getRotation().setY( ry );
+      this.group.getRotation().setZ( rz );
+      
+      getRenderer().render(getScene(), camera);
+   }
+}
+
+
+</pre>

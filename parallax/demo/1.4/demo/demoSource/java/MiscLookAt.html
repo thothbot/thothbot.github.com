@@ -1,0 +1,72 @@
+<pre>
+/*
+ * Prepare Rendering Scene
+ */
+class DemoScene extends DemoAnimatedScene 
+{
+
+   PerspectiveCamera camera;
+   Mesh sphere;
+   
+   int mouseX = 0, mouseY = 0;
+
+   @Override
+   protected void onStart()
+   {
+      camera = new PerspectiveCamera(
+            50, // fov
+            getRenderer().getAbsoluteAspectRation(), // aspect 
+            1, // near
+            15000 // far 
+      ); 
+      
+      camera.getPosition().setZ(3200);
+      
+      MeshNormalMaterial material = new MeshNormalMaterial();
+      material.setShading(Material.SHADING.SMOOTH);
+      sphere = new Mesh( new SphereGeometry( 100, 20, 20 ), material );
+      getScene().add( sphere );
+
+      CylinderGeometry geometry = new CylinderGeometry( 0, 10, 100, 3, 1 );
+      geometry.applyMatrix( new Matrix4().makeRotationFromEuler( new Euler( Math.PI / 2.0, Math.PI, 0.0 ) ) );
+
+      MeshNormalMaterial material2 = new MeshNormalMaterial();
+
+      for ( int i = 0; i &lt; 1000; i ++ ) 
+      {
+         Mesh mesh2 = new Mesh( geometry, material2 );
+         mesh2.getPosition().setX( Math.random() * 4000 - 2000 );
+         mesh2.getPosition().setY( Math.random() * 4000 - 2000 );
+         mesh2.getPosition().setZ( Math.random() * 4000 - 2000 );
+         mesh2.getScale().set( Math.random() * 4.0 + 2.0 );
+         getScene().add( mesh2 );
+      }
+
+      getScene().setMatrixAutoUpdate(false);
+      getRenderer().setSortObjects(false);
+      getRenderer().setClearColor(0xeeeeee);
+   }
+   
+   @Override
+   protected void onUpdate(double duration)
+   {
+      double time = duration * 0.0005;
+      sphere.getPosition().setX( Math.sin( time * 0.7 ) * 2000 );
+      sphere.getPosition().setY( Math.cos( time * 0.5 ) * 2000 );
+      sphere.getPosition().setZ( Math.cos( time * 0.3 ) * 2000 );
+
+      for ( int i = 1, l = getScene().getChildren().size(); i &lt; l; i ++ ) 
+      {
+         getScene().getChildren().get(i).lookAt( sphere.getPosition() );
+      }
+
+      camera.getPosition().addX( ( mouseX - camera.getPosition().getX() ) * .05 );
+      camera.getPosition().addY( ( - mouseY - camera.getPosition().getY() ) * .05 );
+      camera.lookAt( getScene().getPosition() );
+      
+      getRenderer().render(getScene(), camera);
+   }
+}
+
+
+</pre>

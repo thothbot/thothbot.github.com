@@ -1,0 +1,91 @@
+<pre>
+/*
+ * Prepare Rendering Scene
+ */
+class DemoScene extends DemoAnimatedScene 
+{
+   private static final String textures = "./static/textures/cube/swedishRoyalCastle/*.jpg";
+   
+   PerspectiveCamera camera;
+   
+   public int mouseX;
+   public int mouseY;
+
+   @Override
+   protected void onStart()
+   {
+      camera = new PerspectiveCamera(
+            50, // fov
+            getRenderer().getAbsoluteAspectRation(), // aspect 
+            1, // near
+            20000 // far 
+      ); 
+      
+      camera.getPosition().setZ(3200);
+      
+      PointLight light1 = new PointLight( 0x0011ff, 1, 5500 );
+      light1.getPosition().set( 4000, 0, 0 );
+      getScene().add( light1 );
+
+      PointLight light2 = new PointLight( 0xff1100, 1, 5500 );
+      light2.getPosition().set( -4000, 0, 0 );
+      getScene().add( light2 );
+
+      PointLight light3 = new PointLight( 0xffaa00, 2, 3000 );
+      light3.getPosition().set( 0, 0, 0 );
+      getScene().add( light3 );
+
+      CubeTexture reflectionCube = new CubeTexture( textures );
+      reflectionCube.setFormat(PixelFormat.RGB);
+
+      MeshPhongMaterial material = new MeshPhongMaterial();
+      material.setSpecular( new Color(0xffffff) );
+      material.setShininess( 100 );
+      material.setEnvMap( reflectionCube );
+      material.setCombine( Texture.OPERATIONS.MIX );
+      material.setReflectivity( 0.1 );
+//         material.setPerPixel(true);
+      material.setWrapAround(true); 
+      material.getWrapRGB().set( 0.5, 0.5, 0.5 );
+      material.setSide(Material.SIDE.DOUBLE);
+
+      SphereGeometry geometry = new SphereGeometry( 1, 32, 16, 0, (double)Math.PI );
+
+      for ( int i = 0; i &lt; 5000; i ++ ) 
+      {
+         Mesh mesh = new Mesh( geometry, material );
+
+         mesh.getPosition().setX( Math.random() * 10000.0 - 5000.0 );
+         mesh.getPosition().setY( Math.random() * 10000.0 - 5000.0 );
+         mesh.getPosition().setZ( Math.random() * 10000.0 - 5000.0 );
+
+         mesh.getRotation().setX( Math.random() * 360.0 * ( Math.PI / 180.0 ) );
+         mesh.getRotation().setY( Math.random() * 360.0 * ( Math.PI / 180.0 ) );
+         
+         double scale =  Math.random() * 50.0 + 100.0;
+         mesh.getScale().set( scale );
+
+         mesh.setMatrixAutoUpdate(false);
+         mesh.updateMatrix();
+
+         getScene().add( mesh );
+      }
+
+      getRenderer().setGammaInput(true);
+      getRenderer().setGammaOutput(true);
+   }
+         
+   @Override
+   protected void onUpdate(double duration)
+   {
+      camera.getPosition().addX( ( mouseX - camera.getPosition().getX() ) * .05 );
+      camera.getPosition().addY( ( - mouseY - camera.getPosition().getY() ) * .05 );
+
+      camera.lookAt( getScene().getPosition() );
+      
+      getRenderer().render(getScene(), camera);
+   }
+}
+
+
+</pre>

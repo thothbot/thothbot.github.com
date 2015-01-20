@@ -1,0 +1,115 @@
+<pre>
+/*
+ * Load shaders
+ */
+public interface Resources extends Shader.DefaultResources
+{
+   Resources INSTANCE = GWT.create(Resources.class);
+
+   @Source("../../../resources/shaders/skydome.fs")
+   TextResource getFragmentShader();
+   
+   @Source("../../../resources/shaders/skydome.vs")
+   TextResource getVertexShader();
+}
+
+
+
+/*
+ * Prepare Rendering Scene
+ */
+class DemoScene extends DemoAnimatedScene 
+{
+   private static final String model = "./static/models/obj/lightmap/lightmap.js";
+   
+   PerspectiveCamera camera;
+   
+   TrackballControls controls;
+
+   @Override
+   protected void onStart()
+   {
+      camera = new PerspectiveCamera(
+            40, // fov
+            getRenderer().getAbsoluteAspectRation(), // aspect 
+            1, // near
+            10000 // far 
+      ); 
+      
+      camera.getPosition().set( 700, 180, -500 );
+
+      getScene().setFog( new Fog( 0xfafafa, 1000, 10000 ) );
+
+      // CONTROLS
+
+      controls = new TrackballControls( camera, getCanvas() );
+      controls.getTarget().setZ( 150 );
+
+      // LIGHTS
+
+      DirectionalLight directionalLight = new DirectionalLight( 0xffffff, 1.475 );
+      directionalLight.getPosition().set( 100, 100, -100 );
+      getScene().add( directionalLight );
+
+
+      HemisphereLight hemiLight = new HemisphereLight( 0xffffff, 0xffffff, 1.25 );
+      hemiLight.getColor().setHSL( 0.6, 1.0, 0.75 );
+      hemiLight.getGroundColor().setHSL( 0.1, 0.8, 0.7 );
+      hemiLight.getPosition().setY( 500 );
+      getScene().add( hemiLight );
+
+      // SKYDOME
+
+      ShaderMaterial skyMat = new ShaderMaterial(Resources.INSTANCE);
+      skyMat.setSide(SIDE.BACK);
+
+      skyMat.getShader().addUniform("topColor", new Uniform(Uniform.TYPE.C, new Color(0x0077ff)));
+      skyMat.getShader().addUniform("bottomColor", new Uniform(Uniform.TYPE.C, new Color(0xffffff)));
+      skyMat.getShader().addUniform("topColor", new Uniform(Uniform.TYPE.C, hemiLight.getColor().clone()));
+      skyMat.getShader().addUniform("offset", new Uniform(Uniform.TYPE.F, 400.0 ));
+      skyMat.getShader().addUniform("exponent", new Uniform(Uniform.TYPE.F, 0.6 ));
+
+      getScene().getFog().setColor( ((Color)skyMat.getShader().getUniforms().get("bottomColor").getValue()).clone() );
+
+      SphereGeometry skyGeo = new SphereGeometry( 4000, 32, 15 );
+      Mesh sky = new Mesh( skyGeo, skyMat );
+      getScene().add( sky );
+
+      // RENDERER
+
+      getRenderer().setClearColor( getScene().getFog().getColor(), 1 );
+      getRenderer().setGammaInput(true);
+      getRenderer().setGammaOutput(true);
+
+      // MODEL
+
+      final JsonLoader jsonLoader = new JsonLoader();
+      try
+      {
+         jsonLoader.load(model, new JsonLoader.ModelLoadHandler() {
+
+            @Override
+            public void onModelLoaded() {      
+               Mesh mesh = new Mesh( jsonLoader.getGeometry(), new MeshFaceMaterial(jsonLoader.getMaterials()) );
+               mesh.getPosition().set( 0 );
+               mesh.getScale().set( 100 );
+               getScene().add( mesh );
+            }
+         });
+      }
+      catch (RequestException exception) 
+      {
+         Log.error("Error while loading JSON file.");
+      }         
+   }
+   
+   @Override
+   protected void onUpdate(double duration)
+   {
+      controls.update();
+      getRenderer().render(getScene(), camera);
+   }
+}
+
+
+</pre>
