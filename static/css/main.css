@@ -205,26 +205,16 @@ footer {
 	font-size: 0.8em;
 }
 
-footer h2 {
-	display: block;
-	float: left;
-	margin-top: 25px;
-	padding: 0;
-	width: 140px;
-	height: 40px;
-	margin-bottom: 10px;
-	background: url("../images/logo_transparent.png") no-repeat;
-	background-size: 100%;
+footer h2, dt {
+	color: #9DD745;
+	text-transform: uppercase;
+	text-decoration: none;
+	text-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
 }
 
-footer h2 a {
-	display: block;
-	text-indent: -999em;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-	background-color: transparent;
-	background-repeat: no-repeat;
+footer h2 {
+	font-weight: normal;
+	font-size: 15px;
 }
 
 footer a {
@@ -236,27 +226,59 @@ footer a:hover {
 	color: #AAAA00;
 }
 
-footer .links {
+footer div.links {
 	margin: 0 auto;
-	padding-left: 200px;
 }
 
-footer .links dl {
-	width: 30%;
+footer div.links h2 {
+	display: block;
+	float: left;
+	margin-top: 25px;
+	padding: 0;
+	width: 140px;
+	height: 40px;
+	margin-bottom: 10px;
+	background: url("../images/logo_transparent.png") no-repeat;
+	background-size: 100%;
+}
+
+footer div.links h2 a {
+	display: block;
+	text-indent: -999em;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: transparent;
+	background-repeat: no-repeat;
+}
+
+footer div.links dl {
+	width: 20%;
 	float: left;
 	padding: 0 10px;
 }
 
-footer .links dt {
-	color: #9DD745;
-	text-transform: uppercase;
-	text-decoration: none;
-	text-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
+footer div.links dl:first-of-type {
+	padding-left:120px;
 }
 
-footer .links dd {
+footer div.links dd {
 	-webkit-margin-start: 0px;
 	margin-left: 0px;
+}
+
+footer div.support {  
+	clear: both;
+	padding-bottom: 15px;
+	border-bottom: 2px solid #333;
+}
+
+footer div.support p {  
+	font-size:15px;
+}
+
+footer div.support p:first-letter {
+	color: #AAAA00;
 }
 
 footer div.copy {
