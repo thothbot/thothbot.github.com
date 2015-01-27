@@ -27,8 +27,11 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
       ShaderMaterial material = new ShaderMaterial(new MonjoriShader());
       uniforms = material.getShader().getUniforms();
       
-      Mesh mesh = new Mesh( new PlaneGeometry( 2, 2 ), material );
+      Mesh mesh = new Mesh( new PlaneBufferGeometry( 2, 2 ), material );
       getScene().add( mesh );
+      
+      ((Vector2)uniforms.get("resolution").getValue()).setX( getRenderer().getAbsoluteWidth() );
+      ((Vector2)uniforms.get("resolution").getValue()).setY( getRenderer().getAbsoluteHeight() );
    }
    
    @Override

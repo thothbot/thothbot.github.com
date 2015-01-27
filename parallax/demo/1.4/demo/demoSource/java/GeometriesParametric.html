@@ -4,7 +4,7 @@
  */
 class DemoScene extends DemoAnimatedScene 
 {
-   private static final String image = "./static/textures/ash_uvgrid01.jpg";
+   private static final String image = "./static/textures/UV_Grid_Sm.jpg";
 
    PerspectiveCamera camera;
    
@@ -43,6 +43,7 @@ class DemoScene extends DemoAnimatedScene
       bmaterial.setWireframe( true );
       bmaterial.setTransparent(true);
       bmaterial.setOpacity( 0.1 );
+      bmaterial.setSide(Material.SIDE.DOUBLE);
       materials.add(bmaterial);
       
       // KleinParametricGeometry Bottle
