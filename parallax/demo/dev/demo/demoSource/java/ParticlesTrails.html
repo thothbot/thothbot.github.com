@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -36,14 +36,15 @@ class DemoScene extends DemoAnimatedScene
 
       }
 
-      ParticleBasicMaterial material = new ParticleBasicMaterial();
+      PointCloudMaterial material = new PointCloudMaterial();
       material.setSize( 1.0 );
       material.setVertexColors(  Material.COLORS.VERTEX );
       material.setDepthTest( false );
       material.setOpacity( 0.5 );
       material.setSizeAttenuation(false);
+      material.setTransparent(true);
 
-      ParticleSystem mesh = new ParticleSystem( geometry, material );
+      PointCloud mesh = new PointCloud( geometry, material );
       getScene().add( mesh );
 
       getRenderer().setSortObjects(false);
@@ -62,4 +63,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

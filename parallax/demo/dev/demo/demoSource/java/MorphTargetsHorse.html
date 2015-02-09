@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -7,6 +7,8 @@ class DemoScene extends DemoAnimatedScene
    private static final String model = "./static/models/animated/horse.js";
    
    static final int radius = 600;
+   
+   double theta = 0;
    
    PerspectiveCamera camera;
    Mesh mesh;
@@ -45,15 +47,16 @@ class DemoScene extends DemoAnimatedScene
          jsonLoader.load(model, new JsonLoader.ModelLoadHandler() {
 
             @Override
-            public void onModelLoaded() {                                                               
+            public void onModelLoaded(AbstractGeometry geometry) {                                                               
 
                MeshLambertMaterial material = new MeshLambertMaterial();
                material.setColor(new Color(0x606060));
                material.setMorphTargets(true);
-               mesh = new Mesh(jsonLoader.getGeometry(), material);
+               mesh = new Mesh(geometry, material);
                mesh.getScale().set(1.5);
 
                getScene().add(mesh);
+
             }
          });
       }
@@ -62,14 +65,14 @@ class DemoScene extends DemoAnimatedScene
          Log.error("Error while loading JSON file.");
       }
    }
-   
+      
    @Override
    protected void onUpdate(double duration)
    {
-      double theta = duration * 0.02;
+      theta += 0.1;
 
-      camera.getPosition().setX( radius * Math.sin( theta * Math.PI / 360.0 ) );
-      camera.getPosition().setZ( radius * Math.cos( theta * Math.PI / 360.0 ) );
+      camera.getPosition().setX( radius * Math.sin( Mathematics.degToRad( theta ) ) );
+      camera.getPosition().setZ( radius * Math.cos( Mathematics.degToRad( theta ) ) );
 
       camera.lookAt( target );
 
@@ -82,18 +85,18 @@ class DemoScene extends DemoAnimatedScene
 
          if ( keyframe != currentKeyframe ) 
          {
-            mesh.getMorphTargetInfluences().set( lastKeyframe, 0.0 );
-            mesh.getMorphTargetInfluences().set( currentKeyframe, 1.0 );
-            mesh.getMorphTargetInfluences().set( keyframe, 0.0 );
+            mesh.morphTargetInfluences.set( lastKeyframe, 0.0 );
+            mesh.morphTargetInfluences.set( currentKeyframe, 1.0 );
+            mesh.morphTargetInfluences.set( keyframe, 0.0 );
 
             lastKeyframe = currentKeyframe;
             currentKeyframe = keyframe;
          }
 
-         mesh.getMorphTargetInfluences().set( keyframe, 
+         mesh.morphTargetInfluences.set( keyframe, 
                (double)( time % interpolation ) / interpolation);
-         mesh.getMorphTargetInfluences().set( lastKeyframe,
-               1.0 - mesh.getMorphTargetInfluences().get( keyframe ));
+         mesh.morphTargetInfluences.set( lastKeyframe,
+               1.0 - mesh.morphTargetInfluences.get( keyframe ));
       }
       
       getRenderer().render(getScene(), camera);
@@ -101,4 +104,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

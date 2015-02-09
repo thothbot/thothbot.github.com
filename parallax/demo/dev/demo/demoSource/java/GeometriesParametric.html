@@ -1,10 +1,10 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
 class DemoScene extends DemoAnimatedScene 
 {
-   private static final String image = "./static/textures/ash_uvgrid01.jpg";
+   private static final String image = "./static/textures/UV_Grid_Sm.jpg";
 
    PerspectiveCamera camera;
    
@@ -43,21 +43,22 @@ class DemoScene extends DemoAnimatedScene
       bmaterial.setWireframe( true );
       bmaterial.setTransparent(true);
       bmaterial.setOpacity( 0.1 );
+      bmaterial.setSide(Material.SIDE.DOUBLE);
       materials.add(bmaterial);
       
       // KleinParametricGeometry Bottle
-      DimensionalObject object1 = SceneUtils.createMultiMaterialObject(new KleinParametricGeometry(20, 20), materials );
+      Object3D object1 = SceneUtils.createMultiMaterialObject(new KleinParametricGeometry(20, 20), materials );
       object1.getPosition().set( 0, 0, 0 );
       object1.getScale().multiply(20);
       getScene().add( object1 );
       
       // MobiusParametricGeometry Strip
-      DimensionalObject object2 = SceneUtils.createMultiMaterialObject( new MobiusParametricGeometry(20, 20), materials );
+      Object3D object2 = SceneUtils.createMultiMaterialObject( new MobiusParametricGeometry(20, 20), materials );
       object2.getPosition().set( 10, 0, 0 );
       object2.getScale().multiply(100);
       getScene().add( object2 );
       
-      DimensionalObject object3 = SceneUtils.createMultiMaterialObject( new PlaneParametricGeometry(200, 200, 10, 20), materials );
+      Object3D object3 = SceneUtils.createMultiMaterialObject( new PlaneParametricGeometry(200, 200, 10, 20), materials );
       object3.getPosition().set( 20, 0, 0 );
       getScene().add( object3 );
       
@@ -77,7 +78,7 @@ class DemoScene extends DemoAnimatedScene
 
       for ( int i = 0, l = getScene().getChildren().size(); i &lt; l; i ++ ) 
       {
-         DimensionalObject object = getScene().getChildren().get( i );
+         Object3D object = getScene().getChildren().get( i );
 
          object.getRotation().addX(0.01);
          object.getRotation().addY(0.005);
@@ -88,4 +89,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

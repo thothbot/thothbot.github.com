@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -16,8 +16,6 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
    Mesh highlightBox;
    List&lt;Picking&gt; pickingData;
    
-   Projector projector;
-
    @Override
    public void onResize(ViewportResizeEvent event) 
    {
@@ -55,20 +53,7 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
       getScene().add( new AmbientLight( 0x555555 ) );
 
       SpotLight light = new SpotLight( 0xffffff, 1.5 );
-      
       light.getPosition().set( 0, 500, 2000 );
-      light.setCastShadow(true);
-
-      light.setShadowCameraNear(200);
-      light.setShadowCameraFar(((PerspectiveCamera)camera).getFar());
-      light.setShadowCameraFov(50);
-
-      light.setShadowBias(-0.00022);
-      light.setShadowDarkness(0.5);
-
-      light.setShadowMapWidth(1024);
-      light.setShadowMapHeight(1024);
-
       getScene().add( light );
 
       Geometry geometry = new Geometry();
@@ -83,6 +68,12 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
 
       pickingData = new ArrayList&lt;Picking&gt;();
       
+      BoxGeometry geom = new BoxGeometry( 1, 1, 1 );
+      Color color = new Color();
+
+      Matrix4 matrix = new Matrix4();
+      Quaternion quaternion = new Quaternion();
+
       for ( int i = 0; i &lt; 500; i ++ ) 
       {
          Vector3 position = new Vector3();
@@ -90,7 +81,7 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
          position.setY( Math.random() * 6000 - 3000 );
          position.setZ( Math.random() * 8000 - 4000 );
 
-         Vector3 rotation = new Vector3();
+         Euler rotation = new Euler();
          rotation.setX( ( Math.random() * 2 * Math.PI) );
          rotation.setY( ( Math.random() * 2 * Math.PI) );
          rotation.setZ( ( Math.random() * 2 * Math.PI) );
@@ -99,27 +90,22 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
          scale.setX( Math.random() * 200 + 100 );
          scale.setY( Math.random() * 200 + 100 );
          scale.setZ( Math.random() * 200 + 100 );
+         
+         quaternion.setFromEuler( rotation, false );
+         matrix.compose( position, quaternion, scale );
+
 
          //give the geom's vertices a random color, to be displayed
-         CubeGeometry geom = new CubeGeometry(1, 1, 1);
-         Color color = new Color((int)(Math.random() * 0xffffff));
-         applyVertexColors(geom, color);
-         Mesh cube = new Mesh(geom);
-         cube.getPosition().copy(position);
-         cube.getRotation().copy(rotation);
-         cube.getScale().copy(scale);
-         GeometryUtils.merge(geometry, cube);
+         applyVertexColors( geom, color.setHex( (int)Math.random() * 0xffffff ) );
+         
+         geometry.merge( geom, matrix );
 
-         //give the pickingGeom's vertices a color corresponding to the "id"
-         CubeGeometry pickingGeom = new CubeGeometry(1, 1, 1);
-         Color pickingColor = new Color(i);
-         applyVertexColors(pickingGeom, pickingColor);
-         Mesh pickingCube = new Mesh(pickingGeom);
-         pickingCube.getPosition().copy(position);
-         pickingCube.getRotation().copy(rotation);
-         pickingCube.getScale().copy(scale);
-         GeometryUtils.merge(pickingGeometry, pickingCube);
+         // give the geom's vertices a color corresponding to the "id"
 
+         applyVertexColors( geom, color.setHex( i ) );
+
+         pickingGeometry.merge( geom, matrix );
+         
          Picking picking = new Picking();
          picking.position = position;
          picking.rotation = rotation;
@@ -129,21 +115,16 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
       }
       
       Mesh drawnObject = new Mesh(geometry, defaultMaterial);
-      drawnObject.setCastShadow(true);
-      drawnObject.setReceiveShadow(true);
       getScene().add(drawnObject);
 
       pickingScene.add(new Mesh(pickingGeometry, pickingMaterial));
 
       MeshLambertMaterial highlightBoxMaterial = new MeshLambertMaterial();
       highlightBoxMaterial.setColor(new Color(0xffff00));
-      highlightBox = new Mesh( new CubeGeometry(1, 1, 1), highlightBoxMaterial );
+      highlightBox = new Mesh( new BoxGeometry(1, 1, 1), highlightBoxMaterial );
       getScene().add( highlightBox );
 
-      projector = new Projector();
       getRenderer().setSortObjects(false);
-//         getRenderer().setShadowMapEnabled(true);
-//         getRenderer().setShadowMapSoft(true);
    }
    
    private void applyVertexColors(Geometry g, Color c) 
@@ -180,8 +161,8 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
 
       //interpret the pixel as an ID
 
-      int id = ( pixelBuffer.get(0) &lt;&lt; 16 ) | (  pixelBuffer.get(1) &lt;&lt; 8 ) | pixelBuffer.get(2);
-      if( pickingData.size() &gt; id )
+      int id = ( pixelBuffer.get(0) &lt;&lt; 16 ) | (  pixelBuffer.get(1) &lt;&lt; 8 ) | ( pixelBuffer.get(2) );
+      if( pickingData.size() &gt; id && pickingData.get(id) != null )
       {
          Picking data = pickingData.get(id);
          //move our highlightBox so that it surrounds the picked object
@@ -201,4 +182,4 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
 }
 
 
-</pre>
+</code></pre>

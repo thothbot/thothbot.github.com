@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -64,13 +64,13 @@ class DemoScene extends DemoAnimatedScene
       getScene().setMatrixAutoUpdate(false);
 
       // Skybox
-      CubeMapShader shaderCube = new CubeMapShader();
+      CubeShader shaderCube = new CubeShader();
       shaderCube.getUniforms().get("tCube").setValue(textureCube);
 
       ShaderMaterial sMaterial = new ShaderMaterial(shaderCube);
       sMaterial.setSide(Material.SIDE.BACK);
 
-      Mesh mesh = new Mesh( new CubeGeometry( 100000, 100000, 100000 ), sMaterial );
+      Mesh mesh = new Mesh( new BoxGeometry( 100000, 100000, 100000 ), sMaterial );
       sceneCube.add( mesh );
 
       //
@@ -105,4 +105,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

@@ -1,7 +1,0 @@
-function Dkc(){y4b.call(this)}
-function dwb(b,a){b.deleteBuffer(a)}
-function fwb(b,a){b.deleteTexture(a)}
-function hJb(a,b){if(!a.C)return;fwb(b.P,a.C);--b.Q.a.c}
-function kTb(a,b){if(!a.U)return;a.U=false;a.L=null;a.M=null;C2b(a,b)}
-function C2b(a,b){var c,d,e,f,g;for(f=Xnb(bmb(a.r.p));f.a.Fc();){e=pu(bob(f),187);dwb(b.P,e.S);dwb(b.P,e.L);dwb(b.P,e.P);dwb(b.P,e.B);dwb(b.P,e.R);dwb(b.P,e.Q);dwb(b.P,e.N);dwb(b.P,e.O);dwb(b.P,e.D);dwb(b.P,e.H);if(e.db!=0){for(g=0;g<e.db;g++){dwb(b.P,ru(mob(e.K,g)))}}if(e.cb!=0){for(g=0;g<e.cb;g++){dwb(b.P,ru(mob(e.J,g)))}}if(e.C){for(d=new rnb(e.C);d.b<d.d.Uc();){c=pu(pnb(d),163);dwb(b.P,c.f)}}--b.Q.a.a}}
-DS(1165,1,rEc);_.Cb=function Bkc(){v4b(this.b,new Dkc(this.a))};DS(1166,940,{},Dkc);_.qb=function Ekc(){this.a=new _Lb(60,_Cb(this.G.n),1,10000);j1b(this.a.ab,200)};_.rb=function Fkc(a){var b,c,d,e;if(this.b){_Kb(this.H,this.b);kTb(this.b,this.G.n)}!!this.c&&hJb(this.c,this.G.n);b=new sSb(50,xu(Oib()*64),xu(Oib()*32));this.c=new yJb((d=$doc.createElement(hKc),$k(d,256),Zk(d,256),e=Yk(d),eh(e,PLc+Iib(Oib()*256)+jHc+Iib(Oib()*256)+jHc+Iib(Oib()*256)+dGc),dh(e,0,0,256,256),d));qJb(this.c,(Lgb(),Lgb(),Kgb));c=new lXb;jXb(c,this.c);c.g=true;this.b=new H2b(b,c);XKb(this.H,this.b);eDb(this.G.n,this.H,this.a,null,false)};var ZM=vhb(gJc,'MiscMemoryTestGeometries$DemoScene',1166);EEc(ti)(47);

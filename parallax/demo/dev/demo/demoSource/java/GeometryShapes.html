@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -299,7 +299,7 @@ class DemoScene extends DemoAnimatedScene
       meshMat2.setWireframe(true);
       meshMat2.setTransparent(true);
       
-      DimensionalObject mesh = SceneUtils.createMultiMaterialObject( geometry, Arrays.asList( meshMat1 ) );
+      Object3D mesh = SceneUtils.createMultiMaterialObject( geometry, Arrays.asList( meshMat1 ) );
       
       mesh.getPosition().set( x, y, z - 75.0 );
       mesh.getRotation().set( rx, ry, rz );
@@ -332,13 +332,13 @@ class DemoScene extends DemoAnimatedScene
 
       // vertices from real points
 
-      ParticleBasicMaterial particleMat = new ParticleBasicMaterial();
+      PointCloudMaterial particleMat = new PointCloudMaterial();
       particleMat.setColor(color);
       particleMat.setSize(2);
       particleMat.setOpacity(0.75);
       
       Geometry pgeo1 = points.clone();
-      ParticleSystem particles = new ParticleSystem( pgeo1, particleMat );
+      PointCloud particles = new PointCloud( pgeo1, particleMat );
       particles.getPosition().set( x, y, z + 75.0 );
       particles.getRotation().set( rx, ry, rz );
       particles.getScale().set( s );
@@ -358,13 +358,13 @@ class DemoScene extends DemoAnimatedScene
 
       // equidistance sampled points
 
-      ParticleBasicMaterial particles2Mat = new ParticleBasicMaterial();
+      PointCloudMaterial particles2Mat = new PointCloudMaterial();
       particles2Mat.setColor(color);
       particles2Mat.setSize(2);
       particles2Mat.setOpacity(0.5);
       
       Geometry pgeo2 = spacedPoints.clone();
-      ParticleSystem particles2 = new ParticleSystem( pgeo2, particles2Mat );
+      PointCloud particles2 = new PointCloud( pgeo2, particles2Mat );
       particles2.getPosition().set( x, y, z + 100.0 );
       particles2.getRotation().set( rx, ry, rz );
       particles2.getScale().set( s );
@@ -381,4 +381,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

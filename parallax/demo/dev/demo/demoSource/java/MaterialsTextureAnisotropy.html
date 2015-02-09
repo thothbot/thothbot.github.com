@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -26,7 +26,7 @@ class DemoScene extends DemoAnimatedScene
       sceneMaxAnisotropy = new Scene();
       
       sceneMaxAnisotropy.setFog( new Fog( 0xffffff, 1, 25000 ) );
-      sceneMaxAnisotropy.getFog().getColor().setHSV( 0.6, 0.05, 1 );
+      sceneMaxAnisotropy.getFog().getColor().setHSL( 0.6, 0.05, 1 );
       getScene().setFog(sceneMaxAnisotropy.getFog());
 
       sceneMaxAnisotropy.add( new AmbientLight( 0xeef0ff ) );
@@ -47,7 +47,7 @@ class DemoScene extends DemoAnimatedScene
       material1.setColor(new Color(0xffffff));
       material1.setMap(texture1);
 
-      texture1.setAnisotropy( getRenderer().getGPUmaxAnisotropy() );
+      texture1.setAnisotropy( getRenderer().getMaxAnisotropy() );
       texture1.setWrapS(TextureWrapMode.REPEAT);
       texture1.setWrapT(TextureWrapMode.REPEAT);
       texture1.getRepeat().set( 512, 512 );
@@ -105,4 +105,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

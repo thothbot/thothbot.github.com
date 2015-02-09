@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Load shaders
  */
@@ -25,7 +25,7 @@ class DemoScene extends DemoAnimatedScene
    
    PerspectiveCamera camera;
    Map&lt;String, Attribute&gt; attributes;
-   ParticleSystem sphere;
+   PointCloud sphere;
    int vc1;
 
    @Override
@@ -40,7 +40,7 @@ class DemoScene extends DemoAnimatedScene
 
       this.attributes = new HashMap&lt;String, Attribute&gt;();
       attributes.put("size", new Attribute(Attribute.TYPE.F, new ArrayList&lt;Integer&gt;()));
-      attributes.put("customColor", new Attribute(Attribute.TYPE.C, new ArrayList&lt;Color&gt;()));
+      attributes.put("ca", new Attribute(Attribute.TYPE.C, new ArrayList&lt;Color&gt;()));
 
       Map &lt;String, Uniform&gt; uniforms = new HashMap&lt;String, Uniform&gt;();
       uniforms.put("amplitude", new Uniform(Uniform.TYPE.F, 1.0));
@@ -55,6 +55,7 @@ class DemoScene extends DemoAnimatedScene
       ShaderMaterial shaderMaterial = new ShaderMaterial(   Resources.INSTANCE );
       shaderMaterial.getShader().setAttributes(attributes);
       shaderMaterial.getShader().setUniforms(uniforms);
+      shaderMaterial.setTransparent(true);
       
       int radius = 100, segments = 68, rings = 38;
       
@@ -62,19 +63,15 @@ class DemoScene extends DemoAnimatedScene
 
       this.vc1 = geometry.getVertices().size();
 
-      CubeGeometry geometry2 = new CubeGeometry( 0.8 * radius, 0.8 * radius, 0.8 * radius, 10, 10, 10 );
-
-      GeometryUtils.merge( geometry, geometry2 );
-
-      this.sphere = new ParticleSystem( geometry, shaderMaterial );
-
-      sphere.setDynamic(true);
-      // TODO: Fix this
-//         sphere.sortParticles = true;
-
-      List&lt;Vector3&gt; vertices = sphere.getGeometry().getVertices();
+      BoxGeometry geometry2 = new BoxGeometry( 0.8 * radius, 0.8 * radius, 0.8 * radius, 10, 10, 10 );
+      geometry.merge( geometry2, null );
+   
+      this.sphere = new PointCloud( geometry, shaderMaterial );
+      this.sphere.setSortParticles(true);
+   
+      List&lt;Vector3&gt; vertices = ((Geometry)sphere.getGeometry()).getVertices();
       List&lt;Double&gt; values_size = (List&lt;Double&gt;) attributes.get("size").getValue();
-      List&lt;Color&gt; values_color = (List&lt;Color&gt;) attributes.get("customColor").getValue();
+      List&lt;Color&gt; values_color = (List&lt;Color&gt;) attributes.get("ca").getValue();
    
       for( int v = 0; v &lt; vertices.size(); v++ ) 
       {
@@ -83,12 +80,12 @@ class DemoScene extends DemoAnimatedScene
          if ( v &lt; vc1 ) 
          {   
             values_size.add( v, 10.0);
-            values_color.get( v ).setHSV( 0.01 + 0.1 * ( v / (double)vc1 ), 0.99, ( vertices.get( v ).getY() + radius ) / ( 2.0 *radius ) );
+            values_color.get( v ).setHSL( 0.01 + 0.1 * ( v / (double)vc1 ), 0.99, ( vertices.get( v ).getY() + radius ) / ( 4.0 *radius ) );
          } 
          else 
          {
             values_size.add( v, 40.0);
-            values_color.get( v ).setHSV( 0.6, 0.75, 0.5 + vertices.get( v ).getY() / ( 0.8 * radius ) );
+            values_color.get( v ).setHSL( 0.6, 0.75, 0.25 + vertices.get( v ).getY() / ( 2.0 * radius ) );
          }
 
       }
@@ -119,4 +116,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

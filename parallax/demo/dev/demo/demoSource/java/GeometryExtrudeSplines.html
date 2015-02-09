@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -94,13 +94,12 @@ class DemoScene extends DemoAnimatedScene
 
       parent = new Object3D();
       parent.getPosition().setY(100);
+      parent.add(splineCamera);
       
       getScene().add(parent);
       
       cameraHelper = new CameraHelper(splineCamera);
-      cameraHelper.getScale().multiply(0.1);
-      splineCamera.add(cameraHelper);
-      parent.add(splineCamera);
+      getScene().add(cameraHelper);
                
       addTube();
 
@@ -150,7 +149,7 @@ class DemoScene extends DemoAnimatedScene
        // 3d shape
        this.tubeMesh = (Object3D) SceneUtils.createMultiMaterialObject(geometry, Arrays.asList(material1, material2));
        
-          this.tubeMesh.add(geometry.getDebug());
+//          this.tubeMesh.add(geometry.getDebug());
 
        this.parent.add(this.tubeMesh);
     }
@@ -195,7 +194,7 @@ class DemoScene extends DemoAnimatedScene
          lookAt.copy( pos ).add( dir );
 
       this.splineCamera.getMatrix().lookAt( this.splineCamera.getPosition(), lookAt, this.normal );
-      this.splineCamera.getRotation().setEulerFromRotationMatrix(splineCamera.getMatrix(), splineCamera.getEulerOrder());
+      this.splineCamera.getRotation().setFromRotationMatrix(splineCamera.getMatrix(), splineCamera.getRotation().getOrder());
       
       this.cameraHelper.update();
 
@@ -206,4 +205,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

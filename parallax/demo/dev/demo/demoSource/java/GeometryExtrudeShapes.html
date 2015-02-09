@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -86,12 +86,12 @@ class DemoScene extends DemoAnimatedScene
             new Vector3(40, 40, 0),
             new Vector3(-40, 40, 20)));
 
-      ExtrudeGeometry.ExtrudeGeometryParameters extrudeParameters = new ExtrudeGeometry.ExtrudeGeometryParameters();
-      extrudeParameters.amount = 200;
-      extrudeParameters.bevelEnabled = true;
-      extrudeParameters.bevelSegments = 2;
-      extrudeParameters.steps = 150;
-      extrudeParameters.extrudePath = randomSpline;
+//         ExtrudeGeometry.ExtrudeGeometryParameters extrudeParameters = new ExtrudeGeometry.ExtrudeGeometryParameters();
+//         extrudeParameters.amount = 200;
+//         extrudeParameters.bevelEnabled = true;
+//         extrudeParameters.bevelSegments = 2;
+//         extrudeParameters.steps = 150;
+//         extrudeParameters.extrudePath = randomSpline;
 
       // CircleGeometry
 
@@ -152,7 +152,7 @@ class DemoScene extends DemoAnimatedScene
       }
 
       Shape starShape = new Shape(pts);
-      ExtrudeGeometry circle3d = starShape.extrude( extrudeParameters ); //circleShape rectShape smileyShape starShape
+//         ExtrudeGeometry circle3d = starShape.extrude( extrudeParameters ); //circleShape rectShape smileyShape starShape
 
 //         TubeGeometry tubeGeometry = new TubeGeometry((CurvePath) extrudeParameters.extrudePath, 150, 4.0, 5, false, true);     
 
@@ -183,7 +183,7 @@ class DemoScene extends DemoAnimatedScene
       List&lt;Material&gt; materials= new ArrayList&lt;Material&gt;();
       materials.add(ml);
       materials.add(mb);
-      DimensionalObject mesh = SceneUtils.createMultiMaterialObject( geometry, materials );     
+      Object3D mesh = SceneUtils.createMultiMaterialObject( geometry, materials );     
 
       mesh.getPosition().set( x, y, z - 75.0 );
 
@@ -203,4 +203,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

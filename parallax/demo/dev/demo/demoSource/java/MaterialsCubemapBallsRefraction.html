@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -41,7 +41,7 @@ class DemoScene extends DemoAnimatedScene
 
       CubeTexture textureCube = new CubeTexture( textures );
       textureCube.setMapping(MAPPING_MODE.CUBE_REFRACTION);
-      
+//         
       MeshBasicMaterial material = new MeshBasicMaterial();
       material.setColor( new Color(0xffffff) );
       material.setEnvMap( textureCube );
@@ -66,12 +66,12 @@ class DemoScene extends DemoAnimatedScene
       }
 
       // Skybox
-      ShaderMaterial sMaterial = new ShaderMaterial(new CubeMapShader());
+      ShaderMaterial sMaterial = new ShaderMaterial(new CubeShader());
       sMaterial.getShader().getUniforms().get("tCube").setValue( textureCube ); 
       sMaterial.setDepthWrite( false );
       sMaterial.setSide( Material.SIDE.BACK );
       
-      Mesh mesh = new Mesh( new CubeGeometry( 100, 100, 100 ), sMaterial );
+      Mesh mesh = new Mesh( new BoxGeometry( 100, 100, 100 ), sMaterial );
       sceneCube.add( mesh );
       
       getRenderer().setAutoClear(false);
@@ -100,4 +100,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

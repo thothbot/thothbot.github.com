@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -25,7 +25,7 @@ class DemoScene extends DemoAnimatedScene
          colladaLoader.load(model, new ColladaLoader.ModelLoadHandler() {
 
             @Override
-            public void onModelLoaded() {
+            public void onModelLoaded(AbstractGeometry geometry) {
 //                  assert(false);
                // Add the COLLADA
 //                  getScene().addChild( dae );
@@ -61,7 +61,7 @@ class DemoScene extends DemoAnimatedScene
 
       }
 
-      Line line = new Line( geometry, line_material, Line.TYPE.PIECES);
+      Line line = new Line( geometry, line_material, Line.MODE.PIECES);
       getScene().add( line );
 
       MeshBasicMaterial sMaterial = new MeshBasicMaterial();
@@ -106,4 +106,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

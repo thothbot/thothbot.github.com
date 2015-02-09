@@ -1,11 +1,11 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
 class DemoScene extends DemoAnimatedScene 
 {
    PerspectiveCamera camera;
-   ParticleSystem particleSystem;
+   PointCloud particleSystem;
 
    @Override
    protected void onStart()
@@ -25,14 +25,10 @@ class DemoScene extends DemoAnimatedScene
 
       int particles = 500000;
 
-      GeometryBuffer geometry = new GeometryBuffer();
-      geometry.setVerticesNeedUpdate(true);
-      geometry.setColorsNeedUpdate(true);
-      geometry.setWebGlVertexArray(Float32Array.create(particles * 3 * 3));
-      geometry.setWebGlColorArray(Float32Array.create(particles * 3 * 3));
+      BufferGeometry geometry = new BufferGeometry();
 
-      Float32Array positions = geometry.getWebGlVertexArray();
-      Float32Array colors = geometry.getWebGlColorArray();
+      Float32Array positions = Float32Array.create( particles * 3 );
+      Float32Array colors = Float32Array.create( particles * 3 );
       
       Color color = new Color();
       double n = 1000, n2 = n/2;   // particles spread in the cube
@@ -62,14 +58,18 @@ class DemoScene extends DemoAnimatedScene
          colors.set( i + 2, color.getB() );
       }
 
+      geometry.addAttribute( "position", new BufferAttribute( positions, 3 ) );
+      geometry.addAttribute( "color", new BufferAttribute( colors, 3 ) );
+
       geometry.computeBoundingSphere();
 
+
       //
-      ParticleBasicMaterial material = new ParticleBasicMaterial();
+      PointCloudMaterial material = new PointCloudMaterial();
       material.setVertexColors(COLORS.VERTEX);
       material.setSize(15.0);
 
-      particleSystem = new ParticleSystem( geometry, material );
+      particleSystem = new PointCloud( geometry, material );
       getScene().add( particleSystem );
 
       //
@@ -89,4 +89,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

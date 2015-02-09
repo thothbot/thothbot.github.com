@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -36,7 +36,7 @@ class DemoScene extends DemoAnimatedScene
             1e7f // far 
       ); 
       
-      camera.getPosition().setZ(radius * 7);
+      camera.getPosition().setZ(radius * 5);
       
       this.control = new TrackballControls( camera, getCanvas() );
       this.control.setPanSpeed(0.2);
@@ -47,6 +47,9 @@ class DemoScene extends DemoAnimatedScene
       DirectionalLight dirLight = new DirectionalLight( 0xFFFFFF );
       dirLight.getPosition().set( -1, 0, 1 ).normalize();
       getScene().add( dirLight );
+      
+      AmbientLight ambientLight = new AmbientLight( 0x000000 );
+      getScene().add( ambientLight );
 
       Texture planetTexture   = new Texture( earthAtmos );
       Texture cloudsTexture   = new Texture( earthClouds );
@@ -69,15 +72,11 @@ class DemoScene extends DemoAnimatedScene
       uniforms.get("enableDiffuse").setValue( true );
       uniforms.get("enableSpecular").setValue( true );
 
-      ((Color)uniforms.get("uDiffuseColor").getValue()).setHex( 0xffffff );
-      ((Color)uniforms.get("uSpecularColor").getValue()).setHex( 0x666666 );
-      ((Color)uniforms.get("uAmbientColor").getValue()).setHex( 0x000000 );
+      ((Color)uniforms.get("diffuse").getValue()).setHex( 0xffffff );
+      ((Color)uniforms.get("specular").getValue()).setHex( 0x666666 );
+      ((Color)uniforms.get("ambient").getValue()).setHex( 0x000000 );
 
-      uniforms.get("uShininess").setValue( 20.0 );
-
-      ((Color)uniforms.get("uDiffuseColor").getValue()).convertGammaToLinear();
-      ((Color)uniforms.get("uSpecularColor").getValue()).convertGammaToLinear();
-      ((Color)uniforms.get("uAmbientColor").getValue()).convertGammaToLinear();
+      uniforms.get("shininess").setValue( 15.0 );
 
       // planet
 
@@ -131,39 +130,39 @@ class DemoScene extends DemoAnimatedScene
 
       }
 
-      ParticleBasicMaterial pbOpt = new ParticleBasicMaterial();
+      PointCloudMaterial pbOpt = new PointCloudMaterial();
       pbOpt.setColor( new Color(0x555555) );
       pbOpt.setSize( 2 );
       pbOpt.setSizeAttenuation(false);
       
-      List&lt;ParticleBasicMaterial&gt; starsMaterials = new ArrayList&lt;ParticleBasicMaterial&gt;();
+      List&lt;PointCloudMaterial&gt; starsMaterials = new ArrayList&lt;PointCloudMaterial&gt;();
       starsMaterials.add(pbOpt);
       
-      ParticleBasicMaterial pbOpt1 = new ParticleBasicMaterial();
+      PointCloudMaterial pbOpt1 = new PointCloudMaterial();
       pbOpt1.setColor( new Color(0x555555) );
       pbOpt1.setSize( 1 );
       pbOpt1.setSizeAttenuation(false);
       starsMaterials.add(pbOpt1);
       
-      ParticleBasicMaterial pbOpt2 = new ParticleBasicMaterial();
+      PointCloudMaterial pbOpt2 = new PointCloudMaterial();
       pbOpt2.setColor( new Color(0x333333) );
       pbOpt2.setSize( 2 );
       pbOpt2.setSizeAttenuation(false);
       starsMaterials.add(pbOpt2);
       
-      ParticleBasicMaterial pbOpt3 = new ParticleBasicMaterial();
+      PointCloudMaterial pbOpt3 = new PointCloudMaterial();
       pbOpt3.setColor( new Color(0x3a3a3a) );
       pbOpt3.setSize( 1 );
       pbOpt3.setSizeAttenuation(false);
       starsMaterials.add(pbOpt3);
       
-      ParticleBasicMaterial pbOpt4 = new ParticleBasicMaterial();
+      PointCloudMaterial pbOpt4 = new PointCloudMaterial();
       pbOpt4.setColor( new Color(0x1a1a1a) );
       pbOpt4.setSize( 2 );
       pbOpt4.setSizeAttenuation(false);
       starsMaterials.add(pbOpt4);
       
-      ParticleBasicMaterial pbOpt5 = new ParticleBasicMaterial();
+      PointCloudMaterial pbOpt5 = new PointCloudMaterial();
       pbOpt5.setColor( new Color(0x1a1a1a) );
       pbOpt5.setSize( 1 );
       pbOpt5.setSizeAttenuation(false);
@@ -171,7 +170,7 @@ class DemoScene extends DemoAnimatedScene
 
       for ( int i = 10; i &lt; 30; i ++ ) 
       {
-         ParticleSystem stars = new ParticleSystem( starsGeometry, starsMaterials.get( i % 6 ) );
+         PointCloud stars = new PointCloud( starsGeometry, starsMaterials.get( i % 6 ) );
 
          stars.getRotation().setX( Math.random() * 6.0 );
          stars.getRotation().setY( Math.random() * 6.0 );
@@ -222,4 +221,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

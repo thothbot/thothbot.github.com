@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -34,13 +34,13 @@ class DemoScene extends DemoAnimatedScene
          geometry.getVertices().add( points.get( i ) );
 
          colors.add( new Color( 0xffffff ) );
-         colors.get( i ).setHSV( 0.6, ( 200 + points.get( i ).getX() ) / 400.0, 1.0 );
+         colors.get( i ).setHSL( 0.6, 1.0, Math.max( 0, ( 200 - points.get( i ).getX() ) / 400.0 ) * 0.5 + 0.5);
 
          colors2.add( new Color( 0xffffff ) );
-         colors2.get( i ).setHSV( 0.3, 1.0, ( 200 + points.get( i ).getX() ) / 400.0 );
+         colors2.get( i ).setHSL( 0.3, 1.0, Math.max( 0, ( 200 + points.get( i ).getX() ) / 400.0 ) * 0.5 );
 
          colors3.add( new Color( 0xffffff ) );
-         colors3.get( i ).setHSV( i / (double)points.size(), 1.0, 1.0 );
+         colors3.get( i ).setHSL( i / (double)points.size(), 1.0, 0.5 );
       }
 
       geometry2.setVertices(geometry.getVertices()); 
@@ -55,7 +55,8 @@ class DemoScene extends DemoAnimatedScene
       LineBasicMaterial material = new LineBasicMaterial();
       material.setColor(new Color(0xffffff));
       material.setLinewidth(3);
-      material.setOpacity(1);
+      material.setOpacity(1.0);
+      material.setVertexColors(Material.COLORS.VERTEX);
 
       double scale = 0.3;
       double d = 225;
@@ -147,7 +148,7 @@ class DemoScene extends DemoAnimatedScene
 
       for ( int i = 0; i &lt; getScene().getChildren().size(); i ++ ) 
       {
-         DimensionalObject object = getScene().getChildren().get(i);
+         Object3D object = getScene().getChildren().get(i);
          if ( object instanceof Line ) 
             object.getRotation().setY( duration * 0.0005 * ( (i % 2 &gt; 0) ? 1.0 : -1.0 ) );
       }
@@ -158,4 +159,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

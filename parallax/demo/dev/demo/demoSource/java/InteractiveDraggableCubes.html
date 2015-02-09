@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -9,14 +9,16 @@ class DemoScene extends DemoAnimatedScene
    Vector3 offset = new Vector3(10, 10, 10);
    double mouseDeltaX = 0, mouseDeltaY = 0;
    
-   List&lt;Mesh&gt; objects;
+   List&lt;GeometryObject&gt; objects;
    Mesh plane;
    
    TrackballControls controls;
-   Projector projector;
    
-   Intersect intersected;
-   DimensionalObject selected;
+   GeometryObject intersected;
+   GeometryObject selected;
+   
+   Map&lt;String, Integer&gt; currentHex = GWT.isScript() ? 
+         new FastMap&lt;Integer&gt;() : new HashMap&lt;String, Integer&gt;();
 
    @Override
    protected void onStart()
@@ -57,9 +59,9 @@ class DemoScene extends DemoAnimatedScene
 
       getScene().add( light );
 
-      CubeGeometry geometry = new CubeGeometry( 40, 40, 40 );
+      BoxGeometry geometry = new BoxGeometry( 40, 40, 40 );
 
-      objects = new ArrayList&lt;Mesh&gt;();
+      objects = new ArrayList&lt;GeometryObject&gt;();
       for ( int i = 0; i &lt; 200; i ++ ) 
       {
          MeshLambertMaterial material1 = new MeshLambertMaterial();
@@ -91,17 +93,12 @@ class DemoScene extends DemoAnimatedScene
       material2.setColor(new Color(0x000000));
       material2.setOpacity(0.25);
       material2.setTransparent(true);
-      material2.setWireframe(true);
-      plane = new Mesh( new PlaneGeometry( 2000, 2000, 8, 8 ), material2 );
+      plane = new Mesh( new PlaneBufferGeometry( 2000, 2000, 8, 8 ), material2 );
       plane.setVisible(false);
       getScene().add( plane );
 
-      projector = new Projector();
-
-      getRenderer().setClearColorHex(0xeeeeee);
+      getRenderer().setClearColor(0xeeeeee);
       getRenderer().setSortObjects(false);
-//         getRenderer().setShadowMapEnabled(true);
-//         getRenderer().setShadowMapSoft(true);
    }
    
    @Override
@@ -113,4 +110,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

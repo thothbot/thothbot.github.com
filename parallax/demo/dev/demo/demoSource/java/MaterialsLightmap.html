@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Load shaders
  */
@@ -39,7 +39,6 @@ class DemoScene extends DemoAnimatedScene
       camera.getPosition().set( 700, 180, -500 );
 
       getScene().setFog( new Fog( 0xfafafa, 1000, 10000 ) );
-      getScene().getFog().getColor().setHSV( 0.6, 0.125, 1 );
 
       // CONTROLS
 
@@ -54,8 +53,8 @@ class DemoScene extends DemoAnimatedScene
 
 
       HemisphereLight hemiLight = new HemisphereLight( 0xffffff, 0xffffff, 1.25 );
-      hemiLight.getColor().setHSV( 0.6, 0.45, 1 );
-      hemiLight.getGroundColor().setHSV( 0.1, 0.45, 0.95 );
+      hemiLight.getColor().setHSL( 0.6, 1.0, 0.75 );
+      hemiLight.getGroundColor().setHSL( 0.1, 0.8, 0.7 );
       hemiLight.getPosition().setY( 500 );
       getScene().add( hemiLight );
 
@@ -81,7 +80,6 @@ class DemoScene extends DemoAnimatedScene
       getRenderer().setClearColor( getScene().getFog().getColor(), 1 );
       getRenderer().setGammaInput(true);
       getRenderer().setGammaOutput(true);
-      getRenderer().setPhysicallyBasedShading(true);
 
       // MODEL
 
@@ -91,8 +89,9 @@ class DemoScene extends DemoAnimatedScene
          jsonLoader.load(model, new JsonLoader.ModelLoadHandler() {
 
             @Override
-            public void onModelLoaded() {      
-               Mesh mesh = new Mesh( jsonLoader.getGeometry(), new MeshFaceMaterial() );
+            public void onModelLoaded(AbstractGeometry geometry) {      
+               Log.error(jsonLoader.getMaterials());
+               Mesh mesh = new Mesh( geometry, new MeshFaceMaterial(jsonLoader.getMaterials()) );
                mesh.getPosition().set( 0 );
                mesh.getScale().set( 100 );
                getScene().add( mesh );
@@ -114,4 +113,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

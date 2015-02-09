@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -68,7 +68,7 @@ class DemoScene extends DemoAnimatedScene
 
       DirectionalLight directionalLight = new DirectionalLight( 0xffffff, 0.85 );
       directionalLight.getPosition().set( 1, -0.5, 1 );
-      directionalLight.getColor().setHSV( 0.6, 0.3, 1 );
+      directionalLight.getColor().setHSL( 0.6, 1.0, 0.85 );
       getScene().add( directionalLight );
 
       directionalLight.getPosition().multiply( 500 );
@@ -120,8 +120,8 @@ class DemoScene extends DemoAnimatedScene
          jsonLoader.load(model, new JsonLoader.ModelLoadHandler() {
 
             @Override
-            public void onModelLoaded() {      
-               createScene( jsonLoader.getGeometry(), 100 );
+            public void onModelLoaded(AbstractGeometry geometry) {      
+               createScene( (Geometry) geometry, 100 );
             }
          });
       }
@@ -132,7 +132,7 @@ class DemoScene extends DemoAnimatedScene
 
       //
 
-      getRenderer().setClearColorHex(0x4c5159);
+      getRenderer().setClearColor(0x4c5159);
 
       ShadowMap shadowMap = new ShadowMap(getRenderer(), getScene());
       shadowMap.setCullFrontFaces(false);
@@ -140,7 +140,6 @@ class DemoScene extends DemoAnimatedScene
       getRenderer().setAutoClear(false);
       getRenderer().setGammaInput(true);
       getRenderer().setGammaOutput(true);
-      getRenderer().setPhysicallyBasedShading(true);
    }
    
    private void createScene( Geometry geometry, double scale ) 
@@ -181,9 +180,9 @@ class DemoScene extends DemoAnimatedScene
       uniforms.get( "bumpMap" ).setValue( mapHeight );
       uniforms.get( "specularMap" ).setValue( mapSpecular );
 
-      ((Color)uniforms.get( "uAmbientColor" ).getValue()).setHex( 0xa0a0a0 );
-      ((Color)uniforms.get( "uDiffuseColor" ).getValue()).setHex( 0xa0a0a0 );
-      ((Color)uniforms.get( "uSpecularColor" ).getValue()).setHex( 0xa0a0a0 );
+      ((Color)uniforms.get( "ambient" ).getValue()).setHex( 0xa0a0a0 );
+      ((Color)uniforms.get( "diffuse" ).getValue()).setHex( 0xa0a0a0 );
+      ((Color)uniforms.get( "specular" ).getValue()).setHex( 0xa0a0a0 );
 
       uniforms.get( "uRoughness" ).setValue( 0.145 );
       uniforms.get( "uSpecularBrightness" ).setValue( 0.75 );
@@ -230,4 +229,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -39,16 +39,14 @@ class DemoScene extends DemoAnimatedScene
       }
 
       LineBasicMaterial line_material = new LineBasicMaterial();
-      line_material.setColor( new Color( 0xffffff) );
-      line_material.setOpacity( 0.2 );
+      line_material.setColor( new Color( 0x303030) );
 
-      Line line = new Line( geometry, line_material, Line.TYPE.PIECES );
+      Line line = new Line( geometry, line_material, Line.MODE.PIECES );
       getScene().add( line );
 
       // Materials
 
       Texture texture = new Texture( generateTexture() );
-
       texture.setNeedsUpdate(true);
 
       this.materials = new ArrayList&lt;Material&gt;();
@@ -141,7 +139,7 @@ class DemoScene extends DemoAnimatedScene
 
       }
 
-      geometry_pieces.setMaterials(materials);
+//         ((GeometryObject)geometry_pieces).setmmaterials = materials;
 
       materials.add( new MeshFaceMaterial() );
 
@@ -151,9 +149,9 @@ class DemoScene extends DemoAnimatedScene
       {
          Material material = materials.get( i );
 
-         Geometry geometryMesh = material.getClass() == MeshFaceMaterial.class 
+         Geometry geometryMesh = material.getClass() == MeshFaceMaterial.class && 1==2
                   ? geometry_pieces 
-                  : ( material.getShading() == Material.SHADING.FLAT 
+                  : ( material instanceof HasShading && ((HasShading)material).getShading() == Material.SHADING.FLAT 
                      ? geometry_flat 
                      : geometry_smooth );
 
@@ -242,12 +240,12 @@ class DemoScene extends DemoAnimatedScene
          if(i &gt; 9 && material instanceof MeshPhongMaterial)
          {
             ((MeshPhongMaterial)material).getEmissive()
-               .setHSV( 0.54, 1.0, 0.7 * ( 0.5 + 0.5 * Math.sin( 35 * timer ) ) );   
+               .setHSL( 0.54, 1.0, 0.7 * ( 0.5 + 0.5 * Math.sin( 35 * timer ) ) );   
          }
          else if(i &gt; 9 && material instanceof MeshLambertMaterial)
          {
             ((MeshLambertMaterial)material).getEmissive()
-               .setHSV( 0.04, 1.0, 0.7 * ( 0.5 + 0.5 * Math.cos( 35 * timer ) ) );   
+               .setHSL( 0.04, 1.0, 0.7 * ( 0.5 + 0.5 * Math.cos( 35 * timer ) ) );   
          }
       }
       
@@ -264,4 +262,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

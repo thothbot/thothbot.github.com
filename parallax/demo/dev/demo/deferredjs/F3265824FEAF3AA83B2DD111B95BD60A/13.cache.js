@@ -1,2 +1,0 @@
-DS(1047,1,rEc);_.Cb=function Lbc(){v4b(this.b,new Nbc(this.a))};function Nbc(){y4b.call(this)}
-DS(1048,940,{},Nbc);_.qb=function Obc(){this.a=new _Lb(70,_Cb(this.G.n),1,1000);j1b(this.a.ab,400)};_.rb=function Pbc(a){eDb(this.G.n,this.H,this.a,null,false)};var SK=vhb(aJc,'GeometryNormals$DemoScene',1048);EEc(ti)(13);

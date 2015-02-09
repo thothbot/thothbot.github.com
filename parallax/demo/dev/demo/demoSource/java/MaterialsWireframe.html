@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Load shaders
  */
@@ -41,11 +41,11 @@ class DemoScene extends DemoAnimatedScene
       
       double size = 150;
 
-      CubeGeometry geometryLines = new CubeGeometry( size, size, size );
-      CubeGeometry geometryQuads = new CubeGeometry( size, size, size );
-      CubeGeometry geometryTris = new CubeGeometry( size, size, size );
+      BoxGeometry geometryLines = new BoxGeometry( size, size, size );
+      BoxGeometry geometryQuads = new BoxGeometry( size, size, size );
+      BoxGeometry geometryTris = new BoxGeometry( size, size, size );
 
-      GeometryUtils.triangulateQuads( geometryTris );
+//         GeometryUtils.triangulateQuads( geometryTris );
 
       // wireframe using gl.LINES
 
@@ -147,4 +147,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -45,8 +45,8 @@ class DemoScene extends DemoAnimatedScene
          loader.load(model, new JsonLoader.ModelLoadHandler() {
 
             @Override
-            public void onModelLoaded() {                                                               
-               Mesh treeMesh = new Mesh( loader.getGeometry(), materialScene );
+            public void onModelLoaded(AbstractGeometry geometry) {                                                               
+               Mesh treeMesh = new Mesh( geometry, materialScene );
                treeMesh.getPosition().set( 0, -150, -150 );
 
                treeMesh.getScale().set( 400 );
@@ -75,7 +75,7 @@ class DemoScene extends DemoAnimatedScene
             
       getRenderer().setSortObjects(false);
       getRenderer().setAutoClear(false);
-      getRenderer().setClearColorHex( bgColor, 1 );
+      getRenderer().setClearColor( bgColor, 1 );
       
       Postprocessing composer = new Postprocessing( getRenderer(), getScene() );
       RenderPass renderModel = new RenderPass( getScene(), camera );
@@ -113,4 +113,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

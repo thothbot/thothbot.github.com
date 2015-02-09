@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -63,7 +63,6 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
          
          @Override
          public void onImageLoad(Texture texture) {
-            //water.material.getShader().getUniforms().get("normalSampler").setValue(  texture );
             water.normalSampler = texture;
             water.updateUniforms();
          }
@@ -73,10 +72,9 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
       waterNormals.setWrapT(TextureWrapMode.REPEAT);
 
       Mesh mirrorMesh = new Mesh(
-            new PlaneGeometry(this.width * 500, this.height * 500),
-//               new PlaneBufferGeometry( this.width * 500, this.height * 500 ),
+            new PlaneBufferGeometry( this.width * 500, this.height * 500 ),
             water.material
-         );
+      );
                
       mirrorMesh.add( water );
       mirrorMesh.getRotation().setX( - Math.PI * 0.5 );
@@ -90,12 +88,12 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
       
       // Skybox
 
-      ShaderMaterial sMaterial = new ShaderMaterial( new CubeMapShader() );
+      ShaderMaterial sMaterial = new ShaderMaterial( new CubeShader() );
       sMaterial.getShader().getUniforms().get("tCube").setValue( textureCube ); 
       sMaterial.setDepthWrite( false );
       sMaterial.setSide(Material.SIDE.BACK);
       
-      Mesh mesh = new Mesh( new CubeGeometry( 1000000, 1000000, 1000000 ), sMaterial );
+      Mesh mesh = new Mesh( new BoxGeometry( 1000000, 1000000, 1000000 ), sMaterial );
       getScene().add( mesh );
 
       // Sphere
@@ -109,10 +107,11 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
 
       MeshPhongMaterial sphereMaterial = new MeshPhongMaterial();
       sphereMaterial.setVertexColors(COLORS.FACE);
+      sphereMaterial.setEnvMap(textureCube);
       sphereMaterial.setShininess(100.0);
       
       sphere = new Mesh( geometry, sphereMaterial );
-//         getScene().add( sphere );         
+      getScene().add( sphere );         
    }
    
    @Override
@@ -135,4 +134,4 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
 }
 
 
-</pre>
+</code></pre>

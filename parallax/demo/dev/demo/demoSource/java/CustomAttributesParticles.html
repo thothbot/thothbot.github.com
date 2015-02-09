@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Load shaders
  */
@@ -25,7 +25,7 @@ class DemoScene extends DemoAnimatedScene
    
    PerspectiveCamera camera;
    Map&lt;String, Attribute&gt; attributes;
-   ParticleSystem sphere;
+   PointCloud sphere;
 
    @Override
    protected void onStart()
@@ -40,7 +40,7 @@ class DemoScene extends DemoAnimatedScene
 
       this.attributes = new HashMap&lt;String, Attribute&gt;();
       this.attributes.put("size", new Attribute(Attribute.TYPE.F, new ArrayList&lt;Integer&gt;()));
-      this.attributes.put("customColor", new Attribute(Attribute.TYPE.C, new ArrayList&lt;Color&gt;()));
+      this.attributes.put("ca", new Attribute(Attribute.TYPE.C, new ArrayList&lt;Color&gt;()));
 
       Map &lt;String, Uniform&gt; uniforms = new HashMap&lt;String, Uniform&gt;();
       uniforms.put("amplitude", new Uniform(Uniform.TYPE.F, 1.0));
@@ -69,12 +69,11 @@ class DemoScene extends DemoAnimatedScene
          geometry.getVertices().add( vertex );
       }
 
-      this.sphere = new ParticleSystem( geometry, shaderMaterial );
-      this.sphere.setDynamic(true);
+      this.sphere = new PointCloud( geometry, shaderMaterial );
 
-      List&lt;Vector3&gt; vertices = sphere.getGeometry().getVertices();
+      List&lt;Vector3&gt; vertices = ((Geometry)sphere.getGeometry()).getVertices();
       List&lt;Double&gt; values_size = (List&lt;Double&gt;) attributes.get("size").getValue();
-      List&lt;Color&gt; values_color = (List&lt;Color&gt;) attributes.get("customColor").getValue();
+      List&lt;Color&gt; values_color = (List&lt;Color&gt;) attributes.get("ca").getValue();
 
       for( int v = 0; v &lt; vertices.size(); v++ ) 
       {
@@ -82,9 +81,9 @@ class DemoScene extends DemoAnimatedScene
          values_color.add( v, new Color( 0xffaa00 ));
 
          if ( vertices.get( v ).getX() &lt; 0 )
-            values_color.get( v ).setHSV( 0.5 + 0.1 * ( v / (double)vertices.size() ), 0.7, 0.9 );
+            values_color.get( v ).setHSL( 0.5 + 0.1 * ( v / (double)vertices.size() ), 0.7, 0.5 );
          else
-            values_color.get( v ).setHSV( 0.0 + 0.1 * ( v / (double)vertices.size() ), 0.9, 0.9 );
+            values_color.get( v ).setHSL( 0.0 + 0.1 * ( v / (double)vertices.size() ), 0.9, 0.5 );
       }
 
       getScene().add( sphere );
@@ -109,4 +108,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

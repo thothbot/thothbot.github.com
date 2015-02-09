@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -24,7 +24,7 @@ class DemoScene extends DemoAnimatedScene
 
       getScene().setFog(new Fog( 0xffffff, 1, 10000));
 
-      CubeGeometry geometry = new CubeGeometry( 100, 100, 100 );
+      BoxGeometry geometry = new BoxGeometry( 100, 100, 100 );
       MeshNormalMaterial material = new MeshNormalMaterial();
 
       this.group = new Object3D();
@@ -48,7 +48,7 @@ class DemoScene extends DemoAnimatedScene
       getScene().add( group );
 
       getRenderer().setSortObjects(false);
-      getRenderer().setClearColorHex(0xeeeeee);
+      getRenderer().setClearColor(0xeeeeee);
    }
    
    @Override
@@ -74,4 +74,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

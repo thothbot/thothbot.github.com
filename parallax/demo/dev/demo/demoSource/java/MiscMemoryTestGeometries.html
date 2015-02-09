@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -24,16 +24,7 @@ class DemoScene extends DemoAnimatedScene
    
    @Override
    protected void onUpdate(double duration)
-   {
-      if(mesh != null)
-      {
-         getScene().remove( mesh );
-         mesh.deallocate( getRenderer() );
-      }
-
-      if(texture != null)
-         texture.deallocate( getRenderer() );
-      
+   {         
       SphereGeometry geometry = new SphereGeometry( 50, (int)(Math.random() * 64), (int)(Math.random() * 32) );
 
       texture = new Texture( generateTexture() );
@@ -48,6 +39,14 @@ class DemoScene extends DemoAnimatedScene
       getScene().add( mesh );
       
       getRenderer().render(getScene(), camera);
+      
+      getScene().remove( mesh );
+      
+      // clean up
+
+      geometry.dispose();
+//         material.dispose();
+//         texture.dispose();
    }
    
    private CanvasElement generateTexture() 
@@ -67,4 +66,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

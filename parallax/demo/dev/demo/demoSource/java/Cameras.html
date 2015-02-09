@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -32,7 +32,7 @@ class DemoScene extends DemoAnimatedScene
          
          @Override
          public void onResize(ViewportResizeEvent event) {
-            camera.setAspectRatio(0.5 * event.getRenderer().getAbsoluteAspectRation());
+            camera.setAspect(0.5 * event.getRenderer().getAbsoluteAspectRation());
             
          }
       });
@@ -46,7 +46,7 @@ class DemoScene extends DemoAnimatedScene
          
          @Override
          public void onResize(ViewportResizeEvent event) {
-            cameraPerspective.setAspectRatio(0.5 * event.getRenderer().getAbsoluteAspectRation());
+            cameraPerspective.setAspect(0.5 * event.getRenderer().getAbsoluteAspectRation());
             
          }
       });
@@ -121,10 +121,10 @@ class DemoScene extends DemoAnimatedScene
          geometry.getVertices().add( vertex );
       }
       
-      ParticleBasicMaterial popt = new ParticleBasicMaterial();
+      PointCloudMaterial popt = new PointCloudMaterial();
       popt.setColor( new Color(0x888888) );
 
-      ParticleSystem particles = new ParticleSystem( geometry, popt );
+      PointCloud particles = new PointCloud( geometry, popt );
       getScene().add( particles );
 
       //
@@ -146,7 +146,7 @@ class DemoScene extends DemoAnimatedScene
 
       if ( activeCamera.equals(cameraPerspective) ) 
       {
-         cameraPerspective.setFieldOfView(35.0 + 30.0 * Math.sin( 0.5 * r ));
+         cameraPerspective.setFov(35.0 + 30.0 * Math.sin( 0.5 * r ));
          cameraPerspective.setFar(mesh.getPosition().length());
          cameraPerspective.updateProjectionMatrix();
 
@@ -184,4 +184,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

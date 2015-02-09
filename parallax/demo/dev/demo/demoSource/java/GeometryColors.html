@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -20,7 +20,7 @@ class DemoScene extends DemoAnimatedScene
             10000 
       );
       
-      camera.getPosition().setZ(2000);
+      camera.getPosition().setZ(1800);
       
       DirectionalLight light = new DirectionalLight( 0xffffff );
       light.getPosition().set( 0, 0, 1 );
@@ -28,7 +28,7 @@ class DemoScene extends DemoAnimatedScene
       
       MeshBasicMaterial shadowMaterial = new MeshBasicMaterial();
       shadowMaterial.setMap( new Texture(texture) );
-      Geometry shadowGeo = new PlaneGeometry( 300, 300, 1, 1 );
+      PlaneBufferGeometry shadowGeo = new PlaneBufferGeometry( 300, 300, 1, 1 );
       
       Mesh mesh1 = new Mesh( shadowGeo, shadowMaterial );
       mesh1.getPosition().setY(-250);
@@ -57,7 +57,7 @@ class DemoScene extends DemoAnimatedScene
       {
          Face3 f  = geometry.getFaces().get( i );
 
-         int n = ( f.getClass() == Face3.class ) ? 3 : 4;
+         int n = 3;
 
          for( int j = 0; j &lt; n; j++ ) 
          {
@@ -65,26 +65,20 @@ class DemoScene extends DemoAnimatedScene
                   : (j == 1 ) ? f.getB()
                   : (j == 2 ) ? f.getC() : 0;
 
-            if(j == 3)
-            {
-               Face4 f14 = (Face4) f;
-               vertexIndex = f14.getD();
-            }
-
             Vector3 p = geometry.getVertices().get( vertexIndex );
 
             Color color = new Color( 0xffffff );
-            color.setHSV( ( p.getY() / (double)radius + 1.0 ) / 2.0, 1.0, 1.0 );
+            color.setHSL( ( p.getY() / (double)radius + 1.0 ) / 2.0, 1.0, 0.5 );
 
             geometry.getFaces().get( i ).getVertexColors().add(color);
 
             Color color2 = new Color( 0xffffff );
-            color2.setHSV( 0.0, ( p.getY() / (double)radius + 1.0 ) / 2.0, 1.0 );
+            color2.setHSL( 0.0, ( p.getY() / (double)radius + 1.0 ) / 2.0, 0.5 );
 
             geometry2.getFaces().get( i ).getVertexColors().add(color2);
 
             Color color3 = new Color( 0xffffff );
-            color3.setHSV( (0.125 * vertexIndex / (double)geometry.getVertices().size()), 1.0, 1.0 );
+            color3.setHSL( (0.125 * vertexIndex / (double)geometry.getVertices().size()), 1.0, 0.5 );
 
             geometry3.getFaces().get( i ).getVertexColors().add(color3);
          }
@@ -104,17 +98,17 @@ class DemoScene extends DemoAnimatedScene
       bmaterial.setTransparent( true );
       materials.add(bmaterial);
 
-      DimensionalObject group1 = SceneUtils.createMultiMaterialObject( geometry, materials );
+      Object3D group1 = SceneUtils.createMultiMaterialObject( geometry, materials );
       group1.getPosition().setX(-400);
       group1.getRotation().setX(-1.87);
       getScene().add( group1 );
 
-      DimensionalObject group2 = SceneUtils.createMultiMaterialObject( geometry2, materials );
+      Object3D group2 = SceneUtils.createMultiMaterialObject( geometry2, materials );
       group2.getPosition().setX(400);
       group2.getRotation().setX(0);
       getScene().add( group2 );
 
-      DimensionalObject group3 = SceneUtils.createMultiMaterialObject( geometry3, materials );
+      Object3D group3 = SceneUtils.createMultiMaterialObject( geometry3, materials );
       group3.getPosition().setX(0);
       group3.getRotation().setX(0);
       getScene().add( group3 );
@@ -123,8 +117,8 @@ class DemoScene extends DemoAnimatedScene
    @Override
    protected void onUpdate(double duration)
    {
-      camera.getPosition().addX(( - mouseX - getRenderer().getAbsoluteWidth()/2.5 - camera.getPosition().getX()) );
-      camera.getPosition().addY(( mouseY - getRenderer().getAbsoluteHeight()/2.5- camera.getPosition().getY()) );
+      camera.getPosition().addX(( - mouseX - camera.getPosition().getX()) * 0.05 );
+      camera.getPosition().addY(( mouseY - camera.getPosition().getY()) * 0.05 );
 
       camera.lookAt( getScene().getPosition());
       
@@ -133,4 +127,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

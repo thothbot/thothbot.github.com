@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -35,7 +35,7 @@ class DemoScene extends DemoAnimatedScene
          
          @Override
          public void onResize(ViewportResizeEvent event) {
-            camera.setAspectRatio(0.5 * event.getRenderer().getAbsoluteAspectRation());
+            camera.setAspect(0.5 * event.getRenderer().getAbsoluteAspectRation());
             
          }
       });
@@ -65,9 +65,9 @@ class DemoScene extends DemoAnimatedScene
          this.jsonLoader.load(model, new JsonLoader.ModelLoadHandler() {
 
             @Override
-            public void onModelLoaded() {   
+            public void onModelLoaded(AbstractGeometry geometry) {   
                
-               jsonLoader.morphColorsToFaceColors();
+               jsonLoader.morphColorsToFaceColors((Geometry) geometry);
 
                MeshLambertMaterial material = new MeshLambertMaterial();
                material.setColor(new Color(0xffffff));
@@ -76,7 +76,7 @@ class DemoScene extends DemoAnimatedScene
                material.setVertexColors(Material.COLORS.FACE);
                material.setShading(Material.SHADING.FLAT);
  
-               MorphAnimMesh meshAnim = new MorphAnimMesh( jsonLoader.getGeometry(), material );
+               MorphAnimMesh meshAnim = new MorphAnimMesh( (Geometry) geometry, material );
 
                meshAnim.setDuration(5000);
 
@@ -96,9 +96,8 @@ class DemoScene extends DemoAnimatedScene
                material2.setMorphNormals(true);
                material2.setVertexColors(Material.COLORS.FACE);
                material2.setShading(Material.SHADING.SMOOTH); 
-               material2.setPerPixel(false);
  
-               MorphAnimMesh meshAnim2 = new MorphAnimMesh( jsonLoader.getGeometry(), material2 );
+               MorphAnimMesh meshAnim2 = new MorphAnimMesh( (Geometry) geometry, material2 );
 
                meshAnim2.setDuration(5000);
 
@@ -149,4 +148,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

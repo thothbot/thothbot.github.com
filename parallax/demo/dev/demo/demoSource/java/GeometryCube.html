@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -20,24 +20,24 @@ class DemoScene extends DemoAnimatedScene
       );
       camera.getPosition().setZ(400);
 
-      CubeGeometry geometry = new CubeGeometry( 200, 200, 200 );
+      BoxGeometry geometry = new BoxGeometry( 200, 200, 200 );
 
       MeshBasicMaterial material = new MeshBasicMaterial();
       material.setMap( new Texture(texture) );
 
       this.mesh = new Mesh(geometry, material);
-      getScene().add(mesh);
+      getScene().add(mesh);         
    }
    
    @Override
    protected void onUpdate(double duration)
    {
-      this.mesh.getRotation().setX(this.mesh.getRotation().getX() + 0.005);
-      this.mesh.getRotation().setY(this.mesh.getRotation().getY() + 0.01);
-      
+      this.mesh.getRotation().addX(0.005);
+      this.mesh.getRotation().addY(0.01);
+
       getRenderer().render(getScene(), camera);
    }
 }
 
 
-</pre>
+</code></pre>

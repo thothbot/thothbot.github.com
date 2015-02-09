@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -65,7 +65,7 @@ class DemoScene extends DemoAnimatedScene
          material.setOpacity(p.opasity);
          material.setLinewidth(p.lineWidth);
 
-         Line line = new Line( geometry, material, Line.TYPE.PIECES );
+         Line line = new Line( geometry, material, Line.MODE.PIECES );
          line.getScale().set( p.scale );
          this.originalScale.put(line, p.scale);
 
@@ -85,7 +85,7 @@ class DemoScene extends DemoAnimatedScene
 
       for ( int i = 0; i &lt; getScene().getChildren().size(); i ++ ) 
       {
-         DimensionalObject object = getScene().getChildren().get(i);
+         Object3D object = getScene().getChildren().get(i);
 
          if ( object instanceof Line ) 
          {
@@ -101,4 +101,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>

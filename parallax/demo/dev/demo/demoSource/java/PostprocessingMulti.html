@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -81,8 +81,8 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
          jsonLoader.load(model, new JsonLoader.ModelLoadHandler() {
 
             @Override
-            public void onModelLoaded() {      
-               createMesh( jsonLoader.getGeometry(), 100 );
+            public void onModelLoaded(AbstractGeometry geometry) {      
+               createMesh( (Geometry) geometry, 100 );
             }
          });
       }
@@ -115,7 +115,7 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
 
       //
 
-      getRenderer().setClearColorHex( 0x000000, 1 );
+      getRenderer().setClearColor( 0x000000, 1 );
       getRenderer().setAutoClear(false);
       getRenderer().setGammaInput(true);
       getRenderer().setGammaOutput(true);
@@ -319,4 +319,4 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
 }
 
 
-</pre>
+</code></pre>

@@ -1,4 +1,4 @@
-<pre>
+<pre><code class='hljs java'>
 /*
  * Prepare Rendering Scene
  */
@@ -12,11 +12,9 @@ class DemoScene extends DemoAnimatedScene
    PlaneGeometry geometry;
    Mesh mesh;
    
-   int worldWidth = 128;
-   int worldDepth = 128;
-   int worldHalfWidth = worldWidth / 2;
-   int worldHalfDepth = worldDepth / 2;
-   
+   int worldWidth = 32;
+   int worldDepth = 32;
+
    private double oldTime;
    
    @Override
@@ -39,7 +37,6 @@ class DemoScene extends DemoAnimatedScene
 
       this.geometry = new PlaneGeometry( 20000, 20000, worldWidth - 1, worldDepth - 1 );
       this.geometry.applyMatrix(new Matrix4().makeRotationX( - Math.PI / 2.0 ));
-      this.geometry.setDynamic( true );
 
       for ( int i = 0, il = this.geometry.getVertices().size(); i &lt; il; i ++ )
          this.geometry.getVertices().get( i ).setY(35.0 * Math.sin( i/2.0 ));
@@ -68,7 +65,7 @@ class DemoScene extends DemoAnimatedScene
       for ( int i = 0, l = this.geometry.getVertices().size(); i &lt; l; i ++ )
          this.geometry.getVertices().get( i ).setY(35.0 * Math.sin( i / 5.0 + ( duration * 0.01 + i ) / 7.0 ));
    
-      this.mesh.getGeometry().setVerticesNeedUpdate(true);
+      ((Geometry)this.mesh.getGeometry()).verticesNeedUpdate = true;
       
       this.controls.update( (Duration.currentTimeMillis() - this.oldTime) * 0.001);
 
@@ -79,4 +76,4 @@ class DemoScene extends DemoAnimatedScene
 }
 
 
-</pre>
+</code></pre>
