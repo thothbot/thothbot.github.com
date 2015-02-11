@@ -1,0 +1,107 @@
+<pre><code class='hljs java'>
+/*
+ * Prepare Rendering Scene
+ */
+class DemoScene extends DemoAnimatedScene 
+{
+
+   private static final String model = "./static/models/obj/tree/tree.js";
+   private static final double orbitRadius = 200.0;
+   
+   private static final int bgColor = 0x000511;
+   private static final int sunColor = 0xffee00;
+   
+   PerspectiveCamera camera;
+   
+   public int mouseX;
+   public int mouseY;
+   
+   Mesh sphereMesh;
+   
+   private Postprocessing composer;
+
+   @Override
+   protected void onStart()
+   {
+      camera = new PerspectiveCamera( 70,
+            getRenderer().getAbsoluteAspectRation(), 
+            1, 
+            3000 
+         );
+      camera.getPosition().setZ(200);
+      
+      MeshDepthMaterial materialDepth = new MeshDepthMaterial();
+
+      final MeshBasicMaterial materialScene = new MeshBasicMaterial();
+      materialScene.setColor(new Color(0x000000));
+      materialScene.setShading(Material.SHADING.FLAT);
+
+      // tree
+
+      new JsonLoader(model, new XHRLoader.ModelLoadHandler() {
+
+         @Override
+         public void onModelLoaded(XHRLoader loader, AbstractGeometry geometry) {                                                               
+            Mesh treeMesh = new Mesh( geometry, materialScene );
+            treeMesh.getPosition().set( 0, -150, -150 );
+
+            treeMesh.getScale().set( 400 );
+
+            treeMesh.setMatrixAutoUpdate(false);
+            treeMesh.updateMatrix();
+
+            getScene().add( treeMesh );
+         }
+      });
+
+      // sphere
+
+      SphereGeometry geo = new SphereGeometry( 1, 20, 10 );
+      this.sphereMesh = new Mesh( geo, materialScene );
+      this.sphereMesh.getScale().set( 20 );
+
+      getScene().add( this.sphereMesh );
+
+      //
+            
+      getRenderer().setSortObjects(false);
+      getRenderer().setAutoClear(false);
+      getRenderer().setClearColor( bgColor, 1 );
+      
+      Postprocessing composer = new Postprocessing( getRenderer(), getScene() );
+      RenderPass renderModel = new RenderPass( getScene(), camera );
+      composer.addPass( renderModel );
+      
+      ShaderPass materialGodraysGenerate = new ShaderPass( new GodRaysGenerateShader() );
+      composer.addPass( materialGodraysGenerate );
+      
+      ShaderPass materialGodraysCombine = new ShaderPass( new GodRaysCombineShader() );
+      materialGodraysCombine.getUniforms().get("fGodRayIntensity").setValue( 0.75 );
+      composer.addPass( materialGodraysCombine );
+      
+      ShaderPass godraysFakeSunShader = new ShaderPass( new GodraysFakeSunShader() );
+      ((Color)godraysFakeSunShader.getUniforms().get("bgColor").getValue()).setHex( bgColor );
+      ((Color)godraysFakeSunShader.getUniforms().get("sunColor").getValue()).setHex( sunColor );
+      composer.addPass( godraysFakeSunShader );
+   }
+         
+   @Override
+   protected void onUpdate(double duration)
+   {
+      double time = duration / 4000.0;
+
+      this.sphereMesh.getPosition().setX( orbitRadius * Math.cos( time ) );
+      this.sphereMesh.getPosition().setZ( orbitRadius * Math.sin( time ) - 100.0 );
+
+      camera.getPosition().addX( ( mouseX - camera.getPosition().getX() ) * 0.036 );
+      camera.getPosition().addY( ( - ( mouseY ) - camera.getPosition().getY() ) * 0.036 );
+
+      camera.lookAt( getScene().getPosition() );
+      
+      getRenderer().clear();
+      getRenderer().render(getScene(), camera);
+   }
+}
+
+
+</code></pre>

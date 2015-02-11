@@ -1,0 +1,108 @@
+<pre><code class='hljs java'>
+/*
+ * Prepare Rendering Scene
+ */
+class DemoScene extends DemoAnimatedScene 
+{
+   private static final String textures = "./static/textures/cube/park2/*.jpg";
+   
+   PerspectiveCamera camera;
+   private Scene sceneCube;
+   private PerspectiveCamera cameraCube;
+   
+   List&lt;Mesh&gt; spheres;
+   
+   int mouseX = 0, mouseY = 0;
+
+   @Override
+   protected void onStart()
+   {
+      camera = new PerspectiveCamera(
+            60, // fov
+            getRenderer().getAbsoluteAspectRation(), // aspect 
+            1, // near
+            100000 // far 
+      ); 
+      
+      camera.getPosition().setZ(3200);
+      
+      this.cameraCube = new PerspectiveCamera(
+            60, // fov
+            getRenderer().getAbsoluteAspectRation(), // aspect 
+            1, // near
+            100000 // far
+         );
+
+      this.sceneCube = new Scene();
+
+      SphereGeometry geometry = new SphereGeometry( 100, 32, 16 );
+
+      CubeTexture textureCube = new CubeTexture( textures );
+      textureCube.setFormat(PixelFormat.RGB);
+
+      FresnelShader shader = new FresnelShader();
+      shader.getUniforms().get("tCube").setValue(textureCube);
+
+      ShaderMaterial material = new ShaderMaterial( shader );
+
+      spheres = new ArrayList&lt;Mesh&gt;();
+      for ( int i = 0; i &lt; 500; i ++ ) 
+      {
+         Mesh mesh = new Mesh( geometry, material );
+
+         mesh.getPosition().setX( Math.random() * 10000 - 5000 );
+         mesh.getPosition().setY( Math.random() * 10000 - 5000 );
+         mesh.getPosition().setZ( Math.random() * 10000 - 5000 );
+
+         mesh.getScale().set( Math.random() * 3 + 1 );
+
+         getScene().add( mesh );
+
+         spheres.add( mesh );
+      }
+
+      getScene().setMatrixAutoUpdate(false);
+
+      // Skybox
+      CubeShader shaderCube = new CubeShader();
+      shaderCube.getUniforms().get("tCube").setValue(textureCube);
+
+      ShaderMaterial sMaterial = new ShaderMaterial(shaderCube);
+      sMaterial.setSide(Material.SIDE.BACK);
+
+      Mesh mesh = new Mesh( new BoxGeometry( 100000, 100000, 100000 ), sMaterial );
+      sceneCube.add( mesh );
+
+      //
+
+      getRenderer().setAutoClear(false);
+   }
+   
+   @Override
+   protected void onUpdate(double duration)
+   {
+      double timer = 0.0001 * duration;
+
+      camera.getPosition().addX( ( mouseX - camera.getPosition().getX() ) * .05 );
+      camera.getPosition().addY( ( - mouseY - camera.getPosition().getY() ) * .05 );
+
+      camera.lookAt( getScene().getPosition() );
+
+      cameraCube.getRotation().copy( camera.getRotation() );
+
+      for ( int i = 0, il = spheres.size(); i &lt; il; i ++ ) 
+      {
+         Mesh sphere = spheres.get( i );
+
+         sphere.getPosition().setX( 5000 * Math.cos( timer + i ) );
+         sphere.getPosition().setY( 5000 * Math.sin( timer + i * 1.1 ) );
+      }
+
+      getRenderer().clear();
+      getRenderer().render( sceneCube, cameraCube );
+      getRenderer().render(getScene(), camera);
+   }
+}
+
+
+</code></pre>
