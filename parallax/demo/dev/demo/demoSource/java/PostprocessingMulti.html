@@ -75,21 +75,13 @@ class DemoScene extends DemoAnimatedScene implements HasEventBus, ViewportResize
       directionalLight.getPosition().set( 0, -0.1, 1 ).normalize();
       sceneModel.add( directionalLight );
 
-      final JsonLoader jsonLoader = new JsonLoader();
-      try
-      {
-         jsonLoader.load(model, new JsonLoader.ModelLoadHandler() {
+      new JsonLoader(model, new XHRLoader.ModelLoadHandler() {
 
-            @Override
-            public void onModelLoaded(AbstractGeometry geometry) {      
-               createMesh( (Geometry) geometry, 100 );
-            }
-         });
-      }
-      catch (RequestException exception) 
-      {
-         Log.error("Error while loading JSON file.");
-      }
+         @Override
+         public void onModelLoaded(XHRLoader loader, AbstractGeometry geometry) {      
+            createMesh( (Geometry) geometry, 100 );
+         }
+      });
       
       //
 

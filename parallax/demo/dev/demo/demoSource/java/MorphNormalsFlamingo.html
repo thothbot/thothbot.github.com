@@ -11,8 +11,6 @@ class DemoScene extends DemoAnimatedScene
    PerspectiveCamera camera;
    Scene scene2;
    
-   JsonLoader jsonLoader;
-   
    List&lt;MorphAnimMesh&gt; morphs;
    
    private double oldTime;
@@ -59,15 +57,13 @@ class DemoScene extends DemoAnimatedScene
       scene2.add( light22 );
 
       morphs = new ArrayList&lt;MorphAnimMesh&gt;();
-      this.jsonLoader = new JsonLoader();
-      try
-      {
-         this.jsonLoader.load(model, new JsonLoader.ModelLoadHandler() {
+      new JsonLoader(model, new XHRLoader.ModelLoadHandler() {
 
             @Override
-            public void onModelLoaded(AbstractGeometry geometry) {   
+            public void onModelLoaded(XHRLoader loader, AbstractGeometry geometry) {   
                
-               jsonLoader.morphColorsToFaceColors((Geometry) geometry);
+               ((JsonLoader)loader).morphColorsToFaceColors( (Geometry) geometry );
+               ((Geometry)geometry).computeMorphNormals();
 
                MeshLambertMaterial material = new MeshLambertMaterial();
                material.setColor(new Color(0xffffff));
@@ -85,45 +81,50 @@ class DemoScene extends DemoAnimatedScene
 
                getScene().add( meshAnim );
                morphs.add( meshAnim );
-               
-               // 
-
-               MeshPhongMaterial material2 = new MeshPhongMaterial();
-               material2.setColor(new Color(0xffffff));
-               material2.setSpecular(new Color(0xffffff));
-               material2.setShininess(20);
-               material2.setMorphTargets(true);
-               material2.setMorphNormals(true);
-               material2.setVertexColors(Material.COLORS.FACE);
-               material2.setShading(Material.SHADING.SMOOTH); 
- 
-               MorphAnimMesh meshAnim2 = new MorphAnimMesh( (Geometry) geometry, material2 );
-
-               meshAnim2.setDuration(5000);
-
-               meshAnim2.getScale().set( 1.5 );
-               meshAnim2.getPosition().setY( 150 );
-
-               scene2.add( meshAnim2 );
-               morphs.add( meshAnim2 );
             }
-         });
-      }
-      catch (RequestException exception) 
-      {
-         Log.error("Error while loading JSON file.");
-      }
+               
+      });
+               
+      new JsonLoader(model, new XHRLoader.ModelLoadHandler() { 
+         
+            @Override
+            public void onModelLoaded(XHRLoader loader, AbstractGeometry geometry) {   
+
+               ((JsonLoader)loader).morphColorsToFaceColors( (Geometry) geometry );
+               ((Geometry)geometry).computeMorphNormals();
+
+               MeshPhongMaterial material = new MeshPhongMaterial();
+               material.setColor(new Color(0xffffff));
+               material.setSpecular(new Color(0xffffff));
+               material.setShininess(20);
+               material.setMorphTargets(true);
+               material.setMorphNormals(true);
+               material.setVertexColors(Material.COLORS.FACE);
+               material.setShading(Material.SHADING.SMOOTH); 
+       
+               MorphAnimMesh meshAnim = new MorphAnimMesh( (Geometry) geometry, material );
+
+               meshAnim.setDuration(5000);
+
+               meshAnim.getScale().set( 1.5 );
+               meshAnim.getPosition().setY( 150 );
+
+               scene2.add( meshAnim );
+               morphs.add( meshAnim );
+            }
+      });
       
       getRenderer().setGammaInput(true);
       getRenderer().setGammaOutput(true);
       getRenderer().setSortObjects(false);
       getRenderer().setAutoClear(false);
+      
+      this.oldTime = Duration.currentTimeMillis();
    }
    
    @Override
    protected void onUpdate(double duration)
    {
-      this.oldTime = Duration.currentTimeMillis();
       double theta = duration * 0.01;
 
       camera.getPosition().setX( radius * Math.sin( theta * Math.PI / 360.0 ) );
@@ -134,7 +135,7 @@ class DemoScene extends DemoAnimatedScene
       for ( int i = 0; i &lt; morphs.size(); i ++ ) 
       {
          MorphAnimMesh morph = morphs.get( i );
-         morph.updateAnimation( (int) (Duration.currentTimeMillis() - this.oldTime) );
+         morph.updateAnimation( Duration.currentTimeMillis() - this.oldTime );
       }
 
       getRenderer().clear();
@@ -144,6 +145,8 @@ class DemoScene extends DemoAnimatedScene
 
       getRenderer().setViewport( getRenderer().getAbsoluteWidth()/2, 0, getRenderer().getAbsoluteWidth()/2, getRenderer().getAbsoluteHeight() );
       getRenderer().render( scene2, camera );
+
+      this.oldTime = Duration.currentTimeMillis();
    }
 }
 

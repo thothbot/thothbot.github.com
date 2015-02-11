@@ -38,30 +38,21 @@ class DemoScene extends DemoAnimatedScene
 
       // tree
 
-      final JsonLoader loader = new JsonLoader();
+      new JsonLoader(model, new XHRLoader.ModelLoadHandler() {
 
-      try
-      {
-         loader.load(model, new JsonLoader.ModelLoadHandler() {
+         @Override
+         public void onModelLoaded(XHRLoader loader, AbstractGeometry geometry) {                                                               
+            Mesh treeMesh = new Mesh( geometry, materialScene );
+            treeMesh.getPosition().set( 0, -150, -150 );
 
-            @Override
-            public void onModelLoaded(AbstractGeometry geometry) {                                                               
-               Mesh treeMesh = new Mesh( geometry, materialScene );
-               treeMesh.getPosition().set( 0, -150, -150 );
+            treeMesh.getScale().set( 400 );
 
-               treeMesh.getScale().set( 400 );
+            treeMesh.setMatrixAutoUpdate(false);
+            treeMesh.updateMatrix();
 
-               treeMesh.setMatrixAutoUpdate(false);
-               treeMesh.updateMatrix();
-
-               getScene().add( treeMesh );
-            }
-         });
-      }
-      catch (RequestException exception) 
-      {
-         Log.error("Error while loading JSON file.");
-      }
+            getScene().add( treeMesh );
+         }
+      });
 
       // sphere
 

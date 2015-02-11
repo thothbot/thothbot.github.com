@@ -2,10 +2,8 @@
 /*
  * Prepare Rendering Scene
  */
-class DemoScene extends DemoAnimatedScene 
+class DemoScene extends DemoAnimatedScene
 {
-   private static final String image = "./static/textures/UV_Grid_Sm.jpg";
-
    PerspectiveCamera camera;
    OrthographicCamera cameraRTT;
    Scene sceneRTT, sceneScreen;
@@ -23,6 +21,8 @@ class DemoScene extends DemoAnimatedScene
    
    ShaderMaterial materialScreen;
    
+   Mesh quad1;
+
    @Override
    protected void onStart()
    {
@@ -58,9 +58,9 @@ class DemoScene extends DemoAnimatedScene
       materialScreen = new ShaderMaterial(ResourcesScreen.INSTANCE);
       materialScreen.getShader().addUniform("tDiffuse", new Uniform(Uniform.TYPE.T, rtTexture ));
       materialScreen.setDepthWrite(false);
-               
-      PlaneBufferGeometry plane = new PlaneBufferGeometry(getRenderer().getAbsoluteWidth()+1000, getRenderer().getAbsoluteHeight() );
-      Mesh quad1 = new Mesh( plane, material );
+
+      PlaneBufferGeometry plane = new PlaneBufferGeometry(getRenderer().getAbsoluteWidth(), getRenderer().getAbsoluteHeight() );
+      quad1 = new Mesh( plane, material );
       quad1.getPosition().setZ( -100 );
       sceneRTT.add( quad1 );
 

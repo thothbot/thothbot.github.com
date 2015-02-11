@@ -1,0 +1,11 @@
+function Nlc(){}
+function Rlc(){}
+function Ulc(){}
+function sGb(a,b){a.e=b}
+function Flc(){n7b.call(this)}
+function Jlc(){Jlc=_Ec;Ilc=new Nlc}
+function Wlc(){Wlc=_Ec;Llc=new Rlc}
+function Xlc(){Xlc=_Ec;Mlc=new Ulc}
+function QGb(a,b){!a.a&&(a.a=new VPb);a.a.nd(xKc,b)}
+function Elc(a){var b,c;c=new gpb;for(b=0;b<a.i.Pc();b++){Au(a.i.Hc(b),240);Xob(c,b,new Epb(qu(SR,AGc,298,[new M3b(1,0,0),new M3b(0,1,0),new M3b(0,0,1)])))}return c}
+YS(1158,1,JGc);_.zb=function Clc(){P6b(this.b,new Flc(this.a))};YS(1159,958,{},Flc);_.nb=function Glc(){var a,b,c,d,e,f,g,i;this.a=new sOb(40,eFb(this.D.k),1,2000);I3b(this.a._,800);c=new WTb(150,150,150);d=new WTb(150,150,150);e=new oZb;e.i=true;this.b=new i5b(c,e);W2b(this.b._,-150);sNb(this.F,this.b);b=new tGb((KGb(),IGb),Elc(d));sGb(b,(AGb(),yGb));g=new b0b((Jlc(),Ilc));QGb(iXb(g),b);this.d=new i5b(d,g);W2b(this.d._,150);sNb(this.F,this.d);i=new LUb(75,32,16);a=new tGb(IGb,Elc(i));sGb(a,yGb);f=new b0b(Ilc);QGb(iXb(f),a);this.c=new i5b(i,f);W2b(this.c._,-150);sNb(this.F,this.c)};_.ob=function Hlc(a){X0b(this.b.cb,0.005);Y0b(this.b.cb,0.01);X0b(this.d.cb,0.005);Y0b(this.d.cb,0.01);if(this.c){X0b(this.c.cb,0.005);Y0b(this.c.cb,0.01)}qFb(this.D.k,this.F,this.a,null,false)};var Ilc;YS(1160,1,{},Nlc);_.Md=function Olc(){return Wlc(),Llc};_.Nd=function Plc(){return Xlc(),Mlc};var Llc,Mlc;YS(1161,1,{},Rlc);_.ac=function Slc(){return '#extension GL_OES_standard_derivatives : enable\n\nvarying vec3 vCenter;\n\nfloat edgeFactorTri() {\n\n\tvec3 d = fwidth( vCenter.xyz );\n\tvec3 a3 = smoothstep( vec3( 0.0 ), d * 1.5, vCenter.xyz );\n\treturn min( min( a3.x, a3.y ), a3.z );\n\n}\n\nvoid main() {\n\n\tgl_FragColor.rgb = mix( vec3( 1.0 ), vec3( 0.2 ), edgeFactorTri() );\n\tgl_FragColor.a = 1.0;\n}\n'};YS(1162,1,{},Ulc);_.ac=function Vlc(){return 'attribute vec3 center;\nvarying vec3 vCenter;\n\nvoid main() {\n\n\tvCenter = center;\n\tgl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n\n}\n'};var cN=hib(ILc,'MaterialsWireframe$DemoScene',1159),fN=hib(ILc,'MaterialsWireframe_Resources_default_InlineClientBundleGenerator',1160),dN=hib(ILc,'MaterialsWireframe_Resources_default_InlineClientBundleGenerator$1',1161),eN=hib(ILc,'MaterialsWireframe_Resources_default_InlineClientBundleGenerator$2',1162);WGc(xi)(19);
