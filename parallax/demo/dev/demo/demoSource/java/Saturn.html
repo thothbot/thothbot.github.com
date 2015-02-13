@@ -34,6 +34,8 @@ class DemoScene extends DemoAnimatedScene
    
    private double oldTime;
    
+   Audio audio = Audio.createIfSupported();
+   
    @Override
    protected void onStart()
    {
@@ -201,6 +203,9 @@ class DemoScene extends DemoAnimatedScene
    @Override
    protected void onUpdate(double duration)
    {
+      if(audio.isPaused())
+         audio.play();
+
       double delta = (Duration.currentTimeMillis() - this.oldTime) * 0.001;
       
       camera.getPosition().setX( saturnRadius * 10 * Math.cos( 0.00005 * duration ) );         
@@ -227,6 +232,13 @@ class DemoScene extends DemoAnimatedScene
       
       this.oldTime = Duration.currentTimeMillis();
 
+   }
+   
+   @Override
+   protected void onStop() 
+   {
+      super.onStop();
+      audio.pause();
    }
 }
 
