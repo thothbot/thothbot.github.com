@@ -1,0 +1,11 @@
+function Tnc(){}
+function Xnc(){}
+function $nc(){}
+function OHb(a,b){a.e=b}
+function Lnc(){t9b.call(this)}
+function Pnc(){Pnc=wMc;Onc=new Tnc}
+function aoc(){aoc=wMc;Rnc=new Xnc}
+function boc(){boc=wMc;Snc=new $nc}
+function kIb(a,b){!a.a&&(a.a=new KRb);a.a.nd(NRc,b)}
+function Knc(a){var b,c;c=new yqb;for(b=0;b<a.i.Pc();b++){su(a.i.Hc(b),240);nqb(c,b,new Wqb(iu(WS,XNc,298,[new R5b(1,0,0),new R5b(0,1,0),new R5b(0,0,1)])))}return c}
+aU(1173,1,eOc);_.zb=function Inc(){V8b(this.b,new Lnc(this.a))};aU(1174,973,{},Lnc);_.nb=function Mnc(){var a,b,c,d,e,f,g,i;this.a=new hQb(40,AGb(this.G.k),1,2000);N5b(this.a._,800);c=new LVb(150,150,150);d=new LVb(150,150,150);e=new f_b;e.i=true;this.b=new n7b(c,e);$4b(this.b._,-150);hPb(this.H,this.b);b=new PHb((eIb(),cIb),Knc(d));OHb(b,(WHb(),UHb));g=new f2b((Pnc(),Onc));kIb($Yb(g),b);this.d=new n7b(d,g);$4b(this.d._,150);hPb(this.H,this.d);i=new AWb(75,32,16);a=new PHb(cIb,Knc(i));OHb(a,UHb);f=new f2b(Onc);kIb($Yb(f),a);this.c=new n7b(i,f);$4b(this.c._,-150);hPb(this.H,this.c)};_.ob=function Nnc(a){_2b(this.b.cb,0.005);a3b(this.b.cb,0.01);_2b(this.d.cb,0.005);a3b(this.d.cb,0.01);if(this.c){_2b(this.c.cb,0.005);a3b(this.c.cb,0.01)}MGb(this.G.k,this.H,this.a,null,false)};var Onc;aU(1175,1,{},Tnc);_.Nd=function Unc(){return aoc(),Rnc};_.Od=function Vnc(){return boc(),Snc};var Rnc,Snc;aU(1176,1,{},Xnc);_.mc=function Ync(){return '#extension GL_OES_standard_derivatives : enable\n\nvarying vec3 vCenter;\n\nfloat edgeFactorTri() {\n\n\tvec3 d = fwidth( vCenter.xyz );\n\tvec3 a3 = smoothstep( vec3( 0.0 ), d * 1.5, vCenter.xyz );\n\treturn min( min( a3.x, a3.y ), a3.z );\n\n}\n\nvoid main() {\n\n\tgl_FragColor.rgb = mix( vec3( 1.0 ), vec3( 0.2 ), edgeFactorTri() );\n\tgl_FragColor.a = 1.0;\n}\n'};aU(1177,1,{},$nc);_.mc=function _nc(){return 'attribute vec3 center;\nvarying vec3 vCenter;\n\nvoid main() {\n\n\tvCenter = center;\n\tgl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n\n}\n'};var eN=zjb(YSc,'MaterialsWireframe$DemoScene',1174),hN=zjb(YSc,'MaterialsWireframe_Resources_default_InlineClientBundleGenerator',1175),fN=zjb(YSc,'MaterialsWireframe_Resources_default_InlineClientBundleGenerator$1',1176),gN=zjb(YSc,'MaterialsWireframe_Resources_default_InlineClientBundleGenerator$2',1177);sOc(xi)(19);
