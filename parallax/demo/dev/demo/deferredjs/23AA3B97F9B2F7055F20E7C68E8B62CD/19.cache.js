@@ -1,0 +1,11 @@
+function gpc(){}
+function kpc(){}
+function npc(){}
+function UIb(a,b){a.e=b}
+function $oc(){Fac.call(this)}
+function cpc(){cpc=yQc;bpc=new gpc}
+function ppc(){ppc=yQc;epc=new kpc}
+function qpc(){qpc=yQc;fpc=new npc}
+function qJb(a,b){!a.a&&(a.a=new TSb);a.a.od(PVc,b)}
+function Zoc(a){var b,c;c=new Zqb;for(b=0;b<a.i.Qc();b++){pu(a.i.Ic(b),242);Oqb(c,b,new vrb(fu(AT,$Rc,300,[new a7b(1,0,0),new a7b(0,1,0),new a7b(0,0,1)])))}return c}
+GU(1174,1,hSc);_.zb=function Xoc(){fac(this.b,new $oc(this.a))};GU(1175,973,{},$oc);_.nb=function _oc(){var a,b,c,d,e,f,g,i;this.a=new oRb(40,GHb(this.G.k),1,2000);Y6b(this.a._,800);c=new WWb(150,150,150);d=new WWb(150,150,150);e=new q0b;e.i=true;this.b=new y8b(c,e);j6b(this.b._,-150);nQb(this.H,this.b);b=new VIb((kJb(),iJb),Zoc(d));UIb(b,(aJb(),$Ib));g=new q3b((cpc(),bpc));qJb(j$b(g),b);this.d=new y8b(d,g);j6b(this.d._,150);nQb(this.H,this.d);i=new LXb(75,32,16);a=new VIb(iJb,Zoc(i));UIb(a,$Ib);f=new q3b(bpc);qJb(j$b(f),a);this.c=new y8b(i,f);j6b(this.c._,-150);nQb(this.H,this.c)};_.ob=function apc(a){k4b(this.b.cb,0.005);l4b(this.b.cb,0.01);k4b(this.d.cb,0.005);l4b(this.d.cb,0.01);if(this.c){k4b(this.c.cb,0.005);l4b(this.c.cb,0.01)}SHb(this.G.k,this.H,this.a,null,false)};var bpc;GU(1176,1,{},gpc);_.Od=function hpc(){return ppc(),epc};_.Pd=function ipc(){return qpc(),fpc};var epc,fpc;GU(1177,1,{},kpc);_.nc=function lpc(){return '#extension GL_OES_standard_derivatives : enable\n\nvarying vec3 vCenter;\n\nfloat edgeFactorTri() {\n\n\tvec3 d = fwidth( vCenter.xyz );\n\tvec3 a3 = smoothstep( vec3( 0.0 ), d * 1.5, vCenter.xyz );\n\treturn min( min( a3.x, a3.y ), a3.z );\n\n}\n\nvoid main() {\n\n\tgl_FragColor.rgb = mix( vec3( 1.0 ), vec3( 0.2 ), edgeFactorTri() );\n\tgl_FragColor.a = 1.0;\n}\n'};GU(1178,1,{},npc);_.nc=function opc(){return 'attribute vec3 center;\nvarying vec3 vCenter;\n\nvoid main() {\n\n\tvCenter = center;\n\tgl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n\n}\n'};var cN=$jb($Wc,'MaterialsWireframe$DemoScene',1175),fN=$jb($Wc,'MaterialsWireframe_Resources_default_InlineClientBundleGenerator',1176),dN=$jb($Wc,'MaterialsWireframe_Resources_default_InlineClientBundleGenerator$1',1177),eN=$jb($Wc,'MaterialsWireframe_Resources_default_InlineClientBundleGenerator$2',1178);vSc(xi)(19);
