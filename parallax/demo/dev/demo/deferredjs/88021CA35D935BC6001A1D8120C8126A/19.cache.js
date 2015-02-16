@@ -1,0 +1,11 @@
+function moc(){}
+function qoc(){}
+function toc(){}
+function WHb(a,b){a.f=b}
+function eoc(){L9b.call(this)}
+function woc(){woc=RMc;loc=new toc}
+function ioc(){ioc=RMc;hoc=new moc}
+function voc(){voc=RMc;koc=new qoc}
+function sIb(a,b){!a.b&&(a.b=new ZRb);a.b.rd(kSc,b)}
+function doc(a){var b,c;c=new Gqb;for(b=0;b<a.j.Tc();b++){Eu(a.j.Lc(b),241);vqb(c,b,new crb(uu(gT,tOc,299,[new g6b(1,0,0),new g6b(0,1,0),new g6b(0,0,1)])))}return c}
+mU(1168,1,COc);_.Db=function boc(){l9b(this.c,new eoc(this.b))};mU(1169,967,{},eoc);_.ob=function foc(){var a,b,c,d,e,f,g,i;this.b=new sQb(40,IGb(this.H.n),1,2000);c6b(this.b.ab,800);c=new aWb(150,150,150);d=new aWb(150,150,150);e=new w_b;e.j=true;this.c=new E7b(c,e);p5b(this.c.ab,-150);pPb(this.I,this.c);b=new XHb((mIb(),kIb),doc(d));WHb(b,(cIb(),aIb));g=new w2b((ioc(),hoc));sIb(pZb(g),b);this.e=new E7b(d,g);p5b(this.e.ab,150);pPb(this.I,this.e);i=new RWb(75,32,16);a=new XHb(kIb,doc(i));WHb(a,aIb);f=new w2b(hoc);sIb(pZb(f),a);this.d=new E7b(i,f);p5b(this.d.ab,-150);pPb(this.I,this.d)};_.pb=function goc(a){q3b(this.c.db,0.005);r3b(this.c.db,0.01);q3b(this.e.db,0.005);r3b(this.e.db,0.01);if(this.d){q3b(this.d.db,0.005);r3b(this.d.db,0.01)}UGb(this.H.n,this.I,this.b,null,false)};var hoc;mU(1170,1,{},moc);_.Rd=function noc(){return voc(),koc};_.Sd=function ooc(){return woc(),loc};var koc,loc;mU(1171,1,{},qoc);_.qc=function roc(){return '#extension GL_OES_standard_derivatives : enable\n\nvarying vec3 vCenter;\n\nfloat edgeFactorTri() {\n\n\tvec3 d = fwidth( vCenter.xyz );\n\tvec3 a3 = smoothstep( vec3( 0.0 ), d * 1.5, vCenter.xyz );\n\treturn min( min( a3.x, a3.y ), a3.z );\n\n}\n\nvoid main() {\n\n\tgl_FragColor.rgb = mix( vec3( 1.0 ), vec3( 0.2 ), edgeFactorTri() );\n\tgl_FragColor.a = 1.0;\n}\n'};mU(1172,1,{},toc);_.qc=function uoc(){return 'attribute vec3 center;\nvarying vec3 vCenter;\n\nvoid main() {\n\n\tvCenter = center;\n\tgl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n\n}\n'};var qN=Hjb(xTc,'MaterialsWireframe$DemoScene',1169),tN=Hjb(xTc,'MaterialsWireframe_Resources_default_InlineClientBundleGenerator',1170),rN=Hjb(xTc,'MaterialsWireframe_Resources_default_InlineClientBundleGenerator$1',1171),sN=Hjb(xTc,'MaterialsWireframe_Resources_default_InlineClientBundleGenerator$2',1172);QOc(Hi)(19);
