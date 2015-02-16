@@ -1,9 +1,0 @@
-function nqc(){}
-function rqc(){}
-function uqc(){}
-function fqc(){A9b.call(this)}
-function wqc(){wqc=GMc;lqc=new rqc}
-function jqc(){jqc=GMc;iqc=new nqc}
-function xqc(){xqc=GMc;mqc=new uqc}
-function eqc(a){var b;b=Pkb()+nRc+Pkb()+nRc+Pkb();oIb(a,yIb(a.d,pu(cS,LMc,1,[b])))}
-fU(1201,1,pOc);_.zb=function cqc(){a9b(this.b,new fqc(this.a))};fU(1202,970,{},fqc);_.nb=function gqc(){var a,b,c,d;this.a=new hQb(40,xGb(this.G.k),1,10000);T5b(this.a._,2000);a=new GWb(15,64,32);this.b=new vqb;for(b=0;b<100;b++){c=new l2b((jqc(),iqc));eqc(eZb(c));d=new t7b(a,c);e5b(d._,(0.5-Pkb())*1000);f5b(d._,(0.5-Pkb())*1000);T5b(d._,(0.5-Pkb())*1000);ePb(this.H,d);lqb(this.b,d)}VGb(this.G.k,new a3b(15658734),1)};_.ob=function hqc(a){var b,c,d,e;for(b=0;b<100;b++){e=zu(oqb(this.b,b),304);bZb(e.u,this.G.k)}for(c=0;c<100;c++){e=zu(oqb(this.b,c),304);d=new l2b((jqc(),iqc));eqc(eZb(d));e.u=d}JGb(this.G.k,this.H,this.a,null,false)};var iqc;fU(1203,1,{},nqc);_.Od=function oqc(){return wqc(),lqc};_.Pd=function pqc(){return xqc(),mqc};var lqc,mqc;fU(1204,1,{},rqc);_.nc=function sqc(){return 'void main() {\n\n\tif ( mod ( gl_FragCoord.x, 4.0001 ) < 1.0 || mod ( gl_FragCoord.y, 4.0001 ) < 1.0 )\n\n\t\tgl_FragColor = vec4( [*], 1.0 );\n\n\telse\n\n\t\tgl_FragColor = vec4( 1.0 );\n\n}'};fU(1205,1,{},uqc);_.nc=function vqc(){return 'void main() {\n\n\tvec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );\n\tgl_Position = projectionMatrix * mvPosition;\n\n}'};var LN=wjb(uTc,'MiscMemoryTestShaders$DemoScene',1202),ON=wjb(uTc,'MiscMemoryTestShaders_Resources_default_InlineClientBundleGenerator',1203),MN=wjb(uTc,'MiscMemoryTestShaders_Resources_default_InlineClientBundleGenerator$1',1204),NN=wjb(uTc,'MiscMemoryTestShaders_Resources_default_InlineClientBundleGenerator$2',1205);DOc(xi)(47);
