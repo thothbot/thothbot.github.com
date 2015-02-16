@@ -1,0 +1,11 @@
+function Gnc(){}
+function Knc(){}
+function Nnc(){}
+function THb(a,b){a.e=b}
+function ync(){J9b.call(this)}
+function Cnc(){Cnc=hKc;Bnc=new Gnc}
+function Pnc(){Pnc=hKc;Enc=new Knc}
+function Qnc(){Qnc=hKc;Fnc=new Nnc}
+function pIb(a,b){!a.a&&(a.a=new WRb);a.a.od(zPc,b)}
+function xnc(a){var b,c;c=new Dqb;for(b=0;b<a.i.Qc();b++){su(a.i.Ic(b),241);sqb(c,b,new _qb(iu(XS,JLc,299,[new d6b(1,0,0),new d6b(0,1,0),new d6b(0,0,1)])))}return c}
+bU(1176,1,SLc);_.zb=function vnc(){j9b(this.b,new ync(this.a))};bU(1177,974,{},ync);_.nb=function znc(){var a,b,c,d,e,f,g,i;this.a=new pQb(40,FGb(this.G.k),1,2000);_5b(this.a._,800);c=new ZVb(150,150,150);d=new ZVb(150,150,150);e=new t_b;e.i=true;this.b=new B7b(c,e);m5b(this.b._,-150);mPb(this.H,this.b);b=new UHb((jIb(),hIb),xnc(d));THb(b,(_Hb(),ZHb));g=new t2b((Cnc(),Bnc));pIb(mZb(g),b);this.d=new B7b(d,g);m5b(this.d._,150);mPb(this.H,this.d);i=new OWb(75,32,16);a=new UHb(hIb,xnc(i));THb(a,ZHb);f=new t2b(Bnc);pIb(mZb(f),a);this.c=new B7b(i,f);m5b(this.c._,-150);mPb(this.H,this.c)};_.ob=function Anc(a){n3b(this.b.cb,0.005);o3b(this.b.cb,0.01);n3b(this.d.cb,0.005);o3b(this.d.cb,0.01);if(this.c){n3b(this.c.cb,0.005);o3b(this.c.cb,0.01)}RGb(this.G.k,this.H,this.a,null,false)};var Bnc;bU(1178,1,{},Gnc);_.Od=function Hnc(){return Pnc(),Enc};_.Pd=function Inc(){return Qnc(),Fnc};var Enc,Fnc;bU(1179,1,{},Knc);_.nc=function Lnc(){return '#extension GL_OES_standard_derivatives : enable\n\nvarying vec3 vCenter;\n\nfloat edgeFactorTri() {\n\n\tvec3 d = fwidth( vCenter.xyz );\n\tvec3 a3 = smoothstep( vec3( 0.0 ), d * 1.5, vCenter.xyz );\n\treturn min( min( a3.x, a3.y ), a3.z );\n\n}\n\nvoid main() {\n\n\tgl_FragColor.rgb = mix( vec3( 1.0 ), vec3( 0.2 ), edgeFactorTri() );\n\tgl_FragColor.a = 1.0;\n}\n'};bU(1180,1,{},Nnc);_.nc=function Onc(){return 'attribute vec3 center;\nvarying vec3 vCenter;\n\nvoid main() {\n\n\tvCenter = center;\n\tgl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n\n}\n'};var fN=Djb(KQc,'MaterialsWireframe$DemoScene',1177),iN=Djb(KQc,'MaterialsWireframe_Resources_default_InlineClientBundleGenerator',1178),gN=Djb(KQc,'MaterialsWireframe_Resources_default_InlineClientBundleGenerator$1',1179),hN=Djb(KQc,'MaterialsWireframe_Resources_default_InlineClientBundleGenerator$2',1180);eMc(xi)(19);
