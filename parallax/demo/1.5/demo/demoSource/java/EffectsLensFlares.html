@@ -100,7 +100,7 @@ class DemoScene extends DemoAnimatedScene
       light.getColor().setHSL( h, s, l );
       light.getPosition().set( x, y, z );
       getScene().add( light );
-
+      
       Color flareColor = new Color( 0xffffff );
       flareColor.setHSL( h, s, l + 0.5 );
       
@@ -148,6 +148,7 @@ class DemoScene extends DemoAnimatedScene
    {
       controls.update( (Duration.currentTimeMillis() - this.oldTime) * 0.001 );
       this.oldTime = Duration.currentTimeMillis();
+      
       getRenderer().render(getScene(), camera);
    }
 }
