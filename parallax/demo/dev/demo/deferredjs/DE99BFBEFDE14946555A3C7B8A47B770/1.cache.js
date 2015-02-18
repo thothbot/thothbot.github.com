@@ -1,0 +1,2 @@
+mU(1061,1,YLc);_.Db=function Tfc(){o9b(this.c,new Vfc(this.b))};function Vfc(){O9b.call(this)}
+mU(1062,967,{},Vfc);_.ob=function Wfc(){var a,b;this.b=new uQb(70,KGb(this.H.n),1,1000);e6b(this.b.ab,400);a=new cWb(200,200,200);b=new y_b;v_b(b,new WNb(jRc));this.c=new G7b(a,b);rPb(this.I,this.c)};_.pb=function Xfc(a){s3b(this.c.db,0.005);t3b(this.c.db,0.01);WGb(this.H.n,this.I,this.b,null,false)};var tL=Ijb(TQc,'GeometryCube$DemoScene',1062);kMc(Hi)(1);
