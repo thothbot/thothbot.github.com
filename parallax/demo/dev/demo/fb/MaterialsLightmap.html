@@ -28,9 +28,9 @@
 		js.src = "//connect.facebook.net/en_US/sdk.js";
 		fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
-	<h1>Lightmap</h1>
+	<div style='visibility: hidden;'><h1>Lightmap</h1>
 	<img src="{{image}}"/>
-	<p>{{description}}</p>
-	<script>window.location.replace("{{ url }}");</script>
+	<p>{{description}}</p></div>
+	<script>window.location.replace("{{ url }}#!MaterialsLightmap");</script>
 </body>
 </html>
