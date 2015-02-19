@@ -1,7 +1,8 @@
 ---
 ---
-{% assign description = '' %}
-{% capture image %}http://{{ site.host }}{{ page.url | remove: '/demo/fb/Saturn.html'}}/static/thumbs/Saturn.jpg{% endcapture %}
+{% assign description = 'Design and development by Dejan Ristic (dejanristic85@gmail.com)Music by Silver Screen - Solar Winds (https://www.youtube.com/watch?v=sSAk4T6IaDs)' %}
+{% capture url %}http://{{ site.host }}{{ page.url | remove: '/demo/fb/Saturn.html'}}{% endcapture %}
+{% capture image %}{{ url }}/static/thumbs/Saturn.jpg{% endcapture %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -10,11 +11,11 @@
 	<meta property="og:type" content="website">
 	<meta property="fb:app_id" content="1606041236283596">
 	<meta property="og:site_name" content="Parallax 3D library">
-	<meta property="og:title" content="Parallax 3D library: ">
+	<meta property="og:title" content="Parallax 3D library: Saturn">
 	<meta property="og:description" content="{{description}}">
 	<meta property="og:image" content="{{image}}">
 	<meta property="og:url" content="http://{{ site.host }}{{ page.url }}">
-	<title>Parallax 3D library: </title>
+	<title>Parallax 3D library: Saturn</title>
 </head>
 <body>
 	<div id="fb-root"></div>
@@ -27,8 +28,9 @@
 		js.src = "//connect.facebook.net/en_US/sdk.js";
 		fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
-	<h1></h1>
+	<h1>Saturn</h1>
 	<img src="{{image}}"/>
 	<p>{{description}}</p>
+	<script>window.location.replace("{{ url }}");</script>
 </body>
 </html>

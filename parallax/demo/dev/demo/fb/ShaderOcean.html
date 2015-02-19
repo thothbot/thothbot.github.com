@@ -1,7 +1,8 @@
 ---
 ---
 {% assign description = 'This example based on the three.js example.' %}
-{% capture image %}http://{{ site.host }}{{ page.url | remove: '/demo/fb/ShaderOcean.html'}}/static/thumbs/ShaderOcean.jpg{% endcapture %}
+{% capture url %}http://{{ site.host }}{{ page.url | remove: '/demo/fb/ShaderOcean.html'}}{% endcapture %}
+{% capture image %}{{ url }}/static/thumbs/ShaderOcean.jpg{% endcapture %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -30,5 +31,6 @@
 	<h1>Ocean shader</h1>
 	<img src="{{image}}"/>
 	<p>{{description}}</p>
+	<script>window.location.replace("{{ url }}");</script>
 </body>
 </html>
