@@ -1,6 +1,8 @@
 ---
 ---
-{% assign description = 'Drag mouse to move. This example based on the three.js example.' %}{% assign image = 'http://{{ site.host }}{{ page.url | remove: '/demo/fb/LinesSphere.html'}}/static/thumbs/LinesSphere.jpg' %}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% assign description = 'Drag mouse to move. This example based on the three.js example.' %}
+{% capture image%}http://{{ site.host }}{{ page.url | remove: '/demo/fb/LinesSphere.html'}}/static/thumbs/LinesSphere.jpg
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -16,12 +18,17 @@
 </head>
 <body>
 	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
+	<script>
+ 		window.fbAsyncInit = function() { FB.init({ appId : '1606041236283596', xfbml : true, version : 'v2.2'}); };
+		(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) return;
 		js = d.createElement(s); js.id = id;
 		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
 		fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
-	<img src="{{image}}"/>	<h1>Spheres in lines<h1/>	<p>{{description}}<p/></body>
+	<h1>Spheres in lines</h1>
+	<img src="{{image}}"/>
+	<p>{{description}}</p>
+</body>
 </html>
