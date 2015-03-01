@@ -73,7 +73,7 @@ class DemoScene extends DemoAnimatedScene
       Vector3 vector = new Vector3( mouseDeltaX, mouseDeltaY, 1 );
       raycaster.set( camera.getPosition(), vector.sub( camera.getPosition() ).normalize() );
       
-      List&lt;Raycaster.Intersect&gt; intersects = raycaster.intersectObjects( getScene().getChildren() );
+      List&lt;Raycaster.Intersect&gt; intersects = raycaster.intersectObjects( getScene().getChildren(), false );
 
       if ( intersects.size() &gt; 0 ) 
       {
