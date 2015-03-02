@@ -1,2 +1,0 @@
-kW(1084,1,xOc);_.Qb=function Thc(){obc(this.c,new Vhc(this.b))};function Vhc(){Obc.call(this)}
-kW(1085,990,{},Vhc);_.ob=function Whc(){var a,b;this.b=new PRb(70,UGb(this.H.n),1,1000);r8b(this.b.ab,400);a=new zXb(200,200,200);b=new F1b;C1b(b,new oPb(RTc));this.c=new MZb(a,b);LQb(this.I,this.c)};_.pb=function Xhc(a){F5b(this.c.db,0.005);G5b(this.c.db,0.01);qIb(this.H.n,this.I,this.b,null,false)};var kN=Hkb(yTc,'GeometryCube$DemoScene',1085);LOc(Pj)(1);
