@@ -1,0 +1,66 @@
+<pre><code class='hljs java'>
+/*
+ * Prepare Rendering Scene
+ */
+class DemoScene extends DemoAnimatedScene 
+{
+   PerspectiveCamera camera;
+   
+   public int mouseX;
+   public int mouseY;
+
+   @Override
+   protected void onStart()
+   {
+      camera = new PerspectiveCamera(
+            60, // fov
+            getRenderer().getAbsoluteAspectRation(), // aspect 
+            1, // near
+            10000 // far 
+      ); 
+      
+      camera.getPosition().set(100000, 0, 3200 );
+
+      int[] colors = {0x000000, 0xff0080, 0x8000ff, 0xffffff};
+      Geometry geometry = new Geometry();
+
+      for ( int i = 0; i &lt; 2000; i ++ ) 
+      {
+         Vector3 vertex = new Vector3();
+         vertex.setX(Math.random() * 4000.0 - 2000.0);
+         vertex.setY(Math.random() * 4000.0 - 2000.0);
+         vertex.setZ(Math.random() * 4000.0 - 2000.0);
+         geometry.getVertices().add( vertex );
+
+         geometry.getColors().add( new Color( colors[ (int) Math.floor( Math.random() * colors.length ) ] ) );
+
+      }
+
+      PointCloudMaterial material = new PointCloudMaterial();
+      material.setSize( 1.0 );
+      material.setVertexColors(  Material.COLORS.VERTEX );
+      material.setDepthTest( false );
+      material.setOpacity( 0.5 );
+      material.setSizeAttenuation(false);
+      material.setTransparent(true);
+
+      PointCloud mesh = new PointCloud( geometry, material );
+      getScene().add( mesh );
+
+      getRenderer().setSortObjects(false);
+      getRenderer().setAutoClear(false);
+   }
+   
+   @Override
+   protected void onUpdate(double duration)
+   {
+      camera.getPosition().addX( ( mouseX - camera.getPosition().getX() ) * .05 );
+      camera.getPosition().addY( ( - mouseY - camera.getPosition().getY() ) * .05 );
+
+      camera.lookAt( getScene().getPosition() );
+      getRenderer().render(getScene(), camera);
+   }
+}
+
+
+</code></pre>

@@ -1,0 +1,43 @@
+<pre><code class='hljs java'>
+/*
+ * Prepare Rendering Scene
+ */
+class DemoScene extends DemoAnimatedScene 
+{
+   private static final String texture = "./static/textures/crate.gif";
+   PerspectiveCamera camera;
+   
+   private Mesh mesh;
+
+   @Override
+   protected void onStart()
+   {
+      camera = new PerspectiveCamera(
+            70, // fov
+            getRenderer().getAbsoluteAspectRation(), // aspect 
+            1, // near
+            1000 // far 
+      );
+      camera.getPosition().setZ(400);
+
+      BoxGeometry geometry = new BoxGeometry( 200, 200, 200 );
+
+      MeshBasicMaterial material = new MeshBasicMaterial();
+      material.setMap( new Texture(texture) );
+
+      this.mesh = new Mesh(geometry, material);
+      getScene().add(mesh);         
+   }
+   
+   @Override
+   protected void onUpdate(double duration)
+   {
+      this.mesh.getRotation().addX(0.005);
+      this.mesh.getRotation().addY(0.01);
+
+      getRenderer().render(getScene(), camera);
+   }
+}
+
+
+</code></pre>
