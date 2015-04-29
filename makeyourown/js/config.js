@@ -3,6 +3,20 @@ var config, formPost;
 formPost = "post_test.php";
 
 config = {
+  p0: {
+    title: "Тестировщик шрифтов",
+    id: "p0",
+    size: 18,
+    sizeDiamond: 11,
+    menuIcon: "css/icons/product1.png",
+    model: Testing,
+    defaultFont: "",
+    fonts: [],
+    height: "420px",
+    price: function(obj) {
+      return 5000;
+    }
+  },
   p1: {
     title: "Diamond Ring",
     id: "p1",
@@ -84,6 +98,20 @@ config = {
     menuIcon: "css/icons/product7.png",
     defaultFont: "calligraph",
     model: RawRound,
+    maxTextLength: 15,
+    size: 18,
+    height: "280px",
+    price: function() {
+      return 0;
+    },
+    fonts: ["calligraph", "Damion", "Harlow", "Molle", "Norican", "Script", "Segoe", "icomoon", "Yellowtail", "nickainley", "veryberry", "goodvibes"]
+  },
+  p7: {
+    title: "Cufflink",
+    id: "p7",
+    menuIcon: "css/icons/product8.png",
+    defaultFont: "calligraph",
+    model: Cufflink,
     maxTextLength: 15,
     size: 18,
     height: "280px",
