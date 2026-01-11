@@ -33,7 +33,7 @@ export const HelixParticleShader = {
     in float vBrightness;
     in float vDepth;
 
-    out vec4 fragColor;
+    layout(location = 0) out vec4 fragColor;
 
     void main() {
       vec2 center = gl_PointCoord - 0.5;
@@ -85,7 +85,7 @@ export const RungParticleShader = {
     in float vBrightness;
     in float vDepth;
 
-    out vec4 fragColor;
+    layout(location = 0) out vec4 fragColor;
 
     void main() {
       vec2 center = gl_PointCoord - 0.5;
@@ -132,7 +132,7 @@ export const StreakShader = {
     in float vAlpha;
     in float vLength;
 
-    out vec4 fragColor;
+    layout(location = 0) out vec4 fragColor;
 
     void main() {
       vec2 uv = gl_PointCoord - 0.5;
@@ -178,7 +178,7 @@ export const BokehShader = {
     in float vAlpha;
     in float vSize;
 
-    out vec4 fragColor;
+    layout(location = 0) out vec4 fragColor;
 
     void main() {
       vec2 center = gl_PointCoord - 0.5;
@@ -236,7 +236,7 @@ export const BasePairShader = {
     in float vBrightness;
     in float vDepth;
 
-    out vec4 fragColor;
+    layout(location = 0) out vec4 fragColor;
 
     void main() {
       vec2 center = gl_PointCoord - 0.5;
@@ -286,8 +286,6 @@ export const FilmGrainShader = {
 
     in vec2 vUv;
 
-    out vec4 fragColor;
-
     float random(vec2 co) {
       return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
     }
@@ -310,7 +308,7 @@ export const FilmGrainShader = {
 
       result = pow(result, vec3(0.95));
 
-      fragColor = vec4(result, color.a);
+      pc_fragColor = vec4(result, color.a);
     }
   `,
 };
