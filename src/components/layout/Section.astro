@@ -12,7 +12,7 @@ const { id, class: className = '', fullHeight = true } = Astro.props;
   id={id}
   class:list={[
     'relative w-full snap-start snap-always overflow-hidden',
-    fullHeight ? 'h-screen' : '',
+    fullHeight ? 'h-screen-safe' : '',
     className
   ]}
   data-section={id}

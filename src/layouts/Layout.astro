@@ -10,7 +10,7 @@ const { title } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Software Architect specializing in AI systems and distributed computing" />
     <meta name="author" content="thothbot" />
     <meta name="keywords" content="Software Architect, AI Systems, LLM, RAG, LangGraph, Berlin, Germany" />
@@ -33,7 +33,7 @@ const { title } = Astro.props;
   </head>
   <body class="bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white">
     <div class="fixed inset-0 bg-[radial-gradient(ellipse_at_top,rgba(100,100,255,0.1),transparent_50%)] pointer-events-none"></div>
-    <div id="scroll-container" class="h-screen overflow-y-scroll scroll-smooth snap-y snap-mandatory">
+    <div id="scroll-container" class="h-screen-safe overflow-y-scroll scroll-smooth snap-y snap-mandatory pb-safe">
       <slot />
     </div>
   </body>
