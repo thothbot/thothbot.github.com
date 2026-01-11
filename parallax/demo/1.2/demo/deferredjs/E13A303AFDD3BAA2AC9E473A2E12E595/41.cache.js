@@ -1,2 +1,0 @@
-function Fbc(){}
-_=Fbc.prototype=new Kb;_.gC=function Gbc(){return MH};_.sb=function Hbc(a){GTb(this.b,a)};_.tb=function Ibc(){HTb(this.b,null.ff())};_.cM={6:1};_.b=null;var MH=p4(Ylc,'TerrainDynamic$1');sic(ge)(41);

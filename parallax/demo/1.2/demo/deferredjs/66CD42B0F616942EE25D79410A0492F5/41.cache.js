@@ -1,2 +1,0 @@
-var FLc='TerrainDynamic$1';function Qcc(){}
-_=Qcc.prototype=new Kb;_.gC=function Rcc(){return BH};_.ob=function Scc(a){QUb(this.a,a)};_.pb=function Tcc(){RUb(this.a,null.ff())};_.cM={6:1};_.a=null;var BH=z5(nFc,FLc);rkc(Vd)(41);

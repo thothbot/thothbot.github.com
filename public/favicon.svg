@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="8" fill="#0f0f17"/>
+  <!-- A letter - geometric style -->
+  <path d="M5 22 L9.5 10 L14 22" stroke="#8b5cf6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M6.5 18 L12.5 18" stroke="#8b5cf6" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- U letter - rounded style -->
+  <path d="M18 10 L18 18 C18 22 20 22 22.5 22 C25 22 27 22 27 18 L27 10" stroke="#8b5cf6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

@@ -1,0 +1,118 @@
+---
+import Section from '../layout/Section.astro';
+import CTAButton from '../ui/CTAButton.astro';
+---
+
+<Section id="parallax" class="flex flex-col">
+  <div id="parallax-canvas" class="absolute inset-0 z-0"></div>
+
+  <div class="absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-transparent to-black/60 pointer-events-none"></div>
+
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-12 md:pt-16 lg:pt-20 text-center">
+    <span class="text-sm text-white/50 uppercase tracking-wider mb-4 block">Open Source Project</span>
+    <img src="/assets/images/parallax-logo.png" alt="Parallax" class="h-12 mx-auto mb-4" />
+    <p class="text-xl text-white/70">
+      3D Graphics Library for Google Web Toolkit
+    </p>
+  </div>
+
+  <div class="relative z-10 flex-1"></div>
+
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pb-8">
+    <div class="grid lg:grid-cols-2 gap-x-16 gap-y-8">
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-2xl font-bold text-white mb-3">The Challenge</h3>
+          <p class="text-white/70 leading-relaxed">
+<span class="gradient-text font-medium">GWT</span> <span class="text-white/70">(Google Web Toolkit)</span> pure Java 3D library based on <a href="https://github.com/mrdoob/three.js" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors" target="_blank" rel="noopener">three.js</a> with similar API for backwards compatibility. Familiar patterns for JavaScript developers, type-safe code for Java teams.
+          </p>
+        </div>
+
+        <div class="border-l-2 border-white/20 pl-6">
+          <h3 class="text-2xl font-bold text-white mb-3">Get Started</h3>
+          <p class="text-white/70 leading-relaxed">
+<span class="gradient-text font-medium">Explore</span> self-documented <a href="/parallax/demo/1.6/" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors">examples</a> with <a href="/parallax/docs/1.6/" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors">API reference</a>. Read the <a href="https://github.com/thothbot/parallax/wiki" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors" target="_blank" rel="noopener">Wiki</a> or contribute on <a href="https://github.com/thothbot/parallax" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors" target="_blank" rel="noopener">GitHub</a>.
+          </p>
+        </div>
+
+        <div class="border-l-2 border-white/20 pl-6">
+          <h3 class="text-2xl font-bold text-white mb-3">Technology</h3>
+          <p class="text-white/70 leading-relaxed">
+<span class="gradient-text font-medium">WebGL renderer</span> derived from <a href="https://www.khronos.org/registry/webgl/specs/latest/" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors" target="_blank" rel="noopener">OpenGL® ES 2.0</a>. Compatible with <a href="https://www.gwtproject.org/" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors" target="_blank" rel="noopener">GWT</a> 2.6+, Chrome, Firefox, Safari, Opera.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex flex-col justify-end lg:items-end">
+        <div class="flex flex-wrap gap-2 mt-4 lg:mt-0">
+          <CTAButton href="/parallax/demo/1.6/" variant="secondary">
+            Demos
+          </CTAButton>
+          <CTAButton href="/parallax/docs/1.6/" variant="secondary">
+            API Docs
+          </CTAButton>
+          <CTAButton href="https://github.com/thothbot/parallax/wiki" variant="secondary" external>
+            Wiki
+          </CTAButton>
+          <CTAButton href="https://github.com/thothbot/parallax/wiki/Download" variant="secondary" external>
+            Download
+          </CTAButton>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden md:grid grid-cols-3 gap-4 mt-8">
+      <div class="feature-card flex gap-4 p-4 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
+        <div class="w-10 h-10 shrink-0 flex items-center justify-center">
+          <svg class="w-8 h-8 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-white font-medium mb-1">Objects & Geometry</h4>
+          <p class="text-white/70 text-sm">
+            Meshes, particles, sprites, lines, ribbons, bones. Built-in geometries: plane, cube, sphere, parametric.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-card flex gap-4 p-4 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
+        <div class="w-10 h-10 shrink-0 flex items-center justify-center">
+          <svg class="w-8 h-8 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            <path d="M2 12h20"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-white font-medium mb-1">Materials & Shaders</h4>
+          <p class="text-white/70 text-sm">
+            Lambert, Phong materials with textures. Lens flare, post-processing plugins. Custom GLSL shaders.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-card flex gap-4 p-4 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
+        <div class="w-10 h-10 shrink-0 flex items-center justify-center">
+          <svg class="w-8 h-8 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-white font-medium mb-1">Lights & Cameras</h4>
+          <p class="text-white/70 text-sm">
+            Ambient, directional, point, spot, hemisphere lights with shadows. Perspective and orthographic cameras.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative z-10 w-full text-center pb-6">
+    <p class="text-white/40 text-xs">
+MIT License · 2012
+    </p>
+  </div>
+</Section>

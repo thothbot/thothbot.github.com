@@ -1,2 +1,0 @@
-function sbc(){}
-_=sbc.prototype=new Jb;_.gC=function tbc(){return QE};_.ub=function ubc(a){T7b(this.a,a)};_.vb=function vbc(){U7b(this.a,null.Ig())};_.cM={6:1};_.a=null;var QE=Dfb(mPc,'ClothSimulation$1',Xx);OLc(Wd)(3);

@@ -1,0 +1,22 @@
+---
+interface Props {
+  class?: string;
+  size?: 'hero' | 'footer';
+}
+
+const { class: className, size = 'hero' } = Astro.props;
+
+const svgContent = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 230 40'><text x='0' y='32' fill='white' font-family='ui-sans-serif, system-ui, sans-serif' font-size='36' font-weight='700'>Alex Usachev</text></svg>`;
+const dataUri = `data:image/svg+xml,${encodeURIComponent(svgContent)}`;
+
+const sizeClasses = {
+  hero: 'w-[260px] h-[48px] md:w-[380px] md:h-[70px]',
+  footer: 'w-[220px] h-[40px] md:w-[280px] md:h-[50px]',
+};
+---
+
+<span
+  class:list={['inline-block bg-contain bg-no-repeat bg-center', sizeClasses[size], className]}
+  style={`background-image: url("${dataUri}");`}
+  role="img"
+></span>

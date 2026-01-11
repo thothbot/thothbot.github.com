@@ -1,2 +1,0 @@
-function q5b(){}
-_=q5b.prototype=new Kb;_.gC=function r5b(){return _F};_.ob=function s5b(a){dTb(this.a,a)};_.pb=function t5b(){eTb(this.a,null.$e())};_.cM={6:1};_.a=null;var _F=O3(qlc,'MaterialsLightmap$1');Rhc(Vd)(27);

@@ -1,0 +1,210 @@
+---
+import Section from '../layout/Section.astro';
+import TechBadge from '../ui/TechBadge.astro';
+
+type LayerType = 'ai' | 'application' | 'services' | 'data' | 'infrastructure';
+type Proficiency = 'expert' | 'advanced' | 'proficient';
+
+interface Tech {
+  name: string;
+  years?: number;
+  proficiency: Proficiency;
+  projects?: string[];
+}
+
+interface Layer {
+  id: LayerType;
+  title: string;
+  subtitle: string;
+  techs: Tech[];
+}
+
+const layers: Layer[] = [
+  {
+    id: 'ai',
+    title: 'AI & Intelligence',
+    subtitle: 'Building intelligent systems',
+    techs: [
+      { name: 'LangGraph', years: 2, proficiency: 'expert', projects: ['Research Agents', 'Document AI'] },
+      { name: 'RAG', years: 2, proficiency: 'expert', projects: ['Knowledge Base', 'Search'] },
+      { name: 'Vector Search', years: 2, proficiency: 'advanced', projects: ['Semantic Search'] },
+      { name: 'Prompt Engineering', years: 3, proficiency: 'expert' },
+    ],
+  },
+  {
+    id: 'application',
+    title: 'Application Layer',
+    subtitle: 'User-facing experiences',
+    techs: [
+      { name: 'React', years: 9, proficiency: 'expert', projects: ['Orbes', 'Enterprise Apps'] },
+      { name: 'TypeScript', years: 7, proficiency: 'expert', projects: ['All Projects'] },
+      { name: 'Three.js', years: 12, proficiency: 'expert', projects: ['Parallax', 'WebGL'] },
+      { name: 'Astro', years: 2, proficiency: 'advanced', projects: ['This Site'] },
+      { name: 'GSAP', years: 8, proficiency: 'expert', projects: ['Animations'] },
+    ],
+  },
+  {
+    id: 'services',
+    title: 'Services Layer',
+    subtitle: 'Backend & APIs',
+    techs: [
+      { name: 'Python', years: 10, proficiency: 'expert', projects: ['AI Pipelines', 'APIs'] },
+      { name: 'FastAPI', years: 4, proficiency: 'expert', projects: ['Research API', 'Orbes'] },
+      { name: 'Java', years: 15, proficiency: 'expert', projects: ['Enterprise', 'Parallax'] },
+      { name: 'Spring', years: 12, proficiency: 'expert', projects: ['Microservices'] },
+      { name: 'Node.js', years: 10, proficiency: 'advanced', projects: ['APIs', 'Tools'] },
+    ],
+  },
+  {
+    id: 'data',
+    title: 'Data Layer',
+    subtitle: 'Storage & retrieval',
+    techs: [
+      { name: 'PostgreSQL', years: 12, proficiency: 'expert', projects: ['All Projects'] },
+      { name: 'pgvector', years: 2, proficiency: 'advanced', projects: ['Vector DB'] },
+      { name: 'Redis', years: 8, proficiency: 'advanced', projects: ['Caching', 'Sessions'] },
+      { name: 'Neo4j', years: 3, proficiency: 'advanced', projects: ['Graph Analytics'] },
+      { name: 'Elasticsearch', years: 6, proficiency: 'advanced', projects: ['Search', 'Logs'] },
+    ],
+  },
+  {
+    id: 'infrastructure',
+    title: 'Infrastructure',
+    subtitle: 'Cloud & DevOps',
+    techs: [
+      { name: 'AWS', years: 10, proficiency: 'expert', projects: ['All Cloud'] },
+      { name: 'Kubernetes', years: 6, proficiency: 'advanced', projects: ['Orchestration'] },
+      { name: 'Docker', years: 8, proficiency: 'expert', projects: ['Containers'] },
+      { name: 'Terraform', years: 5, proficiency: 'advanced', projects: ['IaC'] },
+      { name: 'GitLab CI', years: 6, proficiency: 'advanced', projects: ['CI/CD'] },
+    ],
+  },
+];
+
+const layerGradients = {
+  ai: 'from-violet-500/10 to-transparent',
+  application: 'from-cyan-500/10 to-transparent',
+  services: 'from-blue-500/10 to-transparent',
+  data: 'from-emerald-500/10 to-transparent',
+  infrastructure: 'from-orange-500/10 to-transparent',
+};
+
+const layerBorders = {
+  ai: 'border-l-violet-500/50',
+  application: 'border-l-cyan-500/50',
+  services: 'border-l-blue-500/50',
+  data: 'border-l-emerald-500/50',
+  infrastructure: 'border-l-orange-500/50',
+};
+---
+
+<Section id="stack" class="flex items-center">
+  <div class="w-full max-w-5xl mx-auto px-4 sm:px-6 py-12">
+    <div class="text-center mb-10">
+      <span class="text-sm text-white/50 uppercase tracking-wider mb-4 block">Architecture Overview</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Tech Stack</h2>
+      <p class="text-xl text-white/60 max-w-2xl mx-auto">
+        Full-stack architecture from AI to infrastructure
+      </p>
+    </div>
+
+    <div class="tech-layers relative">
+      <div class="connection-line absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500/50 via-blue-500/50 to-orange-500/50 hidden md:block"></div>
+
+      <div class="space-y-3">
+        {layers.map((layer, index) => (
+          <div
+            class:list={[
+              'tech-layer relative pl-0 md:pl-16',
+              'opacity-0 translate-y-4',
+            ]}
+            style={`animation-delay: ${index * 100}ms`}
+            data-layer={layer.id}
+          >
+            <div class="layer-dot absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-current hidden md:flex items-center justify-center"
+                 style={`color: var(--layer-color-${layer.id})`}>
+              <span class="w-2 h-2 rounded-full bg-slate-900"></span>
+            </div>
+
+            <div
+              class:list={[
+                'liquid-glass rounded-2xl p-4 border-l-4',
+                layerBorders[layer.id],
+              ]}
+            >
+              <div class={`absolute inset-0 rounded-2xl bg-gradient-to-r ${layerGradients[layer.id]} pointer-events-none`}></div>
+
+              <div class="relative">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-3">
+                  <h3 class="text-lg font-semibold text-white">{layer.title}</h3>
+                  <span class="text-sm text-white/40">{layer.subtitle}</span>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5">
+                  {layer.techs.map((tech) => (
+                    <TechBadge
+                      name={tech.name}
+                      years={tech.years}
+                      proficiency={tech.proficiency}
+                      projects={tech.projects}
+                      layer={layer.id}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <span class="text-white/50">Presentation: </span>
+      <a href="/presentation/" class="text-white hover:text-white/80 underline underline-offset-4">
+        AI-Assisted Development
+      </a>
+    </div>
+  </div>
+</Section>
+
+<style>
+  :root {
+    --layer-color-ai: #8b5cf6;
+    --layer-color-application: #06b6d4;
+    --layer-color-services: #3b82f6;
+    --layer-color-data: #10b981;
+    --layer-color-infrastructure: #f97316;
+  }
+
+  .layer-dot {
+    box-shadow: 0 0 12px currentColor;
+  }
+
+  .tech-layer {
+    animation: layerFadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes layerFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .connection-line {
+    animation: lineGrow 1s ease-out 0.3s forwards;
+    transform-origin: top;
+    transform: scaleY(0);
+  }
+
+  @keyframes lineGrow {
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  .tech-layer:hover .layer-dot {
+    transform: translateY(-50%) scale(1.2);
+    transition: transform 0.3s ease;
+  }
+</style>

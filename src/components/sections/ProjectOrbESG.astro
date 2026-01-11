@@ -1,0 +1,101 @@
+---
+import Section from '../layout/Section.astro';
+---
+
+<Section id="orbesg" class="flex flex-col">
+  <div id="orbesg-canvas" class="absolute inset-0 z-0 opacity-50 md:opacity-100 md:translate-x-1/4"></div>
+
+  <div class="absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-transparent to-black/60 pointer-events-none"></div>
+
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-12 md:pt-16 lg:pt-20 text-center">
+    <span class="text-sm text-white/50 uppercase tracking-wider mb-4 block">Featured Project</span>
+    <img src="/assets/images/orbesg-logo.svg" alt="OrbESG" class="h-10 mx-auto mb-4" />
+    <p class="text-xl text-white/70">
+      Streamline Your ESG Reporting with AI
+    </p>
+  </div>
+
+  <div class="relative z-10 flex-1"></div>
+
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pb-8">
+    <div class="max-w-xl space-y-8">
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-2xl font-bold text-white mb-3">The Challenge</h3>
+          <p class="text-white/70 leading-relaxed">
+            <span class="gradient-text font-medium">ESG</span> <span class="text-white/70">(Environmental, Social, and Governance)</span> decisions about locations — investments, expansions, supply chain choices — require weeks of environmental research and expert consultations to assess climate and ecological risks.
+          </p>
+        </div>
+
+        <div class="border-l-2 border-white/20 pl-6">
+          <h3 class="text-2xl font-bold text-white mb-3">Our Solution</h3>
+          <p class="text-white/70 leading-relaxed">
+            <span class="gradient-text font-medium">AI-powered</span> sustainability intelligence in minutes, not months. Enter a location, receive comprehensive environmental assessment with actionable insights.
+          </p>
+        </div>
+
+        <div class="border-l-2 border-white/20 pl-6">
+          <h3 class="text-2xl font-bold text-white mb-3">Technology</h3>
+          <p class="text-white/70 leading-relaxed">
+            <span class="gradient-text font-medium">ML pipelines</span> process multi-spectral satellite imagery, geospatial databases, and climate models to generate risk scores and trend forecasts.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hidden md:grid grid-cols-3 gap-4 mt-8">
+      <div class="feature-card flex gap-4 p-4 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
+        <div class="w-10 h-10 shrink-0 flex items-center justify-center">
+          <svg class="w-8 h-8 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+            <path d="M12 6v6l4 2"/>
+            <circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-white font-medium mb-1">Global Coverage</h4>
+          <p class="text-white/70 text-sm">
+            Any address, city, or region worldwide. Industrial sites, corporate campuses, supply chain facilities — all accessible instantly.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-card flex gap-4 p-4 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
+        <div class="w-10 h-10 shrink-0 flex items-center justify-center">
+          <svg class="w-8 h-8 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-white font-medium mb-1">Satellite Data Processing</h4>
+          <p class="text-white/70 text-sm">
+            Continuous monitoring via orbital sensors. Land use changes, vegetation indices, and atmospheric conditions analyzed automatically.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-card flex gap-4 p-4 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
+        <div class="w-10 h-10 shrink-0 flex items-center justify-center">
+          <svg class="w-8 h-8 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-white font-medium mb-1">PDF Export & Forecasts</h4>
+          <p class="text-white/70 text-sm">
+            Professional documents with interactive charts, maps, and future predictions. Ready for stakeholders and regulatory submissions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative z-10 w-full text-center pb-6">
+    <p class="text-white/40 text-xs">
+      SaaS Platform · 2025
+    </p>
+  </div>
+</Section>

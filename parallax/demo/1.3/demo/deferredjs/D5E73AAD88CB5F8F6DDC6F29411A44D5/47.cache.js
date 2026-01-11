@@ -1,2 +1,0 @@
-var zed='PostprocessingGodrays$2';function Cuc(){}
-_=Cuc.prototype=new Jb;_.gC=function Duc(){return GI};_.ub=function Euc(a){n9b(this.a,a)};_.vb=function Fuc(){o9b(this.a,null.Pg())};_.cM={6:1};_.a=null;var GI=Zgb(K7c,zed,ny);fOc(Wd)(47);

@@ -1,3 +1,0 @@
-function Odc(){}
-function Pdc(){j7b.call(this)}
-_=Jdc.prototype;_.wb=function Ndc(){f7b(this.c,new Pdc(this.b))};_=Pdc.prototype=Odc.prototype=new i7b;_.gC=function Qdc(){return gF};_.nb=function Rdc(){var a,b;this.b=new jNb(70,eDb(this.D.o),1,1000);this.b.X.c=400;a=new pXb(200,200,200);b=new E1b;C1b(b,new AKb(LOc));this.c=new b5b(a,b);kMb(this.E,this.c)};_.ob=function Sdc(a){ySb(this.c.$,this.c.$.d+0.005);zSb(this.c.$,this.c.$.e+0.01);jDb(this.D.o,this.E,this.b,null,false)};_.b=null;_.c=null;var gF=Qeb(sOc,'GeometryCube$DemoScene',RD);_Kc(Wd)(12);

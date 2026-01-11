@@ -1,0 +1,60 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Software Architect specializing in AI systems and distributed computing" />
+    <meta name="author" content="thothbot" />
+    <meta name="keywords" content="Software Architect, AI Systems, LLM, RAG, LangGraph, Berlin, Germany" />
+    <link rel="canonical" href="https://thothbot.github.io/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://thothbot.github.io/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="Software Architect building AI systems and cloud platforms. From prototype to millions of users." />
+    <meta property="og:site_name" content="thothbot" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content="Software Architect building AI systems and cloud platforms. From prototype to millions of users." />
+
+    <title>{title}</title>
+  </head>
+  <body class="bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white">
+    <div class="fixed inset-0 bg-[radial-gradient(ellipse_at_top,rgba(100,100,255,0.1),transparent_50%)] pointer-events-none"></div>
+    <div id="scroll-container" class="h-screen overflow-y-scroll scroll-smooth snap-y snap-mandatory">
+      <slot />
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+<script>
+  import { initScrollAnimations, initParallaxEffects, initScrollSnap } from '../scripts/scroll-animations';
+  import { initScenes } from '../scripts/init-scenes';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initScrollAnimations();
+    initParallaxEffects();
+    initScrollSnap();
+    initScenes();
+  });
+</script>

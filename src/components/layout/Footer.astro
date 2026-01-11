@@ -1,0 +1,151 @@
+---
+import Section from './Section.astro';
+import SocialLink from '../ui/SocialLink.astro';
+import NameSvg from '../common/NameSvg.astro';
+
+const socialLinks = [
+  { icon: 'email', href: 'mailto:thothbot@gmail.com', label: 'Email' },
+  { icon: 'github', href: 'https://github.com/thothbot', label: 'GitHub' },
+];
+
+const quotes = [
+  "Ship fast, iterate faster.",
+  "Build things that matter.",
+  "Done is better than perfect.",
+  "Make it work. Make it right. Make it fast.",
+  "Always be shipping.",
+  "Simplicity is the ultimate sophistication.",
+  "Less is more.",
+  "First solve the problem. Then write the code.",
+  "The best code is no code at all.",
+  "Complexity is the enemy of execution.",
+  "Move fast and build things.",
+  "Ideas are cheap. Execution is everything.",
+  "Dream big. Ship bigger.",
+  "Think twice, code once.",
+  "Tomorrow's solutions, built today.",
+  "Turning coffee into code since 2010.",
+  "Works on my machine.",
+];
+
+const timeline = [
+  { year: '2007', label: 'Enterprise Java', description: 'Java, distributed systems' },
+  { year: '2012', label: '3D & WebGL', description: 'Parallax library' },
+  { year: '2014', label: 'Cloud Editors', description: 'Graphic design tools at scale' },
+  { year: '2016', label: 'Trading & ML', description: 'Crypto platform, neural networks' },
+  { year: '2019', label: 'Architecture', description: 'AI/ML infrastructure, GPU clusters' },
+  { year: '2023', label: 'AI Agents', description: 'LLM pipelines, RAG systems' },
+];
+---
+
+<Section id="footer">
+  <div class="relative z-10 h-full flex flex-col justify-between max-w-5xl mx-auto px-4 sm:px-6 pt-12 md:pt-16 lg:pt-20 pb-20">
+
+    <div class="text-center mb-8 md:mb-0">
+      <h2 class="mb-4"><NameSvg size="footer" class="mx-auto" /></h2>
+      <p class="text-xl text-white/60">Software Architect / Tech Lead</p>
+    </div>
+
+    <div class="mb-8 md:mb-0 md:py-8">
+      <p class="text-center text-xs text-white/40 uppercase tracking-wider mb-6 md:mb-8">Journey</p>
+
+      <div class="hidden md:block relative">
+        <div class="absolute top-4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+
+        <div class="grid grid-cols-6 gap-3">
+          {timeline.map((item, index) => (
+            <div class="timeline-item text-center">
+              <div class="w-2 h-2 rounded-full bg-violet-500/70 mx-auto mb-3 relative z-10"></div>
+              <span class="text-violet-400 font-mono text-xs block mb-1">{item.year}</span>
+              <h4 class="text-white font-medium text-sm mb-1">{item.label}</h4>
+              <p class="text-white/40 text-xs leading-relaxed">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="md:hidden flex flex-col-reverse gap-2">
+        {timeline.map((item) => (
+          <div class="timeline-item flex items-center gap-3">
+            <span class="text-violet-400 font-mono text-xs shrink-0 w-10">{item.year}</span>
+            <span class="text-white font-medium text-sm">{item.label}</span>
+            <span class="text-white/40 text-xs truncate">{item.description}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="text-center mb-8 md:mb-0">
+      <div class="max-w-2xl mx-auto space-y-4 text-white/50 text-base leading-relaxed mb-6">
+        <p>
+          I'm a Software Architect and Technical Lead building scalable systems from concept to production. I specialize in designing multi-agent AI architectures, RAG pipelines, and LLM powered platforms.
+        </p>
+        <p>
+          Experienced in leading engineering teams, making technology decisions in fast-moving startup environments, and shipping products used by millions. Strong background in distributed systems, cloud infrastructure (AWS, Kubernetes), and full-stack development.
+        </p>
+      </div>
+
+      <p class="text-white/70 text-lg mb-4">Interested in collaboration? Let's talk.</p>
+
+      <div class="flex justify-center gap-4">
+        {socialLinks.map((link) => (
+          <SocialLink {...link} />
+        ))}
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-6 text-center">
+      <p class="text-white/50 text-sm font-mono tracking-wide mb-1">2010–{new Date().getFullYear()}</p>
+      <p id="random-quote" class="quote-text text-violet-400/70 text-sm italic"></p>
+    </div>
+  </div>
+</Section>
+
+<script define:vars={{ quotes }}>
+  const quoteEl = document.getElementById('random-quote');
+  if (quoteEl) {
+    let currentIndex = Math.floor(Math.random() * quotes.length);
+    quoteEl.textContent = quotes[currentIndex];
+
+    setInterval(() => {
+      quoteEl.style.opacity = '0';
+      quoteEl.style.transform = 'translateX(-10px)';
+
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % quotes.length;
+        quoteEl.textContent = quotes[currentIndex];
+        quoteEl.style.transform = 'translateX(10px)';
+
+        requestAnimationFrame(() => {
+          quoteEl.style.opacity = '1';
+          quoteEl.style.transform = 'translateX(0)';
+        });
+      }, 300);
+    }, 5000);
+  }
+</script>
+
+<style>
+  .timeline-item {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+  .timeline-item:nth-child(2) { animation-delay: 0.15s; }
+  .timeline-item:nth-child(3) { animation-delay: 0.2s; }
+  .timeline-item:nth-child(4) { animation-delay: 0.25s; }
+  .timeline-item:nth-child(5) { animation-delay: 0.3s; }
+  .timeline-item:nth-child(6) { animation-delay: 0.35s; }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  .quote-text {
+    display: inline-block;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+</style>

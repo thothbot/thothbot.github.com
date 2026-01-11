@@ -1,0 +1,390 @@
+---
+import Section from '../layout/Section.astro';
+
+interface Skill {
+  name: string;
+  yearStarted: number;
+  usage: number;
+  projects?: string[];
+}
+
+interface Layer {
+  id: string;
+  label: string;
+  subtitle: string;
+  color: string;
+  skills: Skill[];
+}
+
+const layers: Layer[] = [
+  {
+    id: 'application',
+    label: 'Application Layer',
+    subtitle: 'User-facing experiences',
+    color: '#06b6d4',
+    skills: [
+      { name: 'TypeScript', yearStarted: 2018, usage: 5, projects: ['All'] },
+      { name: 'React', yearStarted: 2016, usage: 5, projects: ['Orbes'] },
+      { name: 'JavaScript', yearStarted: 2009, usage: 5, projects: ['All'] },
+      { name: 'WebGL', yearStarted: 2012, usage: 3, projects: ['Parallax'] },
+      { name: 'Three.js', yearStarted: 2012, usage: 3, projects: ['Parallax'] },
+      { name: 'GSAP', yearStarted: 2016, usage: 4, projects: ['Animations'] },
+      { name: 'CSS', yearStarted: 2008, usage: 5, projects: ['All'] },
+      { name: 'HTML', yearStarted: 2007, usage: 5, projects: ['All'] },
+      { name: 'Astro', yearStarted: 2023, usage: 4, projects: ['Portfolio'] },
+      { name: 'Tailwind', yearStarted: 2021, usage: 4, projects: ['UI'] },
+    ],
+  },
+  {
+    id: 'services',
+    label: 'Services Layer',
+    subtitle: 'Backend & APIs',
+    color: '#3b82f6',
+    skills: [
+      { name: 'Python', yearStarted: 2010, usage: 5, projects: ['AI', 'APIs'] },
+      { name: 'Microservices', yearStarted: 2014, usage: 5, projects: ['All'] },
+      { name: 'REST', yearStarted: 2008, usage: 5, projects: ['All'] },
+      { name: 'FastAPI', yearStarted: 2020, usage: 4, projects: ['GeneEase'] },
+      { name: 'Node.js', yearStarted: 2014, usage: 4, projects: ['Desygner'] },
+      { name: 'Django', yearStarted: 2012, usage: 3, projects: ['Web Apps'] },
+      { name: 'Flask', yearStarted: 2015, usage: 3, projects: ['APIs'] },
+      { name: 'aiohttp', yearStarted: 2019, usage: 4, projects: ['Async'] },
+      { name: 'Java', yearStarted: 2007, usage: 2, projects: ['Enterprise'] },
+      { name: 'Spring', yearStarted: 2009, usage: 2, projects: ['Microservices'] },
+      { name: 'Akka', yearStarted: 2016, usage: 2, projects: ['Trading'] },
+      { name: 'GraphQL', yearStarted: 2019, usage: 3, projects: ['APIs'] },
+      { name: 'gRPC', yearStarted: 2020, usage: 3, projects: ['Microservices'] },
+      { name: 'WebSocket', yearStarted: 2015, usage: 3, projects: ['Real-time'] },
+      { name: 'Crypto Trading', yearStarted: 2016, usage: 2, projects: ['CryptoTrading'] },
+      { name: 'InfluxDB', yearStarted: 2017, usage: 2, projects: ['Time-series'] },
+      { name: 'OAuth', yearStarted: 2012, usage: 4, projects: ['Auth'] },
+      { name: 'JWT', yearStarted: 2016, usage: 4, projects: ['Auth'] },
+    ],
+  },
+  {
+    id: 'data',
+    label: 'Data Layer',
+    subtitle: 'Storage & retrieval',
+    color: '#10b981',
+    skills: [
+      { name: 'PostgreSQL', yearStarted: 2009, usage: 5, projects: ['All'] },
+      { name: 'pgvector', yearStarted: 2023, usage: 4, projects: ['GeneEase'] },
+      { name: 'Redis', yearStarted: 2014, usage: 4, projects: ['Caching'] },
+      { name: 'Elasticsearch', yearStarted: 2015, usage: 3, projects: ['Search'] },
+      { name: 'MongoDB', yearStarted: 2014, usage: 2, projects: ['Apps'] },
+      { name: 'MySQL', yearStarted: 2008, usage: 2, projects: ['Legacy'] },
+      { name: 'DynamoDB', yearStarted: 2016, usage: 2, projects: ['AWS'] },
+      { name: 'Neo4j', yearStarted: 2021, usage: 2, projects: ['Graph'] },
+      { name: 'Pinecone', yearStarted: 2023, usage: 3, projects: ['Vector'] },
+      { name: 'ELK Stack', yearStarted: 2017, usage: 3, projects: ['Logging'] },
+    ],
+  },
+  {
+    id: 'infrastructure',
+    label: 'Infrastructure',
+    subtitle: 'Cloud & DevOps',
+    color: '#f97316',
+    skills: [
+      { name: 'Linux', yearStarted: 2007, usage: 5, projects: ['All'] },
+      { name: 'Docker', yearStarted: 2016, usage: 5, projects: ['Containers'] },
+      { name: 'AWS', yearStarted: 2012, usage: 4, projects: ['Cloud'] },
+      { name: 'Kubernetes', yearStarted: 2019, usage: 4, projects: ['Ops'] },
+      { name: 'GitLab CI', yearStarted: 2018, usage: 4, projects: ['CI/CD'] },
+      { name: 'Terraform', yearStarted: 2020, usage: 3, projects: ['IaC'] },
+      { name: 'Proxmox', yearStarted: 2019, usage: 3, projects: ['Virtualization'] },
+      { name: 'Ansible', yearStarted: 2018, usage: 3, projects: ['Automation'] },
+      { name: 'Mikrotik', yearStarted: 2015, usage: 3, projects: ['Networking'] },
+      { name: 'RouterOS', yearStarted: 2015, usage: 3, projects: ['Networking'] },
+      { name: 'Prometheus', yearStarted: 2019, usage: 4, projects: ['Monitoring'] },
+      { name: 'Grafana', yearStarted: 2019, usage: 4, projects: ['Monitoring'] },
+    ],
+  },
+];
+
+const aiSkills: Skill[] = [
+  { name: 'ML Training', yearStarted: 2017, usage: 3, projects: ['CryptoTrading'] },
+  { name: 'Prompt Eng', yearStarted: 2022, usage: 5, projects: ['AI Tools'] },
+  { name: 'LangGraph', yearStarted: 2023, usage: 4, projects: ['GeneEase'] },
+  { name: 'LangChain', yearStarted: 2023, usage: 4, projects: ['GeneEase'] },
+  { name: 'RAG', yearStarted: 2023, usage: 5, projects: ['GeneEase'] },
+  { name: 'LLM Pipelines', yearStarted: 2023, usage: 5, projects: ['GeneEase'] },
+];
+---
+
+<Section id="skills" class="flex items-center">
+  <div class="w-full h-screen flex flex-col px-4 py-20 md:px-6">
+    <div class="text-center mb-4 md:mb-6 shrink-0">
+      <span class="text-xs md:text-sm text-white/50 uppercase tracking-wider mb-2 block">Architecture Overview</span>
+      <h2 class="text-2xl md:text-4xl font-bold text-white mb-1 md:mb-2">Tech Stack</h2>
+      <p class="text-sm md:text-lg text-white/60">Full-stack architecture from AI to infrastructure</p>
+    </div>
+
+    <div class="skill-container flex-1 relative max-w-6xl mx-auto w-full">
+      <div class="skill-box skill-box-tl" data-layer="application">
+        <div class="skill-box-inner liquid-glass">
+          <div class="skill-box-gradient" style={`background: radial-gradient(circle at 100% 100%, ${layers[0].color}30, transparent 60%)`}></div>
+          <div class="box-header box-header-tl">
+            <h3 class="text-base md:text-lg font-semibold" style={`color: ${layers[0].color}`}>{layers[0].label}</h3>
+            <p class="text-xs text-white/40">{layers[0].subtitle}</p>
+          </div>
+          <div class="svg-tag-cloud" data-cutout="br" data-skills={JSON.stringify(layers[0].skills)}></div>
+        </div>
+      </div>
+
+      <div class="skill-box skill-box-tr" data-layer="services">
+        <div class="skill-box-inner liquid-glass">
+          <div class="skill-box-gradient" style={`background: radial-gradient(circle at 0% 100%, ${layers[1].color}30, transparent 60%)`}></div>
+          <div class="box-header box-header-tr">
+            <h3 class="text-base md:text-lg font-semibold" style={`color: ${layers[1].color}`}>{layers[1].label}</h3>
+            <p class="text-xs text-white/40">{layers[1].subtitle}</p>
+          </div>
+          <div class="svg-tag-cloud" data-cutout="bl" data-skills={JSON.stringify(layers[1].skills)}></div>
+        </div>
+      </div>
+
+      <div class="skill-box skill-box-bl" data-layer="data">
+        <div class="skill-box-inner liquid-glass">
+          <div class="skill-box-gradient" style={`background: radial-gradient(circle at 100% 0%, ${layers[2].color}30, transparent 60%)`}></div>
+          <div class="box-header box-header-bl">
+            <p class="text-xs text-white/40">{layers[2].subtitle}</p>
+            <h3 class="text-base md:text-lg font-semibold" style={`color: ${layers[2].color}`}>{layers[2].label}</h3>
+          </div>
+          <div class="svg-tag-cloud" data-cutout="tr" data-skills={JSON.stringify(layers[2].skills)}></div>
+        </div>
+      </div>
+
+      <div class="skill-box skill-box-br" data-layer="infrastructure">
+        <div class="skill-box-inner liquid-glass">
+          <div class="skill-box-gradient" style={`background: radial-gradient(circle at 0% 0%, ${layers[3].color}30, transparent 60%)`}></div>
+          <div class="box-header box-header-br">
+            <p class="text-xs text-white/40">{layers[3].subtitle}</p>
+            <h3 class="text-base md:text-lg font-semibold" style={`color: ${layers[3].color}`}>{layers[3].label}</h3>
+          </div>
+          <div class="svg-tag-cloud" data-cutout="tl" data-skills={JSON.stringify(layers[3].skills)}></div>
+        </div>
+      </div>
+
+      <div class="ai-center">
+        <div class="ai-circle liquid-glass">
+          <div class="ai-glow"></div>
+          <h3 class="ai-header text-base md:text-lg font-bold text-violet-400">AI & Intelligence</h3>
+          <div class="svg-tag-cloud svg-tag-cloud-center" data-cutout="center" data-skills={JSON.stringify(aiSkills)}></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="skill-tooltip" class="fixed pointer-events-none opacity-0 transition-opacity z-50 liquid-glass rounded-lg px-3 py-2 text-sm max-w-xs">
+    <div class="tooltip-content"></div>
+  </div>
+</Section>
+
+<style>
+  :root {
+    --circle-size: min(max(30vh, 30vw), 360px);
+    --circle-radius: calc(var(--circle-size) / 2);
+    --box-gap: 8px;
+    --cutout-radius: calc(var(--circle-radius) + var(--box-gap));
+  }
+
+  .skill-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: calc(var(--box-gap) * 2);
+  }
+
+  .skill-box {
+    position: relative;
+    opacity: 0;
+    transform: scale(0.95);
+    animation: boxAppear 0.5s ease-out forwards;
+    overflow: hidden;
+  }
+
+  .skill-box-inner {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: 1.5rem;
+  }
+
+  .skill-box-gradient {
+    position: absolute;
+    inset: 0;
+    opacity: 0.25;
+    pointer-events: none;
+  }
+
+  .box-header {
+    position: absolute;
+    z-index: 10;
+    padding: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .box-header {
+      padding: 1rem;
+    }
+  }
+
+  .box-header-tl { top: 0; left: 0; }
+  .box-header-tr { top: 0; right: 0; text-align: right; }
+  .box-header-bl { bottom: 0; left: 0; }
+  .box-header-br { bottom: 0; right: 0; text-align: right; }
+
+  .skill-box-tl { animation-delay: 0.1s; }
+  .skill-box-tl .skill-box-inner {
+    border-radius: 1.5rem 1.5rem 0 1.5rem;
+    -webkit-mask-image: radial-gradient(circle at 100% 100%, transparent 0, transparent var(--cutout-radius), black var(--cutout-radius));
+    mask-image: radial-gradient(circle at 100% 100%, transparent 0, transparent var(--cutout-radius), black var(--cutout-radius));
+  }
+
+  .skill-box-tr { animation-delay: 0.15s; }
+  .skill-box-tr .skill-box-inner {
+    border-radius: 1.5rem 1.5rem 1.5rem 0;
+    -webkit-mask-image: radial-gradient(circle at 0% 100%, transparent 0, transparent var(--cutout-radius), black var(--cutout-radius));
+    mask-image: radial-gradient(circle at 0% 100%, transparent 0, transparent var(--cutout-radius), black var(--cutout-radius));
+  }
+
+  .skill-box-bl { animation-delay: 0.2s; }
+  .skill-box-bl .skill-box-inner {
+    border-radius: 1.5rem 0 1.5rem 1.5rem;
+    -webkit-mask-image: radial-gradient(circle at 100% 0%, transparent 0, transparent var(--cutout-radius), black var(--cutout-radius));
+    mask-image: radial-gradient(circle at 100% 0%, transparent 0, transparent var(--cutout-radius), black var(--cutout-radius));
+  }
+
+  .skill-box-br { animation-delay: 0.25s; }
+  .skill-box-br .skill-box-inner {
+    border-radius: 0 1.5rem 1.5rem 1.5rem;
+    -webkit-mask-image: radial-gradient(circle at 0% 0%, transparent 0, transparent var(--cutout-radius), black var(--cutout-radius));
+    mask-image: radial-gradient(circle at 0% 0%, transparent 0, transparent var(--cutout-radius), black var(--cutout-radius));
+  }
+
+  @keyframes boxAppear {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .skill-box::after {
+    content: '';
+    position: absolute;
+    width: calc(var(--cutout-radius) * 2);
+    height: calc(var(--cutout-radius) * 2);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    pointer-events: none;
+  }
+
+  .skill-box-tl::after { bottom: 0; right: 0; transform: translate(50%, 50%); }
+  .skill-box-tr::after { bottom: 0; left: 0; transform: translate(-50%, 50%); }
+  .skill-box-bl::after { top: 0; right: 0; transform: translate(50%, -50%); }
+  .skill-box-br::after { top: 0; left: 0; transform: translate(-50%, -50%); }
+
+  .ai-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 30;
+    opacity: 0;
+    animation: centerAppear 0.6s ease-out 0.4s forwards;
+  }
+
+  .ai-circle {
+    width: var(--circle-size);
+    height: var(--circle-size);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-color: rgba(139, 92, 246, 0.5) !important;
+    border-width: 2px;
+  }
+
+  .ai-glow {
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.25), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .ai-header {
+    position: absolute;
+    top: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+
+  @keyframes centerAppear {
+    to {
+      opacity: 1;
+    }
+  }
+
+  .svg-tag-cloud {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .svg-tag-cloud-center {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-top: 2rem;
+  }
+
+  #skill-tooltip.visible {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { SVGTagCloud } from '../../scripts/svg-tag-cloud';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const circleSize = Math.min(
+      window.innerWidth * 0.3,
+      window.innerHeight * 0.3,
+      360
+    );
+    const cutoutRadius = circleSize / 2 + 8;
+
+    document.querySelectorAll('.svg-tag-cloud').forEach((container) => {
+      const el = container as HTMLElement;
+      const cutout = el.dataset.cutout as 'tl' | 'tr' | 'bl' | 'br' | 'center';
+      const skills = JSON.parse(el.dataset.skills || '[]');
+
+      const radius = cutout === 'center' ? circleSize / 2 - 20 : cutoutRadius;
+
+      new SVGTagCloud(el, skills, cutout, radius);
+    });
+
+    const skillBoxes = document.querySelectorAll('.skill-box');
+    skillBoxes.forEach(box => {
+      box.addEventListener('mouseenter', () => {
+        gsap.to(box, {
+          scale: 1.01,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+
+      box.addEventListener('mouseleave', () => {
+        gsap.to(box, {
+          scale: 1,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+    });
+  });
+</script>

@@ -1,0 +1,21 @@
+---
+interface Props {
+  id: string;
+  class?: string;
+  fullHeight?: boolean;
+}
+
+const { id, class: className = '', fullHeight = true } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    'relative w-full snap-start snap-always overflow-hidden',
+    fullHeight ? 'h-screen' : '',
+    className
+  ]}
+  data-section={id}
+>
+  <slot />
+</section>

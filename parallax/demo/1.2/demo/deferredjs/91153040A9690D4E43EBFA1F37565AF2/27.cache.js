@@ -1,2 +1,0 @@
-function U4b(){}
-_=U4b.prototype=new Kb;_.gC=function V4b(){return VF};_.pb=function W4b(a){HSb(this.b,a)};_.qb=function X4b(){ISb(this.b,null.$e())};_.cM={6:1};_.b=null;var VF=q3(Pkc,'MaterialsLightmap$1');thc(Vd)(27);

@@ -1,0 +1,60 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  suffix?: string;
+}
+
+const { value, label, suffix = '' } = Astro.props;
+---
+
+<div class="text-center">
+  <div class="impact-number text-5xl md:text-7xl font-bold gradient-text mb-2" data-value={value}>
+    {value}{suffix}
+  </div>
+  <div class="text-white/60 text-sm uppercase tracking-wider">{label}</div>
+</div>
+
+<script>
+  const animateNumbers = () => {
+    const numbers = document.querySelectorAll('.impact-number');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const targetValue = el.dataset.value || '0';
+          const numericValue = parseInt(targetValue.replace(/\D/g, ''));
+          const hasPlus = targetValue.includes('+');
+          const hasM = targetValue.includes('M');
+          const hasX = targetValue.includes('x');
+
+          let current = 0;
+          const duration = 2000;
+          const increment = numericValue / (duration / 16);
+
+          const animate = () => {
+            current += increment;
+            if (current < numericValue) {
+              let display = Math.floor(current).toString();
+              if (hasM) display += 'M';
+              if (hasPlus) display += '+';
+              if (hasX) display += 'x';
+              el.textContent = display;
+              requestAnimationFrame(animate);
+            } else {
+              el.textContent = targetValue;
+            }
+          };
+
+          animate();
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    numbers.forEach(num => observer.observe(num));
+  };
+
+  animateNumbers();
+</script>
