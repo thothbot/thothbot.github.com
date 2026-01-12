@@ -31,22 +31,23 @@ import NameSvg from '../common/NameSvg.astro';
 
         <div class="hero-links flex flex-wrap justify-center md:justify-start items-center gap-x-6 gap-y-2">
           <a href="#geneease" class="group" aria-label="GeneEase Project">
-            <img src="/assets/images/geneease-logo.svg" alt="GeneEase" class="h-8 opacity-40 group-hover:opacity-80 transition-opacity" />
+            <img src="/assets/images/geneease-logo.svg" alt="GeneEase" class="h-8 opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all" />
           </a>
           <a href="#orbesg" class="group" aria-label="OrbESG Project">
-            <img src="/assets/images/orbesg-logo.svg" alt="OrbESG" class="h-6 opacity-40 group-hover:opacity-80 transition-opacity -mt-[5px]" />
+            <img src="/assets/images/orbesg-logo.svg" alt="OrbESG" class="h-6 opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all -mt-[5px]" />
           </a>
           <a href="#parallax" class="group" aria-label="Parallax Project">
-            <img src="/assets/images/parallax-logo.png" alt="Parallax" class="h-8 opacity-40 group-hover:opacity-80 transition-opacity" />
+            <img src="/assets/images/parallax-logo.png" alt="Parallax" class="h-8 opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all" />
           </a>
         </div>
 
-        <div class="hero-presentation flex justify-center md:justify-start mt-6">
-          <a href="/presentation/ai-coding/" class="group flex items-center gap-1.5 text-white/40 hover:text-white/80 transition-colors">
-            <svg class="w-3.5 h-3.5 text-violet-500/60 group-hover:text-violet-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div class="hero-presentation flex flex-col items-center md:items-start mt-6">
+          <span class="text-xs text-white/50 uppercase tracking-wider mb-2">Presentation</span>
+          <a href="/presentation/ai-coding/" class="group flex items-center gap-1.5 opacity-80 hover:opacity-100 hover:scale-105 transition-all">
+            <svg class="w-3.5 h-3.5 text-violet-500 group-hover:text-violet-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polygon points="5 3 19 12 5 21 5 3" />
             </svg>
-            <span class="text-sm">AI Coding Workflows</span>
+            <span class="text-sm text-white/80 group-hover:text-white transition-colors">AI Coding Workflows</span>
           </a>
         </div>
       </div>
