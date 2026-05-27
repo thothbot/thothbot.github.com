@@ -15,12 +15,14 @@ export class TesseractLineMaterial extends LineMaterial {
     this.uniforms.uMaxWidth = { value: 5.0 };
     this.uniforms.uNearDist = { value: 2.0 };
     this.uniforms.uFarDist = { value: 8.0 };
+    this.uniforms.uMinAlpha = { value: 1.0 };
 
     this.onBeforeCompile = (shader) => {
       shader.uniforms.uMinWidth = this.uniforms.uMinWidth;
       shader.uniforms.uMaxWidth = this.uniforms.uMaxWidth;
       shader.uniforms.uNearDist = this.uniforms.uNearDist;
       shader.uniforms.uFarDist = this.uniforms.uFarDist;
+      shader.uniforms.uMinAlpha = this.uniforms.uMinAlpha;
 
       shader.vertexShader = shader.vertexShader.replace(
         'void main() {',
@@ -28,6 +30,7 @@ export class TesseractLineMaterial extends LineMaterial {
         uniform float uMaxWidth;
         uniform float uNearDist;
         uniform float uFarDist;
+        varying float vDepthFade;
         void main() {`
       );
 
@@ -36,12 +39,25 @@ export class TesseractLineMaterial extends LineMaterial {
         `vec4 end = modelViewMatrix * vec4( instanceEnd, 1.0 );
         float avgZ = ( -start.z + -end.z ) * 0.5;
         float depthFactor = clamp( ( uFarDist - avgZ ) / ( uFarDist - uNearDist ), 0.0, 1.0 );
-        float dynamicWidth = mix( uMinWidth, uMaxWidth, depthFactor );`
+        float dynamicWidth = mix( uMinWidth, uMaxWidth, depthFactor );
+        vDepthFade = depthFactor;`
       );
 
       shader.vertexShader = shader.vertexShader.replace(
         /float w = linewidth/g,
         'float w = dynamicWidth'
+      );
+
+      shader.fragmentShader = shader.fragmentShader.replace(
+        'void main() {',
+        `uniform float uMinAlpha;
+        varying float vDepthFade;
+        void main() {`
+      );
+
+      shader.fragmentShader = shader.fragmentShader.replace(
+        'gl_FragColor = vec4( diffuseColor.rgb, alpha );',
+        'gl_FragColor = vec4( diffuseColor.rgb, alpha * mix( uMinAlpha, 1.0, vDepthFade ) );'
       );
     };
   }
@@ -76,5 +92,13 @@ export class TesseractLineMaterial extends LineMaterial {
 
   set farDist(value: number) {
     this.uniforms.uFarDist.value = value;
+  }
+
+  get minAlpha(): number {
+    return this.uniforms.uMinAlpha.value as number;
+  }
+
+  set minAlpha(value: number) {
+    this.uniforms.uMinAlpha.value = value;
   }
 }
