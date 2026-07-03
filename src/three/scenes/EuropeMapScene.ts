@@ -15,7 +15,7 @@ export default class EuropeMapScene extends BaseScene {
   private scannerMaterial!: THREE.ShaderMaterial;
   private composer!: EffectComposer;
   private dracoLoader!: DRACOLoader;
-  private clock = new THREE.Clock();
+  private timer = new THREE.Timer();
   private modelCenter = new THREE.Vector3();
   private modelSize = new THREE.Vector3();
   private lastScanTimes = [0, 0, 0, 0];
@@ -170,7 +170,8 @@ export default class EuropeMapScene extends BaseScene {
   }
 
   update(_time: number): void {
-    const elapsed = this.clock.getElapsedTime();
+    this.timer.update();
+    const elapsed = this.timer.getElapsed();
 
     if (this.scannerMaterial) {
       this.scannerMaterial.uniforms.uTime.value = elapsed;

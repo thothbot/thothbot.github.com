@@ -12,19 +12,20 @@ import NameSvg from '../common/NameSvg.astro';
 
     <div class="relative z-10 flex-1 md:w-1/2 flex items-start md:items-center justify-center md:justify-start px-4 sm:px-6 md:pl-10 lg:pl-16 pt-6 md:pt-0 pb-16">
       <div class="max-w-lg text-center md:text-left">
-        <h1 class="mb-4 leading-tight">
+        <h1 class="mb-5 leading-tight">
           <NameSvg size="hero" />
         </h1>
-        <p class="text-xl md:text-2xl text-white/70 mb-6">
-          Software Architect
-        </p>
-        <p class="text-base text-white/50 mb-8 leading-relaxed">
-          Building AI systems and cloud platforms that ship.<br class="hidden md:block" />
-          From prototype to millions of users.
+        <p class="text-lg md:text-xl text-white/70 mb-8 leading-relaxed text-balance">
+          I turn “wouldn’t it be cool if…” into things people actually use. Mostly AI systems and the platforms that keep them running.
         </p>
 
         <div class="flex justify-center md:justify-start">
-          <CTAButton href="#footer" variant="secondary">Get in Touch</CTAButton>
+          <CTAButton href="#footer" variant="primary">
+            Say hi
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </CTAButton>
         </div>
 
         <div class="w-full h-px bg-gradient-to-r from-white/20 via-white/10 to-transparent my-12"></div>

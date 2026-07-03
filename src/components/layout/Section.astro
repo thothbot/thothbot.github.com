@@ -3,16 +3,25 @@ interface Props {
   id: string;
   class?: string;
   fullHeight?: boolean;
+  mobileAuto?: boolean;
 }
 
-const { id, class: className = '', fullHeight = true } = Astro.props;
+const { id, class: className = '', fullHeight = true, mobileAuto = false } = Astro.props;
+
+const heightClass = !fullHeight
+  ? ''
+  : mobileAuto
+    ? 'min-h-screen-safe md:h-screen-safe'
+    : 'h-screen-safe';
+const overflowClass = mobileAuto ? 'md:overflow-hidden' : 'overflow-hidden';
 ---
 
 <section
   id={id}
   class:list={[
-    'relative w-full snap-start snap-always overflow-hidden',
-    fullHeight ? 'h-screen-safe' : '',
+    'relative w-full snap-start snap-always',
+    overflowClass,
+    heightClass,
     className
   ]}
   data-section={id}

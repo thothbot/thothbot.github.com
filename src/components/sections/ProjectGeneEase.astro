@@ -2,42 +2,42 @@
 import Section from '../layout/Section.astro';
 ---
 
-<Section id="geneease" class="flex flex-col">
+<Section id="geneease" class="flex flex-col" mobileAuto>
   <div id="geneease-canvas" class="absolute inset-0 z-0 opacity-30 md:opacity-100 md:translate-x-1/4"></div>
 
-  <div class="absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-transparent to-black/60 pointer-events-none"></div>
+  <div class="absolute inset-0 z-[1] bg-gradient-to-b from-black/50 via-black/20 to-black/60 pointer-events-none"></div>
 
   <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-6 md:pt-16 lg:pt-20 text-center">
-    <span class="text-xs md:text-sm text-white/50 uppercase tracking-wider mb-2 md:mb-4 block">Featured Project</span>
+    <span class="text-xs md:text-sm text-white/50 uppercase tracking-wider mb-2 md:mb-4 block">Also something I built</span>
     <img src="/assets/images/geneease-logo.svg" alt="GeneEase" class="h-10 mx-auto mb-4" />
     <p class="text-xl text-white/70">
-      AI-Assisted Therapeutic Target Discovery
+      AI that helps researchers find drug targets
     </p>
   </div>
 
-  <div class="relative z-10 flex-1"></div>
+  <div class="relative z-10 flex-1 hidden md:block"></div>
 
-  <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pb-8">
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pb-8 mt-8 md:mt-0">
     <div class="max-w-xl space-y-8">
       <div class="space-y-6">
         <div>
-          <h3 class="text-2xl font-bold text-white mb-3">The Challenge</h3>
+          <h3 class="text-2xl font-bold text-white mb-3">What it does</h3>
           <p class="text-white/70 leading-relaxed">
-            <span class="gradient-text font-medium">Biomedical researchers</span> spend weeks manually querying scientific databases and calling bioinformatics tools, cross-referencing results across <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors">PubMed</a>, <a href="https://www.ncbi.nlm.nih.gov/clinvar/" target="_blank" rel="noopener" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors">ClinVar</a>, <a href="https://www.uniprot.org/" target="_blank" rel="noopener" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors">UniProt</a>, and dozens more, then synthesizing findings into actionable insights.
+            Biomedical research means weeks of digging through dozens of databases by hand: <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors">PubMed</a>, <a href="https://www.ncbi.nlm.nih.gov/clinvar/" target="_blank" rel="noopener" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors">ClinVar</a>, <a href="https://www.uniprot.org/" target="_blank" rel="noopener" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors">UniProt</a> and many more. GeneEase does the digging for you.
           </p>
         </div>
 
         <div class="border-l-2 border-white/20 pl-6">
-          <h3 class="text-2xl font-bold text-white mb-3">Our Solution</h3>
+          <h3 class="text-2xl font-bold text-white mb-3">Why it helps</h3>
           <p class="text-white/70 leading-relaxed">
-            <span class="gradient-text font-medium">ReAct AI agents</span> that reason through complex biomedical questions. The system autonomously orchestrates bioinformatics tools across 39M+ papers, 60K+ genes, and 28M+ proteins.
+            AI agents that actually reason through a question, cross-checking 39M+ papers, 60K+ genes and 28M+ proteins so a researcher gets a solid answer in hours instead of weeks.
           </p>
         </div>
 
         <div class="border-l-2 border-white/20 pl-6">
-          <h3 class="text-2xl font-bold text-white mb-3">Technology</h3>
+          <h3 class="text-2xl font-bold text-white mb-3">Under the hood</h3>
           <p class="text-white/70 leading-relaxed">
-            <span class="gradient-text font-medium">LangGraph</span> orchestrates stateful agent workflows powered by frontier LLMs. RAG pipelines with BioBERT embeddings enable hybrid search across patient documents.
+            LangGraph runs the agents, frontier LLMs do the thinking, and a RAG pipeline with BioBERT embeddings handles search across everything. The nerdy parts, kept out of your way.
           </p>
         </div>
 
@@ -53,9 +53,9 @@ import Section from '../layout/Section.astro';
           </svg>
         </div>
         <div>
-          <h4 class="text-white font-medium mb-1">23+ Bio Tools</h4>
+          <h4 class="text-white font-medium mb-1">Plugged into everything</h4>
           <p class="text-white/70 text-sm">
-            PubMed, ClinVar, UniProt, STRING, and more. Unified API access to the world's biomedical knowledge bases.
+            PubMed, ClinVar, UniProt, STRING and dozens more, all through one clean API.
           </p>
         </div>
       </div>
@@ -67,9 +67,9 @@ import Section from '../layout/Section.astro';
           </svg>
         </div>
         <div>
-          <h4 class="text-white font-medium mb-1">90%+ Accuracy</h4>
+          <h4 class="text-white font-medium mb-1">Shows its work</h4>
           <p class="text-white/70 text-sm">
-            Validated against expert annotations. Citations and evidence chains for every claim. Transparent reasoning paths.
+            Every answer comes with citations and an evidence chain you can follow, checked against expert annotations.
           </p>
         </div>
       </div>
@@ -81,9 +81,9 @@ import Section from '../layout/Section.astro';
           </svg>
         </div>
         <div>
-          <h4 class="text-white font-medium mb-1">10x Faster</h4>
+          <h4 class="text-white font-medium mb-1">Hours, not weeks</h4>
           <p class="text-white/70 text-sm">
-            Hours instead of weeks. Parallel agent execution synthesizes findings across databases simultaneously.
+            Agents work in parallel across databases, so a question that used to eat a fortnight lands the same afternoon.
           </p>
         </div>
       </div>

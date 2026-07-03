@@ -22,7 +22,7 @@ export default class DNAScene extends BaseScene {
   private composer!: EffectComposer;
   private grainPass!: ShaderPass;
 
-  private clock = new THREE.Clock();
+  private timer = new THREE.Timer();
 
   private readonly HELIX_RADIUS = 1.8;
   private readonly HELIX_HEIGHT = 5;
@@ -378,7 +378,8 @@ export default class DNAScene extends BaseScene {
   }
 
   update(_time: number): void {
-    const elapsed = this.clock.getElapsedTime();
+    this.timer.update();
+    const elapsed = this.timer.getElapsed();
 
     this.updateHelix(elapsed);
     this.updateParticles(elapsed);

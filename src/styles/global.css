@@ -1,6 +1,16 @@
 @import "tailwindcss";
 @import "./typography.css";
 
+@utility h-screen-safe {
+  height: 100vh;
+  height: 100dvh;
+}
+
+@utility min-h-screen-safe {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
 @theme {
   --color-bg-dark: #0f172a;
   --color-bg-surface: #1e293b;
@@ -104,14 +114,22 @@
 }
 
 @layer utilities {
-  .h-screen-safe {
-    height: 100vh;
-    height: 100dvh;
+  .ambient-glow {
+    background:
+      radial-gradient(60% 50% at 12% -5%, rgba(139, 92, 246, 0.20), transparent 60%),
+      radial-gradient(55% 45% at 105% 105%, rgba(255, 45, 85, 0.14), transparent 60%),
+      radial-gradient(45% 40% at 85% 8%, rgba(56, 132, 255, 0.12), transparent 55%),
+      radial-gradient(50% 45% at 50% 55%, rgba(88, 86, 214, 0.08), transparent 65%);
+    animation: ambientDrift 26s ease-in-out infinite;
   }
 
-  .min-h-screen-safe {
-    min-height: 100vh;
-    min-height: 100dvh;
+  @keyframes ambientDrift {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(0, -2%, 0) scale(1.06);
+    }
   }
 
   .pb-safe {
@@ -200,5 +218,29 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-accent-purple);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  a:focus:not(:focus-visible),
+  button:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

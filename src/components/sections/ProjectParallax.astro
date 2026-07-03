@@ -3,42 +3,42 @@ import Section from '../layout/Section.astro';
 import CTAButton from '../ui/CTAButton.astro';
 ---
 
-<Section id="parallax" class="flex flex-col">
+<Section id="parallax" class="flex flex-col" mobileAuto>
   <div id="parallax-canvas" class="absolute inset-0 z-0"></div>
 
-  <div class="absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-transparent to-black/60 pointer-events-none"></div>
+  <div class="absolute inset-0 z-[1] bg-gradient-to-b from-black/50 via-black/20 to-black/60 pointer-events-none"></div>
 
   <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-6 md:pt-16 lg:pt-20 text-center">
-    <span class="text-xs md:text-sm text-white/50 uppercase tracking-wider mb-2 md:mb-4 block">Open Source Project</span>
+    <span class="text-xs md:text-sm text-white/50 uppercase tracking-wider mb-2 md:mb-4 block">An old love of mine</span>
     <img src="/assets/images/parallax-logo.png" alt="Parallax" class="mx-auto mb-4" style="height: calc(var(--spacing) * 10)" />
     <p class="text-xl text-white/70">
-      3D Graphics Library for Google Web Toolkit
+      Open-source 3D graphics for Java, from a simpler internet
     </p>
   </div>
 
-  <div class="relative z-10 flex-1"></div>
+  <div class="relative z-10 flex-1 hidden md:block"></div>
 
-  <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pb-8">
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pb-8 mt-8 md:mt-0">
     <div class="grid lg:grid-cols-2 gap-x-16 gap-y-8">
       <div class="space-y-6">
         <div>
-          <h3 class="text-2xl font-bold text-white mb-3">The Challenge</h3>
+          <h3 class="text-2xl font-bold text-white mb-3">What it is</h3>
           <p class="text-white/70 leading-relaxed">
-<span class="gradient-text font-medium">GWT</span> <span class="text-white/70">(Google Web Toolkit)</span> pure Java 3D library based on <a href="https://github.com/mrdoob/three.js" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors" target="_blank" rel="noopener">three.js</a> with similar API for backwards compatibility. Familiar patterns for JavaScript developers, type-safe code for Java teams.
+A pure-Java 3D library for GWT, built on the same ideas as <a href="https://github.com/mrdoob/three.js" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors" target="_blank" rel="noopener">three.js</a> so the API feels familiar. JavaScript patterns for the front-enders, type-safe code for the Java folks.
           </p>
         </div>
 
         <div class="border-l-2 border-white/20 pl-6">
-          <h3 class="text-2xl font-bold text-white mb-3">Get Started</h3>
+          <h3 class="text-2xl font-bold text-white mb-3">How to dive in</h3>
           <p class="text-white/70 leading-relaxed">
-<span class="gradient-text font-medium">Explore</span> self-documented <a href="/parallax/demo/1.6/" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors">examples</a> with <a href="/parallax/docs/1.6/" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors">API reference</a>. Read the <a href="https://github.com/thothbot/parallax/wiki" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors" target="_blank" rel="noopener">Wiki</a> or contribute on <a href="https://github.com/thothbot/parallax" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors" target="_blank" rel="noopener">GitHub</a>.
+Poke around the self-documented <a href="/parallax/demo/1.6/" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors">examples</a> and <a href="/parallax/docs/1.6/" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors">API reference</a>. Read the <a href="https://github.com/thothbot/parallax/wiki" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors" target="_blank" rel="noopener">Wiki</a>, or come break things on <a href="https://github.com/thothbot/parallax" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors" target="_blank" rel="noopener">GitHub</a>.
           </p>
         </div>
 
         <div class="border-l-2 border-white/20 pl-6">
-          <h3 class="text-2xl font-bold text-white mb-3">Technology</h3>
+          <h3 class="text-2xl font-bold text-white mb-3">Under the hood</h3>
           <p class="text-white/70 leading-relaxed">
-<span class="gradient-text font-medium">WebGL renderer</span> derived from <a href="https://www.khronos.org/registry/webgl/specs/latest/" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors" target="_blank" rel="noopener">OpenGL® ES 2.0</a>. Compatible with <a href="https://www.gwtproject.org/" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors" target="_blank" rel="noopener">GWT</a> 2.6+, Chrome, Firefox, Safari, Opera.
+A WebGL renderer built on <a href="https://www.khronos.org/registry/webgl/specs/latest/" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors" target="_blank" rel="noopener">OpenGL® ES 2.0</a>, playing nicely with <a href="https://www.gwtproject.org/" class="text-white hover:text-white/80 underline underline-offset-2 transition-colors" target="_blank" rel="noopener">GWT</a> 2.6+, Chrome, Firefox, Safari and Opera.
           </p>
         </div>
       </div>

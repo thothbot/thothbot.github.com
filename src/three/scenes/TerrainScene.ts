@@ -51,7 +51,7 @@ export default class TerrainScene extends BaseScene {
 
   private birds: Bird[] = [];
 
-  private clock = new THREE.Clock();
+  private timer = new THREE.Timer();
 
   async setup(): Promise<void> {
     this.screenWidth = this.renderer.domElement.width || window.innerWidth;
@@ -96,11 +96,15 @@ export default class TerrainScene extends BaseScene {
   }
 
   private setupLights(): void {
-    this.scene.add(new THREE.AmbientLight(0x555555));
+    this.scene.add(new THREE.AmbientLight(0xb0b0c0));
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.15);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 2.2);
     directionalLight.position.set(500, 2000, 0);
     this.scene.add(directionalLight);
+
+    const fillLight = new THREE.DirectionalLight(0xcfe0ff, 0.8);
+    fillLight.position.set(-1200, 500, 1200);
+    this.scene.add(fillLight);
 
     const pointLight = new THREE.PointLight(0xff4400, 1.5);
     pointLight.position.set(0, 0, 0);
@@ -259,6 +263,15 @@ export default class TerrainScene extends BaseScene {
         mesh.rotation.y = Math.PI / 2;
         mesh.castShadow = true;
 
+        mesh.traverse((child) => {
+          const material = (child as THREE.Mesh).material as THREE.MeshStandardMaterial | undefined;
+          if (material && material.emissive) {
+            material.emissive = new THREE.Color(0x3a3a44);
+            material.emissiveIntensity = 0.7;
+            material.needsUpdate = true;
+          }
+        });
+
         const mixer = new THREE.AnimationMixer(mesh);
         if (gltf.animations.length > 0) {
           mixer.clipAction(gltf.animations[0]).play();
@@ -337,7 +350,8 @@ export default class TerrainScene extends BaseScene {
   }
 
   update(_time: number): void {
-    const delta = this.clock.getDelta();
+    this.timer.update();
+    const delta = this.timer.getDelta();
 
     if (!this.terrain) return;
 

@@ -31,8 +31,8 @@ const { title } = Astro.props;
 
     <title>{title}</title>
   </head>
-  <body class="bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white">
-    <div class="fixed inset-0 bg-[radial-gradient(ellipse_at_top,rgba(100,100,255,0.1),transparent_50%)] pointer-events-none"></div>
+  <body class="bg-gradient-to-b from-[#0f0d22] via-[#100b1c] to-[#0a0712] text-white">
+    <div class="ambient-glow fixed inset-0 pointer-events-none"></div>
     <div id="scroll-container" class="h-screen-safe overflow-y-scroll scroll-smooth snap-y snap-mandatory pb-safe">
       <slot />
     </div>

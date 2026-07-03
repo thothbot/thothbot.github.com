@@ -3,9 +3,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const prefersReducedMotion = () =>
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 export function initScrollAnimations() {
   const scroller = document.getElementById('scroll-container');
   if (!scroller) return;
+  if (prefersReducedMotion()) return;
 
   ScrollTrigger.defaults({
     scroller: scroller,
@@ -60,27 +64,10 @@ export function initScrollAnimations() {
       );
     }
   });
-
-  gsap.utils.toArray<HTMLElement>('.impact-number').forEach((num) => {
-    gsap.fromTo(
-      num,
-      { scale: 0.5, opacity: 0 },
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.6,
-        ease: 'back.out(1.7)',
-        scrollTrigger: {
-          trigger: num,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
-        },
-      }
-    );
-  });
 }
 
 export function initParallaxEffects() {
+  if (prefersReducedMotion()) return;
   const parallaxElements = document.querySelectorAll('[data-parallax]');
   if (!parallaxElements.length) return;
 
