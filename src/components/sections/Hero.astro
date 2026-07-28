@@ -56,12 +56,6 @@ import NameSvg from '../common/NameSvg.astro';
     </div>
   </div>
 
-  <div class="hero-sparkle absolute bottom-10 right-8 md:right-14 z-20 pointer-events-none">
-    <svg class="w-8 h-8 md:w-10 md:h-10 text-white/70" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 0c.6 5.6 5.8 11 12 12-6.2 1-11.4 6.4-12 12-.6-5.6-5.8-11-12-12C6.2 11 11.4 5.6 12 0Z" />
-    </svg>
-  </div>
-
   <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce z-20">
     <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -74,22 +68,6 @@ import NameSvg from '../common/NameSvg.astro';
     background:
       radial-gradient(70% 55% at 76% 52%, rgba(4, 5, 16, 0.55), transparent 72%),
       linear-gradient(to top, rgba(5, 6, 15, 0.9) 0%, rgba(5, 6, 15, 0.35) 22%, transparent 46%);
-  }
-
-  .hero-sparkle {
-    filter: drop-shadow(0 0 14px rgba(190, 210, 255, 0.55));
-    animation: sparklePulse 4.5s ease-in-out infinite;
-  }
-
-  @keyframes sparklePulse {
-    0%, 100% {
-      opacity: 0.55;
-      transform: scale(0.94) rotate(0deg);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.06) rotate(12deg);
-    }
   }
 
   .hero-links {
