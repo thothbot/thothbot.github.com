@@ -154,12 +154,6 @@ export default class GlobeScene extends BaseScene {
   private timer = new THREE.Timer();
   private textures: THREE.Texture[] = [];
 
-  private labelEl: HTMLDivElement | null = null;
-  private labelAnchor = new THREE.Vector3();
-  private worldAnchor = new THREE.Vector3();
-  private cameraToAnchor = new THREE.Vector3();
-  private anchorOutward = new THREE.Vector3();
-
   private pointer = new THREE.Vector2(0, 0);
   private tilt = new THREE.Vector2(0, 0);
   private onPointerMove = (event: PointerEvent): void => {
@@ -171,7 +165,6 @@ export default class GlobeScene extends BaseScene {
     this.setupCamera();
     await this.loadTextures();
     this.createGlobe();
-    this.createLabel();
     this.setupComposer();
 
     window.addEventListener('pointermove', this.onPointerMove);
@@ -350,7 +343,6 @@ export default class GlobeScene extends BaseScene {
       (this.surfaceMaterial.uniforms.uFeatureColor.value as THREE.Color).copy(
         scoreColor(EVENTS[this.featureIndex].score)
       );
-      this.renderLabel();
       this.launchSweep(0, this.featureIndex, elapsed, true);
     }
 
@@ -430,61 +422,6 @@ export default class GlobeScene extends BaseScene {
     });
   }
 
-  // --- readout --------------------------------------------------------------
-
-  private createLabel(): void {
-    this.labelEl = document.createElement('div');
-    this.labelEl.className = 'criora-site-label';
-    this.container.appendChild(this.labelEl);
-    this.renderLabel();
-  }
-
-  private renderLabel(): void {
-    if (!this.labelEl) return;
-    const event = EVENTS[this.featureIndex];
-    this.labelEl.innerHTML =
-      `<span class="criora-site-label__name">${event.name}</span>` +
-      `<span class="criora-site-label__hazard">${event.hazard}</span>` +
-      `<span class="criora-site-label__score" style="color:${scoreColor(event.score).getStyle()}">${event.score}</span>`;
-  }
-
-  private updateLabel(): void {
-    if (!this.labelEl) return;
-
-    if (window.innerWidth < 768) {
-      this.labelEl.style.opacity = '0';
-      return;
-    }
-
-    this.worldAnchor.copy(this.eventDirections[this.featureIndex]).multiplyScalar(GLOBE_RADIUS);
-    this.globeGroup.localToWorld(this.worldAnchor);
-
-    // Fade the readout out as its site rotates toward the limb
-    const toCamera = this.cameraToAnchor.copy(this.camera.position).sub(this.worldAnchor).normalize();
-    const outward = this.anchorOutward.copy(this.worldAnchor).normalize();
-    const facing = THREE.MathUtils.smoothstep(outward.dot(toCamera), 0.10, 0.30);
-
-    this.labelAnchor.copy(this.worldAnchor).project(this.camera);
-    const rect = this.container.getBoundingClientRect();
-    const x = (this.labelAnchor.x * 0.5 + 0.5) * rect.width;
-    const y = (-this.labelAnchor.y * 0.5 + 0.5) * rect.height;
-
-    const onScreen = this.labelAnchor.z < 1 && x > 0 && x < rect.width && y > 0 && y < rect.height;
-    const safeY = Math.min(y, rect.height * 0.62);
-
-    const screenX = rect.left + x;
-    const screenY = rect.top + safeY;
-    const flipX = screenX > window.innerWidth * 0.6;
-    const flipY = screenY > window.innerHeight * 0.55;
-
-    const offsetX = flipX ? 'calc(-100% - 18px)' : '18px';
-    const offsetY = flipY ? '20px' : '-54px';
-
-    // Rides the same fade as the marker it belongs to
-    this.labelEl.style.transform = `translate(${x}px, ${safeY}px) translate(${offsetX}, ${offsetY})`;
-    this.labelEl.style.opacity = onScreen ? (this.featureStrength * facing).toFixed(3) : '0';
-  }
-
   private setupComposer(): void {
     const size = this.renderer.getDrawingBufferSize(new THREE.Vector2());
 
@@ -532,8 +469,6 @@ export default class GlobeScene extends BaseScene {
     this.spawnAmbient(elapsed);
     this.writeEventUniforms(elapsed);
 
-    this.updateLabel();
-
     this.renderer.setRenderTarget(null);
     this.composer.render();
   }
@@ -541,7 +476,6 @@ export default class GlobeScene extends BaseScene {
   dispose(): void {
     super.dispose();
     window.removeEventListener('pointermove', this.onPointerMove);
-    this.labelEl?.remove();
     this.composer?.dispose();
     this.surfaceMaterial?.dispose();
     this.cloudMaterial?.dispose();
