@@ -8,10 +8,10 @@ import { BaseScene } from '../core/BaseScene';
 import { NoiseShader } from '../shaders/NoiseShader';
 import { LuminosityShader } from '../shaders/LuminosityShader';
 import { BleachBypassShader } from '../shaders/BleachBypassShader';
-import { HorizontalTiltShiftShader } from '../shaders/HorizontalTiltShiftShader';
 import { VerticalTiltShiftShader } from '../shaders/VerticalTiltShiftShader';
 import { NormalShader } from '../shaders/NormalShader';
 import { TerrainShader } from '../shaders/TerrainShader';
+import { SkyDomeShader } from '../shaders/SkyDomeShader';
 import { GammaCorrectionShader } from '../shaders/GammaCorrectionShader';
 
 interface Bird {
@@ -20,10 +20,18 @@ interface Bird {
   speed: number;
 }
 
-const FOG_COLOR = 0x000000;
+const HORIZON_COLOR = 0x1d2647;
+const ZENITH_COLOR = 0x080a1c;
+const MOON_COLOR = 0xdfeaff;
+const FOG_COLOR = HORIZON_COLOR;
+
+// Moonlight: shared by the sky dome, the terrain shader and the scene lights.
+// Sitting well above the skyline, since a moon low enough to glow like a sunset
+// is what made the previous pass read as physically wrong.
+const MOON_DIRECTION = new THREE.Vector3(1710, 250, -892).normalize();
 
 export default class TerrainScene extends BaseScene {
-  private static readonly BLUR_AMOUNT = 6;
+  private static readonly BLUR_AMOUNT = 3.0;
   private static readonly HEIGHTMAP_SIZE = 256;
   private static readonly TERRAIN_SIZE = 6000;
   private static readonly TERRAIN_SEGMENTS = 256;
@@ -50,8 +58,20 @@ export default class TerrainScene extends BaseScene {
   private composer!: EffectComposer;
 
   private birds: Bird[] = [];
+  private sky!: THREE.Mesh;
+  private skyMaterial!: THREE.ShaderMaterial;
 
   private timer = new THREE.Timer();
+
+  // The section is named after parallax, so the camera demonstrates it
+  private cameraBase = new THREE.Vector3(-1200, 500, 1200);
+  private cameraTarget = new THREE.Vector3(0, 300, 0);
+  private pointer = new THREE.Vector2(0, 0);
+  private drift = new THREE.Vector2(0, 0);
+  private onPointerMove = (event: PointerEvent): void => {
+    this.pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+    this.pointer.y = (event.clientY / window.innerHeight) * 2 - 1;
+  };
 
   async setup(): Promise<void> {
     this.screenWidth = this.renderer.domElement.width || window.innerWidth;
@@ -59,19 +79,43 @@ export default class TerrainScene extends BaseScene {
 
     this.setupCamera();
     this.setupScene();
+    this.setupSky();
     this.setupLights();
     this.setupRenderTargets();
     await this.setupTerrain();
     this.setupComposer();
     this.setupBirds();
+
+    window.addEventListener('pointermove', this.onPointerMove);
+  }
+
+  private setupSky(): void {
+    this.skyMaterial = new THREE.ShaderMaterial({
+      vertexShader: SkyDomeShader.vertexShader,
+      fragmentShader: SkyDomeShader.fragmentShader,
+      uniforms: {
+        uZenith: { value: new THREE.Color(ZENITH_COLOR) },
+        uHorizon: { value: new THREE.Color(HORIZON_COLOR) },
+        uMoonColor: { value: new THREE.Color(MOON_COLOR) },
+        uMoonDirection: { value: MOON_DIRECTION.clone() },
+        uTime: { value: 0 },
+      },
+      side: THREE.BackSide,
+      depthWrite: false,
+      glslVersion: THREE.GLSL3,
+    });
+
+    this.sky = new THREE.Mesh(new THREE.SphereGeometry(3600, 48, 32), this.skyMaterial);
+    this.sky.renderOrder = -1;
+    this.scene.add(this.sky);
   }
 
   private setupCamera(): void {
     this.camera.fov = 40;
     this.camera.near = 2;
     this.camera.far = 4000;
-    this.camera.position.set(-1200, 500, 1200);
-    this.camera.lookAt(0, 300, 0);
+    this.camera.position.copy(this.cameraBase);
+    this.camera.lookAt(this.cameraTarget);
     this.camera.updateProjectionMatrix();
 
     this.cameraOrtho = new THREE.OrthographicCamera(
@@ -96,19 +140,15 @@ export default class TerrainScene extends BaseScene {
   }
 
   private setupLights(): void {
-    this.scene.add(new THREE.AmbientLight(0xb0b0c0));
+    this.scene.add(new THREE.AmbientLight(0x55659c));
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 2.2);
-    directionalLight.position.set(500, 2000, 0);
-    this.scene.add(directionalLight);
+    const moonLight = new THREE.DirectionalLight(0xd8e6ff, 3.0);
+    moonLight.position.copy(MOON_DIRECTION).multiplyScalar(2000);
+    this.scene.add(moonLight);
 
-    const fillLight = new THREE.DirectionalLight(0xcfe0ff, 0.8);
-    fillLight.position.set(-1200, 500, 1200);
+    const fillLight = new THREE.DirectionalLight(0x54608f, 0.7);
+    fillLight.position.set(-1200, 700, 1200);
     this.scene.add(fillLight);
-
-    const pointLight = new THREE.PointLight(0xff4400, 1.5);
-    pointLight.position.set(0, 0, 0);
-    this.scene.add(pointLight);
   }
 
   private setupRenderTargets(): void {
@@ -198,16 +238,17 @@ export default class TerrainScene extends BaseScene {
       specular: { value: new THREE.Color(0xffffff) },
       ambient: { value: new THREE.Color(0xffffff) },
       shininess: { value: 30.0 },
-      uDisplacementScale: { value: 375.0 },
+      uNightGrade: { value: 0.66 },
+      uDisplacementScale: { value: 190.0 },
       uRepeatOverlay: { value: new THREE.Vector2(6, 6) },
       uOffset: { value: new THREE.Vector2(0, 0) },
-      ambientLightColor: { value: new THREE.Color(0x555555) },
-      directionalLightColor: { value: new THREE.Color(0xffffff) },
-      directionalLightIntensity: { value: 1.15 },
-      directionalLightDirection: { value: new THREE.Vector3(500, 2000, 0).normalize() },
-      pointLightColor: { value: new THREE.Color(0xff4400) },
-      pointLightIntensity: { value: 1.5 },
-      pointLightPosition: { value: new THREE.Vector3(0, 0, 0) },
+      ambientLightColor: { value: new THREE.Color(0x525e96) },
+      directionalLightColor: { value: new THREE.Color(0xc8dcff) },
+      directionalLightIntensity: { value: 2.7 },
+      directionalLightDirection: { value: MOON_DIRECTION.clone() },
+      pointLightColor: { value: new THREE.Color(0x5f7cc4) },
+      pointLightIntensity: { value: 0.5 },
+      pointLightPosition: { value: MOON_DIRECTION.clone().multiplyScalar(1400) },
       fogColor: { value: new THREE.Color(FOG_COLOR) },
       fogNear: { value: 2000.0 },
       fogFar: { value: 4000.0 },
@@ -241,7 +282,7 @@ export default class TerrainScene extends BaseScene {
     geometryTerrain.computeTangents();
 
     this.terrain = new THREE.Mesh(geometryTerrain, materialTerrain);
-    this.terrain.position.set(0, -125, 0);
+    this.terrain.position.set(0, -40, 0);
     this.terrain.rotation.x = -Math.PI / 2;
     this.scene.add(this.terrain);
   }
@@ -250,13 +291,7 @@ export default class TerrainScene extends BaseScene {
     const loader = new GLTFLoader();
     const startX = -3000;
 
-    const addBird = (
-      path: string,
-      speed: number,
-      x: number,
-      y: number,
-      z: number
-    ): void => {
+    const addBird = (path: string, speed: number, x: number, y: number, z: number): void => {
       loader.load(path, (gltf) => {
         const mesh = gltf.scene.children[0] as THREE.Mesh;
         mesh.position.set(x, y, z);
@@ -305,24 +340,19 @@ export default class TerrainScene extends BaseScene {
 
     const bloomPass = new UnrealBloomPass(
       new THREE.Vector2(this.screenWidth, this.screenHeight),
-      0.6,
-      0.4,
-      0.85
+      0.40,
+      0.17,
+      0.93
     );
     this.composer.addPass(bloomPass);
 
     const bleachPass = new ShaderPass(BleachBypassShader);
-    bleachPass.uniforms.opacity.value = 0.4;
+    bleachPass.uniforms.opacity.value = 0.15;
     this.composer.addPass(bleachPass);
-
-    const hblur = new ShaderPass(HorizontalTiltShiftShader);
-    hblur.uniforms.h.value = TerrainScene.BLUR_AMOUNT / this.screenWidth;
-    hblur.uniforms.r.value = 0.5;
-    this.composer.addPass(hblur);
 
     const vblur = new ShaderPass(VerticalTiltShiftShader);
     vblur.uniforms.v.value = TerrainScene.BLUR_AMOUNT / this.screenHeight;
-    vblur.uniforms.r.value = 0.5;
+    vblur.uniforms.r.value = 0.42;
     this.composer.addPass(vblur);
 
     const gammaPass = new ShaderPass(GammaCorrectionShader);
@@ -352,14 +382,34 @@ export default class TerrainScene extends BaseScene {
   update(_time: number): void {
     this.timer.update();
     const delta = this.timer.getDelta();
+    const elapsed = this.timer.getElapsed();
 
     if (!this.terrain) return;
 
     this.updateNoise(delta);
     this.updateBirds(delta);
+    this.updateParallax(elapsed);
 
     this.renderer.setRenderTarget(null);
     this.composer.render();
+  }
+
+  private updateParallax(elapsed: number): void {
+    this.drift.x += (this.pointer.x - this.drift.x) * 0.035;
+    this.drift.y += (this.pointer.y - this.drift.y) * 0.035;
+
+    const sway = Math.sin(elapsed * 0.07) * 90;
+
+    this.camera.position.set(
+      this.cameraBase.x + this.drift.x * 230 + sway,
+      this.cameraBase.y - this.drift.y * 130,
+      this.cameraBase.z + this.drift.x * 110
+    );
+    this.camera.lookAt(this.cameraTarget);
+
+    // The dome rides with the camera, so it never shows its own parallax
+    this.sky.position.copy(this.camera.position);
+    this.skyMaterial.uniforms.uTime.value = elapsed;
   }
 
   private updateBirds(delta: number): void {
@@ -388,7 +438,10 @@ export default class TerrainScene extends BaseScene {
 
   dispose(): void {
     super.dispose();
+    window.removeEventListener('pointermove', this.onPointerMove);
     this.composer?.dispose();
+    this.sky?.geometry.dispose();
+    this.skyMaterial?.dispose();
     this.heightMap?.dispose();
     this.normalMap?.dispose();
     this.specularMap?.dispose();

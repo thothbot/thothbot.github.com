@@ -14,7 +14,8 @@ export const HelixParticleShader = {
       vBrightness = brightness * pulse;
 
       vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-      vDepth = smoothstep(-15.0, 5.0, mvPosition.z);
+      // Spans only the depth the helix actually occupies, otherwise the cue is flat
+      vDepth = smoothstep(-16.4, -12.8, mvPosition.z);
 
       float depthScale = 1.0 + vDepth * 0.5;
       gl_PointSize = size * depthScale * (280.0 / -mvPosition.z);
@@ -29,6 +30,9 @@ export const HelixParticleShader = {
     uniform float uSoftness;
     uniform float uDotRadius;
     uniform float uOpacity;
+    uniform vec3 uColorNear;
+    uniform vec3 uColorFar;
+    uniform vec3 uLightDir;
 
     in float vBrightness;
     in float vDepth;
@@ -50,10 +54,26 @@ export const HelixParticleShader = {
       float threshold = mix(0.3, 0.02, uSoftness * uSoftness);
       if (baseValue < threshold) discard;
 
-      float intensity = baseValue * (0.6 + vDepth * 0.4);
-      float alpha = baseValue * uOpacity;
+      // Each speck is shaded as a small sphere, so the cloud reads as atoms
+      // catching light instead of a flat smear of dots
+      vec2 sphere = center * 2.0;
+      float r2 = min(dot(sphere, sphere), 1.0);
+      vec3 normal = vec3(sphere, sqrt(1.0 - r2) + 0.001);
+      normal.y = -normal.y;
+      normal = normalize(normal);
 
-      fragColor = vec4(vec3(intensity), alpha);
+      vec3 light = normalize(uLightDir);
+      float lambert = max(dot(normal, light), 0.0);
+      float spec = pow(max(dot(reflect(-light, normal), vec3(0.0, 0.0, 1.0)), 0.0), 30.0);
+
+      // Depth cueing: the far side of the helix falls away instead of sitting
+      // as bright as the near side
+      vec3 tone = mix(uColorFar, uColorNear, vDepth);
+      vec3 shaded = tone * (0.30 + 0.85 * lambert) + vec3(0.85, 0.93, 1.0) * spec * 0.55;
+
+      float intensity = baseValue * (0.32 + vDepth * 0.78);
+
+      fragColor = vec4(shaded * intensity, baseValue * uOpacity);
     }
   `,
 };
@@ -208,16 +228,18 @@ export const BasePairShader = {
 
     out float vBrightness;
     out float vDepth;
+    out float vMerge;
 
     void main() {
       float pulse = sin(uTime * 0.8 + phase) * 0.15 + 0.85;
       vBrightness = brightness * pulse;
+      vMerge = mergeProgress;
 
       vec3 mergeOffset = tubeDir * mergeProgress * uMaxGap * tubeT;
       vec3 animatedPos = position + mergeOffset;
 
       vec4 mvPosition = modelViewMatrix * vec4(animatedPos, 1.0);
-      vDepth = smoothstep(-15.0, 5.0, mvPosition.z);
+      vDepth = smoothstep(-16.4, -12.8, mvPosition.z);
 
       float depthScale = 1.0 + vDepth * 0.5;
       gl_PointSize = size * depthScale * (280.0 / -mvPosition.z);
@@ -232,9 +254,13 @@ export const BasePairShader = {
     uniform float uSoftness;
     uniform float uDotRadius;
     uniform float uOpacity;
+    uniform vec3 uColorNear;
+    uniform vec3 uColorFar;
+    uniform vec3 uLightDir;
 
     in float vBrightness;
     in float vDepth;
+    in float vMerge;
 
     layout(location = 0) out vec4 fragColor;
 
@@ -253,10 +279,25 @@ export const BasePairShader = {
       float threshold = mix(0.3, 0.02, uSoftness * uSoftness);
       if (baseValue < threshold) discard;
 
-      float intensity = baseValue * (0.6 + vDepth * 0.4);
-      float alpha = baseValue * uOpacity;
+      vec2 sphere = center * 2.0;
+      float r2 = min(dot(sphere, sphere), 1.0);
+      vec3 normal = vec3(sphere, sqrt(1.0 - r2) + 0.001);
+      normal.y = -normal.y;
+      normal = normalize(normal);
 
-      fragColor = vec4(vec3(intensity), alpha);
+      vec3 light = normalize(uLightDir);
+      float lambert = max(dot(normal, light), 0.0);
+      float spec = pow(max(dot(reflect(-light, normal), vec3(0.0, 0.0, 1.0)), 0.0), 30.0);
+
+      vec3 tone = mix(uColorFar, uColorNear, vDepth);
+
+      // The pair being read heats up, so the merge animation is finally visible
+      tone = mix(tone, vec3(1.0, 0.93, 0.78), vMerge * 0.7);
+
+      vec3 shaded = tone * (0.30 + 0.85 * lambert) + vec3(0.85, 0.93, 1.0) * spec * 0.55;
+      float intensity = baseValue * (0.32 + vDepth * 0.78) * (1.0 + vMerge * 0.9);
+
+      fragColor = vec4(shaded * intensity, baseValue * uOpacity);
     }
   `,
 };

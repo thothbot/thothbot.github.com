@@ -21,7 +21,8 @@ export const VerticalTiltShiftShader = {
 
     void main() {
       vec4 sum = vec4(0.0);
-      float vv = v * abs(r - vUv.y);
+      // One-sided: sharp everywhere above r, softening only toward the bottom
+      float vv = v * smoothstep(r, 0.0, vUv.y);
       sum += texture2D(tDiffuse, vec2(vUv.x, vUv.y - 4.0 * vv)) * 0.051;
       sum += texture2D(tDiffuse, vec2(vUv.x, vUv.y - 3.0 * vv)) * 0.0918;
       sum += texture2D(tDiffuse, vec2(vUv.x, vUv.y - 2.0 * vv)) * 0.12245;

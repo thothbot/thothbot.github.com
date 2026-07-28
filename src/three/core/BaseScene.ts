@@ -7,6 +7,7 @@ export abstract class BaseScene {
   protected container: HTMLElement;
   protected animationId: number | null = null;
   protected isActive = false;
+  private readonly onResize = (): void => this.handleResize();
 
   constructor(container: HTMLElement) {
     this.container = container;
@@ -24,7 +25,7 @@ export abstract class BaseScene {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(this.renderer.domElement);
 
-    window.addEventListener('resize', this.handleResize.bind(this));
+    window.addEventListener('resize', this.onResize);
   }
 
   protected handleResize(): void {
@@ -62,7 +63,7 @@ export abstract class BaseScene {
   dispose(): void {
     this.stop();
     this.renderer.dispose();
-    window.removeEventListener('resize', this.handleResize.bind(this));
+    window.removeEventListener('resize', this.onResize);
     this.container.removeChild(this.renderer.domElement);
   }
 }

@@ -24,23 +24,23 @@ export default class DNAScene extends BaseScene {
 
   private timer = new THREE.Timer();
 
-  private readonly HELIX_RADIUS = 1.8;
-  private readonly HELIX_HEIGHT = 5;
-  private readonly TURN_HEIGHT = 5;
+  private readonly HELIX_RADIUS = 1.45;
+  private readonly HELIX_HEIGHT = 9;
+  private readonly TURN_HEIGHT = 3.3;
   private readonly BASE_PAIRS_PER_TURN = 10;
 
-  private readonly STRAND_PARTICLES = 3000;
-  private readonly STRAND_TUBE_RADIUS = 0.5;
-  private readonly STRAND_DOT_SIZE = 0.5;
-  private readonly STRAND_DOT_SIZE_VARIANCE = 3.0;
+  private readonly STRAND_PARTICLES = 4200;
+  private readonly STRAND_TUBE_RADIUS = 0.22;
+  private readonly STRAND_DOT_SIZE = 0.45;
+  private readonly STRAND_DOT_SIZE_VARIANCE = 1.6;
 
-  private readonly BASE_PAIR_PARTICLES = 200;
+  private readonly BASE_PAIR_PARTICLES = 90;
   private readonly BASE_PAIR_TUBE_RADIUS = 0.10;
   private readonly BASE_PAIR_DOT_SIZE = 0.5;
   private readonly BASE_PAIR_DOT_SIZE_VARIANCE = 3.0;
   private readonly BASE_PAIR_GAP = 0.25;
 
-  private readonly MERGE_PAIRS_COUNT = 2;
+  private readonly MERGE_PAIRS_COUNT = 3;
   private readonly MERGE_DURATION = 3.0;
   private readonly MERGE_INTERVAL = 3.0;
 
@@ -72,7 +72,7 @@ export default class DNAScene extends BaseScene {
     this.camera.fov = 45;
     this.camera.near = 0.1;
     this.camera.far = 100;
-    this.camera.position.set(0, 0, 13);
+    this.camera.position.set(0, 0, 14.6);
     this.camera.lookAt(0, 0, 0);
     this.camera.updateProjectionMatrix();
   }
@@ -150,6 +150,9 @@ export default class DNAScene extends BaseScene {
         uHaloFalloff: { value: this.GLOW_HALO_FALLOFF },
         uHaloIntensity: { value: this.STRAND_HALO_INTENSITY },
         uOpacity: { value: this.GLOW_OPACITY },
+        uColorNear: { value: new THREE.Color(0xbfe4ff) },
+        uColorFar: { value: new THREE.Color(0x2a3f79) },
+        uLightDir: { value: new THREE.Vector3(0.4, 0.65, 0.85).normalize() },
       },
       transparent: true,
       blending: THREE.AdditiveBlending,
@@ -258,6 +261,9 @@ export default class DNAScene extends BaseScene {
         uHaloFalloff: { value: this.GLOW_HALO_FALLOFF },
         uHaloIntensity: { value: this.BASE_PAIR_HALO_INTENSITY },
         uOpacity: { value: this.GLOW_OPACITY },
+        uColorNear: { value: new THREE.Color(0xffd2a1) },
+        uColorFar: { value: new THREE.Color(0x5b3a6b) },
+        uLightDir: { value: new THREE.Vector3(0.4, 0.65, 0.85).normalize() },
       },
       transparent: true,
       blending: THREE.AdditiveBlending,

@@ -4,9 +4,15 @@ import CTAButton from '../ui/CTAButton.astro';
 ---
 
 <Section id="orbesg" class="flex flex-col" mobileAuto>
-  <div id="orbesg-canvas" class="absolute inset-0 z-0 opacity-50 md:opacity-100 md:translate-x-1/4"></div>
+  <div
+    class="absolute inset-0 z-0 pointer-events-none"
+    style="background: radial-gradient(75% 62% at 100% 0%, rgba(2, 3, 8, 0.95), rgba(2, 3, 8, 0.7) 45%, transparent 75%)"
+  ></div>
 
-  <div class="absolute inset-0 z-[1] bg-gradient-to-b from-black/50 via-black/20 to-black/60 pointer-events-none"></div>
+  <div id="orbesg-canvas" class="absolute inset-0 z-0 opacity-50 md:opacity-100 md:translate-x-[16%]"></div>
+
+  <div class="absolute inset-x-0 top-0 h-64 z-[1] bg-gradient-to-b from-black/75 via-black/40 to-transparent pointer-events-none"></div>
+  <div class="absolute inset-x-0 bottom-0 h-64 z-[1] bg-gradient-to-t from-black/50 via-black/15 to-transparent pointer-events-none"></div>
 
   <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-6 md:pt-16 lg:pt-20 text-center">
     <span class="text-xs md:text-sm text-white/50 uppercase tracking-wider mb-2 md:mb-4 block">Something I built</span>
@@ -47,7 +53,7 @@ import CTAButton from '../ui/CTAButton.astro';
       </div>
 
       <div class="flex flex-col justify-end lg:items-end">
-        <div class="flex flex-wrap gap-2 mt-4 lg:mt-0">
+        <div class="flex flex-wrap gap-2">
           <CTAButton href="https://criora.com" variant="secondary" external>
             Visit Criora
           </CTAButton>

@@ -59,6 +59,8 @@ export const TerrainShader = {
     uniform float pointLightIntensity;
     uniform vec3 pointLightPosition;
 
+    uniform float uNightGrade;
+
     uniform vec3 fogColor;
     uniform float fogNear;
     uniform float fogFar;
@@ -117,6 +119,11 @@ export const TerrainShader = {
       totalSpecular += pointLightColor * pointLightIntensity * specular * pointSpecularWeight * pointDiffuseWeight * pointAttenuation;
 
       vec3 finalColor = texColor.rgb * (totalDiffuse + ambientLightColor * ambient + totalSpecular);
+
+      // Moonlight is essentially achromatic, so the grass has to lose most of its
+      // daylight green and come back as silver-blue
+      float luma = dot(finalColor, vec3(0.299, 0.587, 0.114));
+      finalColor = mix(finalColor, vec3(luma) * vec3(0.80, 0.89, 1.14), uNightGrade);
 
       float depth = gl_FragCoord.z / gl_FragCoord.w;
       float fogFactor = smoothstep(fogNear, fogFar, depth);

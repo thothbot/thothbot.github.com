@@ -14,7 +14,7 @@ const sceneConfigs = [
   {
     sectionId: 'orbesg',
     canvasId: 'orbesg-canvas',
-    loader: () => import('../three/scenes/EuropeMapScene'),
+    loader: () => import('../three/scenes/GlobeScene'),
   },
   {
     sectionId: 'parallax',
