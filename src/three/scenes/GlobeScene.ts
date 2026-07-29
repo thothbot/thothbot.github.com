@@ -1,13 +1,8 @@
 import * as THREE from 'three';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { BaseScene } from '../core/BaseScene';
 import { GlobeSurfaceShader } from '../shaders/GlobeSurfaceShader';
 import { GlobeCloudShader } from '../shaders/GlobeCloudShader';
 import { GlobeAtmosphereShader } from '../shaders/GlobeAtmosphereShader';
-import { GammaCorrectionShader } from '../shaders/GammaCorrectionShader';
 
 type HazardKind = 'fire' | 'flood' | 'heat' | 'drought' | 'storm' | 'quake';
 
@@ -150,7 +145,6 @@ export default class GlobeScene extends BaseScene {
   private featureStrength = 0;
   private cameraDir = new THREE.Vector3(0, 0, 1);
 
-  private composer!: EffectComposer;
   private timer = new THREE.Timer();
   private textures: THREE.Texture[] = [];
 
@@ -165,7 +159,6 @@ export default class GlobeScene extends BaseScene {
     this.setupCamera();
     await this.loadTextures();
     this.createGlobe();
-    this.setupComposer();
 
     window.addEventListener('pointermove', this.onPointerMove);
   }
@@ -212,9 +205,9 @@ export default class GlobeScene extends BaseScene {
   private async loadTextures(): Promise<void> {
     const loader = new THREE.TextureLoader();
     const [surface, ocean, clouds] = await Promise.all([
-      this.loadTexture(loader, '/assets/textures/planets/earth_atmos_2048.jpg', true),
-      this.loadTexture(loader, '/assets/textures/planets/earth_specular_2048.jpg', false),
-      this.loadTexture(loader, '/assets/textures/planets/earth_clouds_1024.png', true),
+      this.loadTexture(loader, '/assets/textures/planets/earth_atmos_2048.webp', true),
+      this.loadTexture(loader, '/assets/textures/planets/earth_specular_2048.webp', false),
+      this.loadTexture(loader, '/assets/textures/planets/earth_clouds_1024.webp', true),
     ]);
 
     this.surfaceTexture = surface;
@@ -422,19 +415,9 @@ export default class GlobeScene extends BaseScene {
     });
   }
 
-  private setupComposer(): void {
-    const size = this.renderer.getDrawingBufferSize(new THREE.Vector2());
-
-    this.composer = new EffectComposer(this.renderer);
-    this.composer.addPass(new RenderPass(this.scene, this.camera));
-    this.composer.addPass(new UnrealBloomPass(new THREE.Vector2(size.x, size.y), 0.44, 0.4, 0.78));
-    this.composer.addPass(new ShaderPass(GammaCorrectionShader));
-  }
-
   protected handleResize(): void {
     super.handleResize();
     const { width, height } = this.container.getBoundingClientRect();
-    this.composer?.setSize(width, height);
     this.applyFraming();
   }
 
@@ -468,15 +451,11 @@ export default class GlobeScene extends BaseScene {
     this.advanceFeature(elapsed);
     this.spawnAmbient(elapsed);
     this.writeEventUniforms(elapsed);
-
-    this.renderer.setRenderTarget(null);
-    this.composer.render();
   }
 
   dispose(): void {
     super.dispose();
     window.removeEventListener('pointermove', this.onPointerMove);
-    this.composer?.dispose();
     this.surfaceMaterial?.dispose();
     this.cloudMaterial?.dispose();
     this.atmosphereMaterial?.dispose();

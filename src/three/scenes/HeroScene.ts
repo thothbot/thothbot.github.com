@@ -89,7 +89,6 @@ export default class HeroScene extends BaseScene {
     this.camera.position.z = CAMERA_Z;
     this.camera.fov = 48;
     this.camera.updateProjectionMatrix();
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < BREAKPOINT ? 1.25 : 1.75));
     this.renderer.setClearColor(0x000000, 0);
     this.scene.background = null;
 

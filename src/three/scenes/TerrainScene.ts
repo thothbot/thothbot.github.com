@@ -34,7 +34,7 @@ export default class TerrainScene extends BaseScene {
   private static readonly BLUR_AMOUNT = 3.0;
   private static readonly HEIGHTMAP_SIZE = 256;
   private static readonly TERRAIN_SIZE = 6000;
-  private static readonly TERRAIN_SEGMENTS = 256;
+  private static readonly TERRAIN_SEGMENTS = 128;
 
   private screenWidth!: number;
   private screenHeight!: number;
@@ -84,7 +84,7 @@ export default class TerrainScene extends BaseScene {
     this.setupRenderTargets();
     await this.setupTerrain();
     this.setupComposer();
-    this.setupBirds();
+    await this.setupBirds();
 
     window.addEventListener('pointermove', this.onPointerMove);
   }
@@ -165,7 +165,7 @@ export default class TerrainScene extends BaseScene {
     this.heightMap = new THREE.WebGLRenderTarget(rx, ry, renderTargetParams);
     this.normalMap = new THREE.WebGLRenderTarget(rx, ry, renderTargetParams);
 
-    this.specularMap = new THREE.WebGLRenderTarget(2048, 2048, {
+    this.specularMap = new THREE.WebGLRenderTarget(512, 512, {
       ...renderTargetParams,
       wrapS: THREE.RepeatWrapping,
       wrapT: THREE.RepeatWrapping,
@@ -190,7 +190,7 @@ export default class TerrainScene extends BaseScene {
 
     const [diffuseTexture1, diffuseTexture2, detailTexture] = await Promise.all([
       loadTexture('/assets/textures/terrain/grasslight-big.jpg'),
-      loadTexture('/assets/textures/terrain/backgrounddetailed6.jpg'),
+      loadTexture('/assets/textures/terrain/backgrounddetailed6.webp'),
       loadTexture('/assets/textures/terrain/grasslight-big-nm.jpg'),
     ]);
 
@@ -287,12 +287,21 @@ export default class TerrainScene extends BaseScene {
     this.scene.add(this.terrain);
   }
 
-  private setupBirds(): void {
+  // Awaited by setup, so the scene is only revealed once the flock is in it and
+  // its materials are part of the warm-up compile
+  private async setupBirds(): Promise<void> {
     const loader = new GLTFLoader();
     const startX = -3000;
 
-    const addBird = (path: string, speed: number, x: number, y: number, z: number): void => {
-      loader.load(path, (gltf) => {
+    const addBird = async (
+      path: string,
+      speed: number,
+      x: number,
+      y: number,
+      z: number
+    ): Promise<void> => {
+      try {
+        const gltf = await loader.loadAsync(path);
         const mesh = gltf.scene.children[0] as THREE.Mesh;
         mesh.position.set(x, y, z);
         mesh.rotation.y = Math.PI / 2;
@@ -314,15 +323,20 @@ export default class TerrainScene extends BaseScene {
 
         this.birds.push({ mesh, mixer, speed });
         this.scene.add(mesh);
-      });
+      } catch (error) {
+        // One missing model must not cost us the whole landscape
+        console.error(`Failed to load bird ${path}:`, error);
+      }
     };
 
-    addBird('/assets/models/gltf/parrot.glb', 250, startX - 500, 500, 700);
-    addBird('/assets/models/gltf/parrot.glb', 250, startX - Math.random() * 500, 500, -200);
-    addBird('/assets/models/gltf/parrot.glb', 250, startX - Math.random() * 500, 500, 200);
-    addBird('/assets/models/gltf/parrot.glb', 250, startX - Math.random() * 500, 500, 1000);
-    addBird('/assets/models/gltf/flamingo.glb', 500, startX - Math.random() * 500, 350, 40);
-    addBird('/assets/models/gltf/stork.glb', 350, startX - Math.random() * 500, 350, 340);
+    await Promise.all([
+      addBird('/assets/models/gltf/parrot.glb', 250, startX - 500, 500, 700),
+      addBird('/assets/models/gltf/parrot.glb', 250, startX - Math.random() * 500, 500, -200),
+      addBird('/assets/models/gltf/parrot.glb', 250, startX - Math.random() * 500, 500, 200),
+      addBird('/assets/models/gltf/parrot.glb', 250, startX - Math.random() * 500, 500, 1000),
+      addBird('/assets/models/gltf/flamingo.glb', 500, startX - Math.random() * 500, 350, 40),
+      addBird('/assets/models/gltf/stork.glb', 350, startX - Math.random() * 500, 350, 340),
+    ]);
   }
 
   private setupComposer(): void {
@@ -389,7 +403,11 @@ export default class TerrainScene extends BaseScene {
     this.updateNoise(delta);
     this.updateBirds(delta);
     this.updateParallax(elapsed);
+  }
 
+  protected render(): void {
+    if (!this.terrain) return;
+    // updateNoise leaves the height and normal targets bound
     this.renderer.setRenderTarget(null);
     this.composer.render();
   }

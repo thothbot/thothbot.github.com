@@ -193,6 +193,29 @@
     }
   }
 
+  /* Entrance states driven by IntersectionObserver rather than a scroll library */
+  [data-enter] {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  [data-enter='rise'] {
+    transform: translateY(60px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-enter='pop'] {
+    transform: translateY(40px) scale(0.95);
+    transition:
+      opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-enter][data-entered='true'] {
+    opacity: 1;
+    transform: none;
+  }
+
   .animate-fade-in {
     opacity: 0;
     animation: fadeIn 0.5s ease-out forwards;

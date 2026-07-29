@@ -1,14 +1,10 @@
 import * as THREE from 'three';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { BaseScene } from '../core/BaseScene';
 import {
   HelixParticleShader,
   BasePairShader,
   StreakShader,
   BokehShader,
-  FilmGrainShader,
 } from '../shaders/DNAShader';
 
 export default class DNAScene extends BaseScene {
@@ -19,8 +15,6 @@ export default class DNAScene extends BaseScene {
   private bokehFront!: THREE.Points;
   private bokehBack!: THREE.Points;
 
-  private composer!: EffectComposer;
-  private grainPass!: ShaderPass;
 
   private timer = new THREE.Timer();
 
@@ -65,7 +59,6 @@ export default class DNAScene extends BaseScene {
     this.createBokehParticles();
     this.createStreakParticles();
     this.createDNAHelix();
-    this.setupComposer();
   }
 
   private setupCamera(): void {
@@ -359,40 +352,12 @@ export default class DNAScene extends BaseScene {
     return new THREE.Points(geometry, material);
   }
 
-  private setupComposer(): void {
-    const width = this.renderer.domElement.width || window.innerWidth;
-    const height = this.renderer.domElement.height || window.innerHeight;
-
-    const renderTarget = new THREE.WebGLRenderTarget(width, height, {
-      minFilter: THREE.LinearFilter,
-      magFilter: THREE.LinearFilter,
-      format: THREE.RGBAFormat,
-    });
-
-    this.composer = new EffectComposer(this.renderer, renderTarget);
-
-    const renderPass = new RenderPass(this.scene, this.camera);
-    this.composer.addPass(renderPass);
-
-    this.grainPass = new ShaderPass({
-      uniforms: FilmGrainShader.uniforms,
-      vertexShader: FilmGrainShader.vertexShader,
-      fragmentShader: FilmGrainShader.fragmentShader,
-      glslVersion: THREE.GLSL3,
-    });
-    this.composer.addPass(this.grainPass);
-  }
-
   update(_time: number): void {
     this.timer.update();
     const elapsed = this.timer.getElapsed();
 
     this.updateHelix(elapsed);
     this.updateParticles(elapsed);
-    this.updatePostProcessing(elapsed);
-
-    this.renderer.setRenderTarget(null);
-    this.composer.render();
   }
 
   private updateHelix(elapsed: number): void {
@@ -495,22 +460,8 @@ export default class DNAScene extends BaseScene {
     bokehBackMaterial.uniforms.uTime.value = elapsed;
   }
 
-  private updatePostProcessing(elapsed: number): void {
-    this.grainPass.uniforms.uTime.value = elapsed;
-  }
-
-  protected handleResize(): void {
-    super.handleResize();
-
-    if (this.composer) {
-      const { width, height } = this.container.getBoundingClientRect();
-      this.composer.setSize(width, height);
-    }
-  }
-
   dispose(): void {
     super.dispose();
-    this.composer?.dispose();
 
     this.strandParticles?.geometry.dispose();
     (this.strandParticles?.material as THREE.Material)?.dispose();
